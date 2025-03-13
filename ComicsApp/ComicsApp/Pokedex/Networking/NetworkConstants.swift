@@ -15,10 +15,15 @@ class NetworkConstants{
              return "https://pokeapi.co/api/v2/pokemon-species/"
          }
      }
+    public var offsetURL: String {
+        get {
+            return "offset="
+        }
+    }
     
     public var limitURL: String {
         get {
-            return "?limit="
+            return "limit="
         }
     }
     

@@ -11,38 +11,42 @@ import UIKit
 public class ApiCaller {
     
     static func getSpeciesInfo(pokemonID: Int, completionHandler: @escaping (_ result: PokemonSpecies) -> Void) {
+        
         let urlstring = NetworkConstants().speciesURL + "\(pokemonID)"
         
-        print(urlstring)
+        //        print(urlstring)
         let url = URL(string: urlstring)!
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
                let data = dataResponse,
                let resultData = try? JSONDecoder().decode(PokemonSpecies.self, from: data) {
-                print("Decoded successfully: \(resultData)")
+                //                print("Decoded successfully: \(resultData)")
                 completionHandler(resultData)
             } else {
-                print("rawdata: \(dataResponse!)")
+                print("erro. rawdata: \(dataResponse!)")
             }
         }.resume()
         
     }
     
     
-    static func listSpecies(completionHandler: @escaping (_ result: SpeciesList) -> Void) {
-        let urlstring = "\(NetworkConstants().speciesURL)\(NetworkConstants().limitURL)3000"
+    static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: SpeciesList) -> Void) {
+        //        if urlstring == nil{
+        //            let urlstring =  "\(NetworkConstants().speciesURL)\(NetworkConstants().offsetURL)\(offset)&\(NetworkConstants().limitURL)20&random=\(Int.random(in: 1...1))"
+        //        }
+
+//        print(urlstring)
         
-        print(urlstring)
         let url = URL(string: urlstring)!
         
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
                let data = dataResponse,
                let resultData = try? JSONDecoder().decode(SpeciesList.self, from: data) {
-                print("Decoded successfully: \(resultData)")
+                //                print("Decoded successfully: \(resultData)")
                 completionHandler(resultData)
             } else {
-                print("rawdata: \(dataResponse!)")
+                print("erro. rawdata: \(dataResponse!)")
             }
         }.resume()
         

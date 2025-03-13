@@ -12,10 +12,11 @@ class MainViewModel {
     
     var dataSource: PokemonSpecies?
     var isready: Bool = false
+    var partComplete: Bool = false
+    var next : String?
+    var previous : String?
     func getData(_ id: Int){
         ApiCaller.getSpeciesInfo(pokemonID: id) { [weak self] result in
-            print("result:")
-            print(result)
             self?.dataSource = result
             self?.isready = true
         }
@@ -23,33 +24,78 @@ class MainViewModel {
     
     
     // MARK - Lista Pokédex
-    var listDataSource: SpeciesList?
+    var listDataSource: [SpeciesList] = []
     var pokemons: [SpeciesViewModel]?
-    func getList(){
-        ApiCaller.listSpecies(){ [weak self] result in
-            //            print("result:")
-            //            print(result)
-            self?.listDataSource = result
-            self?.mapPokemonData()
-            self?.isready = true
+    var number = 0
+    
+    func getList(position : listNav){
+//        self.isready = false
+        let defaulturl =  "\(NetworkConstants().speciesURL)?\(NetworkConstants().limitURL)5"/*&random=\(Int.random(in: 1...1))"*/
+        var url = ""
+        
+        switch position {
+        case .previous:
+            if self.previous == nil {
+                print("prev is nil")
+                return
+            }
+            url = previous ?? defaulturl
+            number -= 1
+        case .next:
+            if self.next == nil {
+                print("next is nil")
+                return
+            }
+            url = next ?? defaulturl
+            number += 1
+        default:
+            url = defaulturl
+        }
+        
+        self.isready = false
+        if listDataSource.count <= number {
+            
+            ApiCaller.listSpecies(urlstring: url){ [weak self] result in
+                self?.next = result.next
+                self?.previous = result.previous
+                self?.listDataSource.append(result)
+                self?.mapPokemonData(self!.number)
+                self?.isready = true
+            }
+        }
+        
+        else {
+            print("IDK")
+            self.next = listDataSource[number].next
+            self.previous = listDataSource[number].previous
+            self.mapPokemonData(number)
+            self.isready = true
         }
     }
     
+    //    func getList(){
+    //        ApiCaller.listSpecies(offset: 13){ [weak self] result in
+    //            //            print("result:")
+    //            self?.listDataSource = result
+    //            self?.mapPokemonData()
+    //            self?.isready = true
+    //        }
+    //    }
+    
     func numberOfRows() -> Int {
-        print(listDataSource?.count ?? 0)
-        return listDataSource?.count ?? 0
+        return pokemons?.count ?? 0
     }
     
-//    func printthemons(){
-//        for p in self.pokemons ?? [] {
-//            print(p.pokemon.padding(toLength: 12, withPad: " ", startingAt: 0))
-//            print(p.imageURL)
-//            
-//        }
-//    }
+    //    func printthemons(){
+    //        for p in self.pokemons ?? [] {
+    //            print(p.pokemon.padding(toLength: 12, withPad: " ", startingAt: 0))
+    //            print(p.imageURL)
+    //
+    //        }
+    //    }
     
-    private func mapPokemonData() {
-        pokemons = self.listDataSource?.results.compactMap({SpeciesViewModel($0)})
+    private func mapPokemonData(_ number: Int) {
+        pokemons = self.listDataSource[number].results.compactMap({SpeciesViewModel($0)})
     }
 }
 
