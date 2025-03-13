@@ -23,14 +23,13 @@ class MainViewModel {
     }
     
     
-    // MARK - Lista Pokédex
+    //MARK - Lista Pokédex
     var listDataSource: [SpeciesList] = []
     var pokemons: [SpeciesViewModel]?
     var number = 0
     
     func getList(position : listNav){
-//        self.isready = false
-        let defaulturl =  "\(NetworkConstants().speciesURL)?\(NetworkConstants().limitURL)5"/*&random=\(Int.random(in: 1...1))"*/
+        let defaulturl =  "\(NetworkConstants().speciesURL)?\(NetworkConstants().limitURL)20"
         var url = ""
         
         switch position {
@@ -41,6 +40,7 @@ class MainViewModel {
             }
             url = previous ?? defaulturl
             number -= 1
+            
         case .next:
             if self.next == nil {
                 print("next is nil")
@@ -48,6 +48,7 @@ class MainViewModel {
             }
             url = next ?? defaulturl
             number += 1
+            
         default:
             url = defaulturl
         }
@@ -65,7 +66,6 @@ class MainViewModel {
         }
         
         else {
-            print("IDK")
             self.next = listDataSource[number].next
             self.previous = listDataSource[number].previous
             self.mapPokemonData(number)
@@ -73,26 +73,9 @@ class MainViewModel {
         }
     }
     
-    //    func getList(){
-    //        ApiCaller.listSpecies(offset: 13){ [weak self] result in
-    //            //            print("result:")
-    //            self?.listDataSource = result
-    //            self?.mapPokemonData()
-    //            self?.isready = true
-    //        }
-    //    }
-    
     func numberOfRows() -> Int {
         return pokemons?.count ?? 0
     }
-    
-    //    func printthemons(){
-    //        for p in self.pokemons ?? [] {
-    //            print(p.pokemon.padding(toLength: 12, withPad: " ", startingAt: 0))
-    //            print(p.imageURL)
-    //
-    //        }
-    //    }
     
     private func mapPokemonData(_ number: Int) {
         pokemons = self.listDataSource[number].results.compactMap({SpeciesViewModel($0)})

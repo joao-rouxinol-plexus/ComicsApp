@@ -21,7 +21,6 @@ class PokeCellTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     func setupCell(viewModel: SpeciesViewModel) {
@@ -38,5 +37,4 @@ class PokeCellTableViewCell: UITableViewCell {
         contentView.clipsToBounds = true
         contentView.backgroundColor = .lightGray
     }
-    
 }

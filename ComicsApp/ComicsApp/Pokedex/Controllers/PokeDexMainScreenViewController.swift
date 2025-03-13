@@ -38,6 +38,7 @@ class PokeDexMainScreenViewController: UIViewController {
         let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(_:)))
         swipeLeft.direction = .left
         self.view.addGestureRecognizer(swipeLeft)
+        
     }
     
     
@@ -105,30 +106,8 @@ class PokeDexMainScreenViewController: UIViewController {
             NextButtonOutlet.isEnabled = true
         }
     }
-    //    @IBAction func HideButton(_ sender: UIButton) {
-    //        PokemonTableView.isHidden = !PokemonTableView.isHidden
-    //    }
-    //
-    //
-    //
-    //    @IBAction func ReloadButton(_ sender: UIButton) {
-    //        loadPokemon((Int.random(in: 1...920)))
-    //    }
-    
-    //    func loadPokemon(_ id: Int) {
-    //        viewModel.getData(id)
-    //        viewModel.isready = false
-    //
-    //        while viewModel.isready == false {
-    //            wait()
-    //        }
-    //        let string = "\(viewModel.dataSource!.id) \(viewModel.dataSource!.name) "
-    //        let urlimage = viewModel.dataSource!.gifURL
-    //        TestLabel.text = string.split(separator: "-").joined(separator: " ").capitalized
-    //        self.iamge.sd_setImage(with: urlimage)
-    //    }
-    
 }
+
 
 extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -136,24 +115,18 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         viewModel.numberOfRows()
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PokeCellTableViewCell.identifier, for: indexPath) as? PokeCellTableViewCell else {
             return UITableViewCell()
         }
-        
-        //        if indexPath.row == viewModel.pokemons!.count - 10 {
-        //            loadNextPage()
-        //        }
-        
         cell.setupCell(viewModel: viewModel.pokemons![indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
     
-    
     func reloadTableView() {
         PokemonTableView.reloadData()
+        PokemonTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
     func setupTableView() {
@@ -166,7 +139,6 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
     func registerCells() {
         self.PokemonTableView.register(PokeCellTableViewCell.register(), forCellReuseIdentifier: PokeCellTableViewCell.identifier)
     }
-    
     
 }
 

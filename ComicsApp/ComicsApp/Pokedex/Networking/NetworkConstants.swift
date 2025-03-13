@@ -11,10 +11,10 @@ class NetworkConstants{
     public static var shared: NetworkConstants = NetworkConstants()
     
     public var speciesURL: String {
-         get {
-             return "https://pokeapi.co/api/v2/pokemon-species/"
-         }
-     }
+        get {
+            return "https://pokeapi.co/api/v2/pokemon-species/"
+        }
+    }
     public var offsetURL: String {
         get {
             return "offset="
