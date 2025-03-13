@@ -15,10 +15,10 @@ struct results: Codable {
 }
 
 struct SpeciesList: Codable {
-    var count : Int
-    let next : String?
-    let previous : String?
-    let results : [results]
+    let count : Int
+    var next : String?
+    var previous : String?
+    var results : [results]
 }
 
 

@@ -14,7 +14,6 @@ struct color: Codable {
     let url : String
 }
 
-
 struct evolves_from_species: Codable {
     let name : String
     let url : String
@@ -39,7 +38,7 @@ struct PokemonSpecies: Codable {
     
     var gifURL: URL {
         get {
-            let random = Int.random(in: 1...5)
+            let random = Int.random(in: 1...500)
             var shinystring = ""
             if (random == 5){
                 shinystring = "shiny/" }
