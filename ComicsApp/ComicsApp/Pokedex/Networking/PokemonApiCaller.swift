@@ -1,5 +1,5 @@
 //
-//  ApiCaller.swift
+//  PokemonApiCaller.swift
 //  testeapipokemon
 //
 //  Created by Duarte Miguel Charrua Silva on 28/02/2025.
@@ -10,33 +10,34 @@ import UIKit
 
 public class PokemonApiCaller {
     
-    static func getSpeciesInfo(pokemonID: Int, completionHandler: @escaping (_ result: PokemonSpecies) -> Void) {
+    static func getPokemonInfo(urlString: String, completionHandler: @escaping (_ result: Pokemon) -> Void) {
         
-        let urlstring = PokemonNetworkConstants().speciesURL + "\(pokemonID)"
-        let url = URL(string: urlstring)!
+//        let urlstring = PokemonNetworkConstants().pokemonURL + "\(pokemonID)"
+        
+        let url = URL(string: urlString)!
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
                let data = dataResponse,
-               let resultData = try? JSONDecoder().decode(PokemonSpecies.self, from: data) {
+               let resultData = try? JSONDecoder().decode(Pokemon.self, from: data) {
                 completionHandler(resultData)
             } else {
-                print("erro. rawdata: \(dataResponse!)")
+                print("erro. rawdata: \(String(describing: dataResponse))")
             }
         }.resume()
     }
     
     
-    static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: PokemonSpeciesList) -> Void) {
+    static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: PokemonList) -> Void) {
         
         let url = URL(string: urlstring)!
         
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
                let data = dataResponse,
-               let resultData = try? JSONDecoder().decode(PokemonSpeciesList.self, from: data) {
+               let resultData = try? JSONDecoder().decode(PokemonList.self, from: data) {
                 completionHandler(resultData)
             } else {
-                print("erro. rawdata: \(dataResponse!)")
+                print("erro. rawdata: \(String(describing: dataResponse))")
             }
         }.resume()
     }

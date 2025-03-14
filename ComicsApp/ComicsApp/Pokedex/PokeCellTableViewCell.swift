@@ -14,6 +14,8 @@ class PokeCellTableViewCell: UITableViewCell {
     @IBOutlet weak var pokemonLabel: UILabel!
     @IBOutlet weak var pokemonNumber: UILabel!
     @IBOutlet weak var shiny: UIImageView!
+    @IBOutlet weak var Type1Label: UILabel!
+    @IBOutlet weak var Type2Label: UILabel!
     
     public static func register() -> UINib{
         UINib(nibName: "PokeCellTableViewCell", bundle: nil)
@@ -23,11 +25,14 @@ class PokeCellTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setupCell(viewModel: PokemonSpeciesViewModel) {
-        self.pokemonNumber.text = "\(viewModel.id)"
+    func setupCell(viewModel: PokemonListViewModel) {
+        self.pokemonNumber.text = "\(viewModel.formattedID)"
         self.pokemonLabel.text = viewModel.listInfo
         self.pokemonSprite.sd_setImage(with: viewModel.imageURL)
         self.shiny.isHidden = !viewModel.shiny
+        self.Type1Label.text = viewModel.type1
+        self.Type2Label.text = viewModel.type2
+        
     }
     
     override func layoutSubviews() {

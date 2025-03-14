@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PokeDexMainScreenViewController.swift
 //  testeapipokemon
 //
 //  Created by Duarte Miguel Charrua Silva on 06/03/2025.
@@ -9,24 +9,22 @@ import UIKit
 import SDWebImage
 
 class PokeDexMainScreenViewController: UIViewController {
-    
-    
-    
+
     var viewModel: PokemonMainViewModel = PokemonMainViewModel()
-    var currentPage = 0
-    
     
     @IBOutlet weak var PreviousButtonOutlet: UIButton!
     @IBOutlet weak var NextButtonOutlet: UIButton!
     @IBOutlet weak var PokemonTableView: UITableView!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         viewModel.getList(position: listNav.first)
         
         while viewModel.isready == false {
             _ = wait()
         }
+        
         self.setupTableView()
         
         checkAvailableButton()
@@ -48,6 +46,7 @@ class PokeDexMainScreenViewController: UIViewController {
             switch swipeGesture.direction {
             case .right:
                 previous()
+                
             case .left:
                 next()
             default:
@@ -61,7 +60,6 @@ class PokeDexMainScreenViewController: UIViewController {
     }
     
     func next(){
-        currentPage += 1
         viewModel.getList(position: listNav.next)
         
         while viewModel.isready == false {
@@ -80,7 +78,6 @@ class PokeDexMainScreenViewController: UIViewController {
     }
     
     func previous(){
-        currentPage -= 1
         viewModel.getList(position: listNav.previous)
         
         while viewModel.isready == false {
@@ -92,19 +89,10 @@ class PokeDexMainScreenViewController: UIViewController {
     }
     
     func checkAvailableButton() {
-        if viewModel.previous == nil {
-            PreviousButtonOutlet.isEnabled = false
-        }
-        else {
-            PreviousButtonOutlet.isEnabled = true
-        }
         
-        if viewModel.next == nil {
-            NextButtonOutlet.isEnabled = false
-        }
-        else {
-            NextButtonOutlet.isEnabled = true
-        }
+//        PreviousButtonOutlet.isEnabled = viewModel.previous != nil
+//        NextButtonOutlet.isEnabled = viewModel.next != nil
+    
     }
 }
 
@@ -119,7 +107,7 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PokeCellTableViewCell.identifier, for: indexPath) as? PokeCellTableViewCell else {
             return UITableViewCell()
         }
-        cell.setupCell(viewModel: viewModel.pokemons![indexPath.row])
+        cell.setupCell(viewModel: viewModel.pokemons[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }

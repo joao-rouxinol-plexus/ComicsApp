@@ -1,5 +1,5 @@
 //
-//  MainViewModel.swift
+//  PokemonMainViewModel.swift
 //  testeapipokemon
 //
 //  Created by Duarte Miguel Charrua Silva on 28/02/2025.
@@ -9,43 +9,89 @@ import Foundation
 
 class PokemonMainViewModel {
     
-    var dataSource: PokemonSpecies?
-    var isready: Bool = false
+    var PokemonDataSource: [String: Pokemon] = [:]
     var partComplete: Bool = false
-    var next : String?
-    var previous : String?
-    func getData(_ id: Int){
-        PokemonApiCaller.getSpeciesInfo(pokemonID: id) { [weak self] result in
-            self?.dataSource = result
-            self?.isready = true
+    //    var next : String?
+    //    var previous : String?
+    
+    func getPokemonData(_ url: String) -> Pokemon?{
+        var pokemonIsReady: Bool = false
+        
+        pokemonIsReady = false
+        if !PokemonDataSource.keys.contains(url){
+            print("getting \(url.split(separator: "/").last!)")
+            
+            PokemonApiCaller.getPokemonInfo(urlString: url) { [weak self] pokemonResult in
+                self?.PokemonDataSource[url] = pokemonResult
+                pokemonIsReady = true
+            }
         }
+        
+        else {
+            print("returning \(url.split(separator: "/").last!)")
+            pokemonIsReady = true
+        }
+        while !pokemonIsReady {
+            _ = wait()
+        }
+        //        print("\(url.split(separator: "/").last!) is ready")
+        return self.PokemonDataSource[url]
     }
     
     
     //MARK - Lista Pokédex
-    var listDataSource: [PokemonSpeciesList] = []
-    var pokemons: [PokemonSpeciesViewModel]?
+    var listDataSource: [PokemonList] = []
+    var pokemons: [PokemonListViewModel] = []
     var number = 0
     let pageLimit: Int = 20
+    var isready: Bool = false
+    
+    func loadList(url: String){
+        PokemonApiCaller.listSpecies(urlstring: url){ [weak self] listResult in
+            //            self?.next = listResult.next
+            //            self?.previous = listResult.previous
+            self?.listDataSource.append(listResult)
+            self?.partComplete = true
+            print("loaded list \(url)")
+        }
+        while self.partComplete != true {
+            _ = wait()
+        }
+        
+        
+        
+        let group = DispatchGroup()
+        
+        //            for i in 0...listDataSource[number].count {
+        for i in listDataSource[number].results.indices {
+            //                let url = "https://pokeapi.co/api/v2/pokemon/\(i)/"
+            let url = listDataSource[number].results[i].url
+            group.enter()
+            
+            DispatchQueue.global(qos: .userInitiated).async {
+                _ = self.getPokemonData(url)
+                group.leave()
+            }
+        }
+    }
+    
+    
     func getList(position : listNav){
-        let defaulturl =  "\(PokemonNetworkConstants().speciesURL)?\(PokemonNetworkConstants().limitURL)\(pageLimit)"
+        
+        self.partComplete = false
+        
+        let defaulturl =  "\(PokemonNetworkConstants().pokemonURL)?\(PokemonNetworkConstants().limitURL)\(pageLimit)"
         var url = ""
         
         switch position {
         case .previous:
-            if self.previous == nil {
-                print("prev is nil")
-                return
-            }
-            url = previous ?? defaulturl
+            if listDataSource[number].previous == nil {return}
+            url = listDataSource[number].previous ?? defaulturl
             number -= 1
             
         case .next:
-            if self.next == nil {
-                print("next is nil")
-                return
-            }
-            url = next ?? defaulturl
+            if self.listDataSource[number].next == nil {return}
+            url = listDataSource[number].next ?? defaulturl
             number += 1
             
         default:
@@ -55,38 +101,61 @@ class PokemonMainViewModel {
         self.isready = false
         if listDataSource.count <= number {
             
-            PokemonApiCaller.listSpecies(urlstring: url){ [weak self] result in
-                self?.next = result.next
-                self?.previous = result.previous
-                self?.listDataSource.append(result)
-                self?.mapPokemonData(self!.number)
-                self?.isready = true
+            loadList(url: url)
+            
+            
+            if let nexturl = listDataSource[number].next {
+                print("loading next list?")
+                loadList(url: nexturl)
+                
+            }
+        }
+        
+        else {
+            //            self.next = listDataSource[number].next
+            //            self.previous = listDataSource[number].previous
+            self.partComplete = true
+            
+            while self.partComplete != true {
+                _ = wait()
             }
             
         }
         
+        pokemons.removeAll()
         
-        else {
-            self.next = listDataSource[number].next
-            self.previous = listDataSource[number].previous
-            self.mapPokemonData(number)
-            self.isready = true
+        //        group.notify(queue: .main) {
+        //            print("group ready")
+        //            self.isready = true
+        //        }
+        
+        
+        for i in listDataSource[number].results.indices {
+            mapPokemonData(self.getPokemonData(listDataSource[number].results[i].url)!)
         }
+        
+        self.isready = true
     }
     
     func numberOfRows() -> Int {
-        return pokemons?.count ?? 0
+        return pokemons.count
     }
     
-    private func mapPokemonData(_ number: Int) {
-        pokemons = self.listDataSource[number].results.compactMap({PokemonSpeciesViewModel($0)})
-        pokemons?.removeAll(where: { $0.id > 9000 })
-        if pokemons?.count ?? 20 < pageLimit {
-            self.next = nil
+    private func mapPokemonData(_ pokemon : Pokemon) {
+        
+        if pokemon.id < 9500 {
+            pokemons.append(PokemonListViewModel(pokemon))
         }
+        else {
+            self.listDataSource[number].next = nil
+        }
+        
+        
+        
+        
     }
+    
+    
+    
+    
 }
-
-
-
-
