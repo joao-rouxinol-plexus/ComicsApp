@@ -7,12 +7,12 @@
 
 import Foundation
 
-class NetworkConstants{
-    public static var shared: NetworkConstants = NetworkConstants()
+class PokemonNetworkConstants{
+    public static var shared: PokemonNetworkConstants = PokemonNetworkConstants()
     
     public var speciesURL: String {
         get {
-            return "https://pokeapi.co/api/v2/pokemon-species/"
+            return "https://pokeapi.co/api/v2/pokemon/"
         }
     }
     public var offsetURL: String {

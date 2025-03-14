@@ -6,9 +6,8 @@
 //
 
 import Foundation
-//testbranch
 
-class MainViewModel {
+class PokemonMainViewModel {
     
     var dataSource: PokemonSpecies?
     var isready: Bool = false
@@ -16,7 +15,7 @@ class MainViewModel {
     var next : String?
     var previous : String?
     func getData(_ id: Int){
-        ApiCaller.getSpeciesInfo(pokemonID: id) { [weak self] result in
+        PokemonApiCaller.getSpeciesInfo(pokemonID: id) { [weak self] result in
             self?.dataSource = result
             self?.isready = true
         }
@@ -24,12 +23,12 @@ class MainViewModel {
     
     
     //MARK - Lista Pokédex
-    var listDataSource: [SpeciesList] = []
-    var pokemons: [SpeciesViewModel]?
+    var listDataSource: [PokemonSpeciesList] = []
+    var pokemons: [PokemonSpeciesViewModel]?
     var number = 0
-    
+    let pageLimit: Int = 20
     func getList(position : listNav){
-        let defaulturl =  "\(NetworkConstants().speciesURL)?\(NetworkConstants().limitURL)20"
+        let defaulturl =  "\(PokemonNetworkConstants().speciesURL)?\(PokemonNetworkConstants().limitURL)\(pageLimit)"
         var url = ""
         
         switch position {
@@ -56,14 +55,16 @@ class MainViewModel {
         self.isready = false
         if listDataSource.count <= number {
             
-            ApiCaller.listSpecies(urlstring: url){ [weak self] result in
+            PokemonApiCaller.listSpecies(urlstring: url){ [weak self] result in
                 self?.next = result.next
                 self?.previous = result.previous
                 self?.listDataSource.append(result)
                 self?.mapPokemonData(self!.number)
                 self?.isready = true
             }
+            
         }
+        
         
         else {
             self.next = listDataSource[number].next
@@ -78,8 +79,14 @@ class MainViewModel {
     }
     
     private func mapPokemonData(_ number: Int) {
-        pokemons = self.listDataSource[number].results.compactMap({SpeciesViewModel($0)})
+        pokemons = self.listDataSource[number].results.compactMap({PokemonSpeciesViewModel($0)})
+        pokemons?.removeAll(where: { $0.id > 9000 })
+        if pokemons?.count ?? 20 < pageLimit {
+            self.next = nil
+        }
     }
 }
+
+
 
 

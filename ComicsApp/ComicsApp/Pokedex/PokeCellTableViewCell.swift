@@ -23,7 +23,7 @@ class PokeCellTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    func setupCell(viewModel: SpeciesViewModel) {
+    func setupCell(viewModel: PokemonSpeciesViewModel) {
         self.pokemonNumber.text = "\(viewModel.id)"
         self.pokemonLabel.text = viewModel.listInfo
         self.pokemonSprite.sd_setImage(with: viewModel.imageURL)

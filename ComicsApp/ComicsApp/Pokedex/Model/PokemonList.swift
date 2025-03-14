@@ -9,12 +9,12 @@ import Foundation
 
 
 
-struct results: Codable {
-    let name : String
-    let url : String
-}
+//struct results: Codable {
+//    let name : String
+//    let url : String
+//}
 
-struct SpeciesList: Codable {
+struct PokemonList: Codable {
     let count : Int
     var next : String?
     var previous : String?

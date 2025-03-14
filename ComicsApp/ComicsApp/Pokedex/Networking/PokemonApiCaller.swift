@@ -8,11 +8,11 @@
 import Foundation
 import UIKit
 
-public class ApiCaller {
+public class PokemonApiCaller {
     
     static func getSpeciesInfo(pokemonID: Int, completionHandler: @escaping (_ result: PokemonSpecies) -> Void) {
         
-        let urlstring = NetworkConstants().speciesURL + "\(pokemonID)"
+        let urlstring = PokemonNetworkConstants().speciesURL + "\(pokemonID)"
         let url = URL(string: urlstring)!
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
@@ -26,14 +26,14 @@ public class ApiCaller {
     }
     
     
-    static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: SpeciesList) -> Void) {
+    static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: PokemonSpeciesList) -> Void) {
         
         let url = URL(string: urlstring)!
         
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,
                let data = dataResponse,
-               let resultData = try? JSONDecoder().decode(SpeciesList.self, from: data) {
+               let resultData = try? JSONDecoder().decode(PokemonSpeciesList.self, from: data) {
                 completionHandler(resultData)
             } else {
                 print("erro. rawdata: \(dataResponse!)")

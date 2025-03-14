@@ -7,7 +7,7 @@
 
 import Foundation
 
-class SpeciesViewModel {
+class PokemonSpeciesViewModel {
     var pokemon : String
     var url : String
     var shiny : Bool = false

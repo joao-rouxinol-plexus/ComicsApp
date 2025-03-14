@@ -12,7 +12,7 @@ class PokeDexMainScreenViewController: UIViewController {
     
     
     
-    var viewModel: MainViewModel = MainViewModel()
+    var viewModel: PokemonMainViewModel = PokemonMainViewModel()
     var currentPage = 0
     
     
