@@ -33,22 +33,22 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Type1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUa-GT-hLD" userLabel="Type1">
-                        <rect key="frame" x="10" y="79" width="45" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Type2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-Lg-tsg" userLabel="Type2">
-                        <rect key="frame" x="63" y="79" width="48" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OcB-v4-aPd">
                         <rect key="frame" x="99" y="38" width="156" height="24"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Type1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GUa-GT-hLD" userLabel="Type1">
+                        <rect key="frame" x="20" y="74" width="45" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Type2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWD-Lg-tsg" userLabel="Type2">
+                        <rect key="frame" x="73" y="74" width="48" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -57,6 +57,7 @@
                     <constraint firstAttribute="bottom" secondItem="03w-uJ-amm" secondAttribute="bottom" id="651-cQ-79d"/>
                     <constraint firstItem="03w-uJ-amm" firstAttribute="bottom" secondItem="wWD-Lg-tsg" secondAttribute="bottom" id="8P8-Kd-U23"/>
                     <constraint firstItem="03w-uJ-amm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Hjs-1S-Mpx"/>
+                    <constraint firstItem="wWD-Lg-tsg" firstAttribute="leading" secondItem="GUa-GT-hLD" secondAttribute="trailing" constant="8" symbolic="YES" id="aRW-ls-IOW"/>
                     <constraint firstItem="03w-uJ-amm" firstAttribute="bottom" secondItem="GUa-GT-hLD" secondAttribute="bottom" id="cSU-5m-RGK"/>
                     <constraint firstAttribute="trailing" secondItem="03w-uJ-amm" secondAttribute="trailing" constant="10" id="d3P-bX-dkj"/>
                 </constraints>

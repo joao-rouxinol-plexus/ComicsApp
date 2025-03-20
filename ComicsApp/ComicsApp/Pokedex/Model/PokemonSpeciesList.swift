@@ -1,5 +1,5 @@
 //
-//  Quote.swift
+//  PokemonSpeciesList.swift
 //  testeapipokemon
 //
 //  Created by Duarte Miguel Charrua Silva on 28/02/2025.

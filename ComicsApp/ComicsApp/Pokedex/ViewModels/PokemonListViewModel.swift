@@ -7,6 +7,7 @@
 
 import Foundation
 let pokemonMainViewModel = PokemonMainViewModel()
+
 class PokemonListViewModel {
     var pokemon : String
     var url : String
@@ -44,13 +45,12 @@ class PokemonListViewModel {
     
     
     
-    init (_ listResult: Pokemon){
+    init (_ listResult: PokemonViewModel ){
         self.pokemon = listResult.name
         self.id = listResult.id
         self.types = listResult.types
         self.url = PokemonNetworkConstants().speciesURL + String(listResult.id)
-        
-        
+        self.shiny = listResult.shiny
     }
     
 }
@@ -71,11 +71,9 @@ extension PokemonListViewModel {
     
     var imageURL: URL {
         get {
-            let random = Int.random(in: 1...25)
             var shinystring = ""
-            if (random == 5){
+            if (shiny == true){
                 shinystring = "shiny/"
-                shiny = true
             }
             
             return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + shinystring + String(id) + ".png")!

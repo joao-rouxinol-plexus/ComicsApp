@@ -46,7 +46,6 @@ class PokeDexMainScreenViewController: UIViewController {
             switch swipeGesture.direction {
             case .right:
                 previous()
-                
             case .left:
                 next()
             default:
@@ -90,8 +89,8 @@ class PokeDexMainScreenViewController: UIViewController {
     
     func checkAvailableButton() {
         
-//        PreviousButtonOutlet.isEnabled = viewModel.previous != nil
-//        NextButtonOutlet.isEnabled = viewModel.next != nil
+        PreviousButtonOutlet.isEnabled = viewModel.previous != nil
+        NextButtonOutlet.isEnabled = viewModel.next != nil
     
     }
 }
@@ -107,14 +106,25 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         guard let cell = tableView.dequeueReusableCell(withIdentifier: PokeCellTableViewCell.identifier, for: indexPath) as? PokeCellTableViewCell else {
             return UITableViewCell()
         }
-        cell.setupCell(viewModel: viewModel.pokemons[indexPath.row])
+        
+        if ((viewModel.pokemons.count - indexPath.row) == 10){
+            self.viewModel.getList(position: listNav.next) {
+                DispatchQueue.main.async {
+                    self.reloadTableView()
+                }
+            }
+            
+        }
+        
+        cell.setupCell(viewModel: viewModel.pokemons[indexPath.row], indexPath: indexPath)
         cell.selectionStyle = .none
+
         return cell
     }
     
     func reloadTableView() {
         PokemonTableView.reloadData()
-        PokemonTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+//        PokemonTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
     }
     
     func setupTableView() {
@@ -130,4 +140,35 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
     
 }
 
+import CoreImage
+import CoreImage.CIFilterBuiltins
 
+extension UIImage {
+    func dominantColor() -> UIColor? {
+        guard let inputImage = CIImage(image: self) else { return nil }
+        
+        let filter = CIFilter.areaAverage()
+        filter.inputImage = inputImage
+        filter.extent = inputImage.extent
+        
+        let context = CIContext(options: [CIContextOption.workingColorSpace: CGColorSpaceCreateDeviceRGB()])
+        guard let outputImage = filter.outputImage else { return nil }
+        
+        var bitmap = [UInt8](repeating: 0, count: 4)
+        context.render(
+            outputImage,
+            toBitmap: &bitmap,
+            rowBytes: 4,
+            bounds: CGRect(x: 0, y: 0, width: 1, height: 1),
+            format: .RGBA8,
+            colorSpace: CGColorSpaceCreateDeviceRGB()
+        )
+        
+        let alpha = CGFloat(bitmap[3]) / 255.0
+        let red = alpha > 0 ? CGFloat(bitmap[0]) / 255.0 / alpha : 0
+        let green = alpha > 0 ? CGFloat(bitmap[1]) / 255.0 / alpha : 0
+        let blue = alpha > 0 ? CGFloat(bitmap[2]) / 255.0 / alpha : 0
+        
+        return UIColor(red: red, green: green, blue: blue, alpha: 1)
+    }
+}

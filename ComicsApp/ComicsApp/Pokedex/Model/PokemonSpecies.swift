@@ -35,28 +35,28 @@ struct PokemonSpecies: Codable {
     
     
     
-    var imageURL: URL {
-        get {
-            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + String(id) + ".png")!
-        }
-    }
+//    var imageURL: URL {
+//        get {
+//            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/" + String(id) + ".png")!
+//        }
+//    }
     
-    var gifURL: URL {
-        get {
-            let random = Int.random(in: 1...500)
-            var shinystring = ""
-            if (random == 5){
-                shinystring = "shiny/" }
-            
-            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" + shinystring + String(id) + ".gif")!
-        }
-    }
+//    var gifURL: URL {
+//        get {
+//            let random = Int.random(in: 1...500)
+//            var shinystring = ""
+//            if (random == 5){
+//                shinystring = "shiny/" }
+//            
+//            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" + shinystring + String(id) + ".gif")!
+//        }
+//    }
     
-    var oldimageURL: URL {
-        get {
-            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + String(id) + ".png")!
-        }
-    }
+//    var oldimageURL: URL {
+//        get {
+//            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + String(id) + ".png")!
+//        }
+//    }
 }
 
 

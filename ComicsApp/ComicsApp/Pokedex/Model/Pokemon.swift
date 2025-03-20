@@ -28,8 +28,7 @@ struct Pokemon: Codable {
     let id : Int
     let species : species
     let types : [types]
-    
-
 }
+
 
 

@@ -9,153 +9,162 @@ import Foundation
 
 class PokemonMainViewModel {
     
-    var PokemonDataSource: [String: Pokemon] = [:]
-    var partComplete: Bool = false
-    //    var next : String?
-    //    var previous : String?
+    var next : String?
+    var previous : String?
     
-    func getPokemonData(_ url: String) -> Pokemon?{
-        var pokemonIsReady: Bool = false
+    var pokeArrayTest = [PokemonViewModel?]()
+    
+    func getPokemonData(_ url: String) -> PokemonViewModel?{
+        var pokemonIsReady = false
         
-        pokemonIsReady = false
-        if !PokemonDataSource.keys.contains(url){
-            print("getting \(url.split(separator: "/").last!)")
-            
+        let id = Int((url.split(separator: "/").last!))!
+        
+        
+        print("index \(id-1)")
+        if (id < 9500 && pokeArrayTest[id-1] == nil) {
+            print("getting \(id)")
             PokemonApiCaller.getPokemonInfo(urlString: url) { [weak self] pokemonResult in
-                self?.PokemonDataSource[url] = pokemonResult
+                self?.pokeArrayTest[id-1] = PokemonViewModel(pokemon: pokemonResult)
                 pokemonIsReady = true
             }
         }
         
         else {
-            print("returning \(url.split(separator: "/").last!)")
+            print("returning \(id)")
             pokemonIsReady = true
         }
-        while !pokemonIsReady {
+        while (!pokemonIsReady) {
             _ = wait()
         }
-        //        print("\(url.split(separator: "/").last!) is ready")
-        return self.PokemonDataSource[url]
+        return self.pokeArrayTest[id-1]
     }
     
     
     //MARK - Lista Pokédex
-    var listDataSource: [PokemonList] = []
+    var listDataSource: [Int: PokemonList] = [:]
     var pokemons: [PokemonListViewModel] = []
-    var number = 0
+    var currentList = 0
     let pageLimit: Int = 20
     var isready: Bool = false
+    var threeDoubles = [Pokemon?]()
     
-    func loadList(url: String){
+    
+    var first = true
+    func loadList(url: String, list:Int){
+        
+        print("counts \(pokeArrayTest.count) ")
+        var partComplete = false
+        
         PokemonApiCaller.listSpecies(urlstring: url){ [weak self] listResult in
-            //            self?.next = listResult.next
-            //            self?.previous = listResult.previous
-            self?.listDataSource.append(listResult)
-            self?.partComplete = true
+            self?.listDataSource[list] = listResult
+            partComplete = true
             print("loaded list \(url)")
         }
-        while self.partComplete != true {
+        
+        while partComplete != true {
             _ = wait()
         }
         
-        
+        if first {
+            pokeArrayTest = Array<PokemonViewModel?>(repeating: nil, count: listDataSource[0]?.count ?? 0)
+            first = false
+        }
         
         let group = DispatchGroup()
         
-        //            for i in 0...listDataSource[number].count {
-        for i in listDataSource[number].results.indices {
-            //                let url = "https://pokeapi.co/api/v2/pokemon/\(i)/"
-            let url = listDataSource[number].results[i].url
-            group.enter()
+        for i in listDataSource[list]!.results.indices {
             
-            DispatchQueue.global(qos: .userInitiated).async {
-                _ = self.getPokemonData(url)
-                group.leave()
+            let pokeURL = listDataSource[list]!.results[i].url
+            
+            let id = Int((pokeURL.split(separator: "/").last!))!
+            if (id < 9500){
+                group.enter()
+                
+                DispatchQueue.global(qos: .userInitiated).async {
+                    _ = self.getPokemonData(pokeURL)
+                    group.leave()
+                }
             }
         }
     }
     
-    
-    func getList(position : listNav){
+    func getList(position : listNav, closure: (() -> Void)? = nil) {
         
-        self.partComplete = false
         
         let defaulturl =  "\(PokemonNetworkConstants().pokemonURL)?\(PokemonNetworkConstants().limitURL)\(pageLimit)"
         var url = ""
         
         switch position {
         case .previous:
-            if listDataSource[number].previous == nil {return}
-            url = listDataSource[number].previous ?? defaulturl
-            number -= 1
+            if listDataSource[currentList]!.previous == nil {return}
+            url = listDataSource[currentList]!.previous ?? defaulturl
+            currentList -= 1
             
         case .next:
-            if self.listDataSource[number].next == nil {return}
-            url = listDataSource[number].next ?? defaulturl
-            number += 1
+            //            if self.listDataSource[currentList] == nil {
+            //                print("currentlist nulll????")
+            //                return}
+            if self.listDataSource[currentList]!.next == nil {return}
+            url = listDataSource[currentList]!.next ?? defaulturl
+            currentList += 1
             
         default:
             url = defaulturl
         }
         
         self.isready = false
-        if listDataSource.count <= number {
-            
-            loadList(url: url)
-            
-            
-            if let nexturl = listDataSource[number].next {
-                print("loading next list?")
-                loadList(url: nexturl)
-                
-            }
+        
+        if listDataSource.count <= currentList {
+            loadList(url: url, list: currentList)
+            previous = listDataSource[currentList]!.previous
+            next = listDataSource[currentList]!.next
         }
         
         else {
-            //            self.next = listDataSource[number].next
-            //            self.previous = listDataSource[number].previous
-            self.partComplete = true
-            
-            while self.partComplete != true {
-                _ = wait()
+            self.next = listDataSource[currentList]!.next
+            self.previous = listDataSource[currentList]!.previous
+        }
+        
+        let nextPage = DispatchGroup()
+        DispatchQueue.global(qos: .userInitiated).async {
+            nextPage.enter()
+            if let nexturl = self.listDataSource[self.currentList]?.next {
+                print("loading next list?")
+                self.loadList(url: nexturl, list: self.currentList+1)
             }
-            
+            nextPage.leave()
         }
         
-        pokemons.removeAll()
-        
-        //        group.notify(queue: .main) {
-        //            print("group ready")
-        //            self.isready = true
-        //        }
         
         
-        for i in listDataSource[number].results.indices {
-            mapPokemonData(self.getPokemonData(listDataSource[number].results[i].url)!)
+        //        pokemons.removeAll()
+        
+        for i in listDataSource[currentList]!.results.indices {
+            let id = Int((listDataSource[currentList]!.results[i].url.split(separator: "/").last!))!
+            if (id < 9500){
+                mapPokemonData(self.getPokemonData(listDataSource[currentList]!.results[i].url)!)
+            }
+            else{
+                next = nil
+            }
         }
-        
         self.isready = true
+        
+        closure?()
     }
     
     func numberOfRows() -> Int {
         return pokemons.count
     }
     
-    private func mapPokemonData(_ pokemon : Pokemon) {
-        
+    private func mapPokemonData(_ pokemon : PokemonViewModel) {
         if pokemon.id < 9500 {
             pokemons.append(PokemonListViewModel(pokemon))
         }
         else {
-            self.listDataSource[number].next = nil
+            self.listDataSource[currentList]?.next = nil
+            self.next = nil
         }
-        
-        
-        
-        
     }
-    
-    
-    
-    
 }
+
