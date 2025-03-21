@@ -35,20 +35,12 @@
                 <constraint firstItem="Ae8-df-Egu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Nzm-5H-3xC"/>
                 <constraint firstItem="4mC-Lc-tUV" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="RbI-Vi-kpv"/>
                 <constraint firstItem="4mC-Lc-tUV" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UAj-Af-Cz4"/>
-                <constraint firstAttribute="bottom" secondItem="Ae8-df-Egu" secondAttribute="bottom" id="Wtz-uv-5I1"/>
                 <constraint firstItem="Ae8-df-Egu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hY8-bp-Dmm"/>
                 <constraint firstItem="Ae8-df-Egu" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="oZn-s9-Non"/>
+                <constraint firstAttribute="bottom" secondItem="Ae8-df-Egu" secondAttribute="bottom" id="tRR-8G-iC4"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
         </view>
-        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tsu-x9-jT5">
-            <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-            <nil key="textColor"/>
-            <nil key="highlightedColor"/>
-            <point key="canvasLocation" x="137" y="376"/>
-        </label>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">

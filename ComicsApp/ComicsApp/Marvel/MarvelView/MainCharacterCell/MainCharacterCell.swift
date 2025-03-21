@@ -32,15 +32,17 @@ class MainCharacterCell: UITableViewCell {
     @IBOutlet weak var eventsLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        backView.addBorder(color: .label , width: 2)
+        backView.addBorder(color: .systemYellow , width: 2)
         backView.round()
-        characterImageView.addBorder(color: .label, width: 1)
+        characterImageView.addBorder(color: .systemYellow, width: 2)
         characterImageView.round(10)
-        backView.backgroundColor = .yellow
+        backView.backgroundColor = .darkGray
     }
     func setUpCell(viewModel: CharacterTableCellViewModel){
         self.nameLabel.text = viewModel.name
+        nameLabel.textColor = .systemYellow
         self.descriptionLabel.text = viewModel.description
+        descriptionLabel.textColor = .white
         let comicsText = "Comics: \(viewModel.comics)"
         let storiesText = "Stories: \(viewModel.stories)"
         let seriesText = "Series: \(viewModel.series)"
@@ -63,10 +65,11 @@ class MainCharacterCell: UITableViewCell {
         self.seriesLabel.attributedText = boldSeriesText
         self.eventsLabel.attributedText = boldEventsText
         
-//        let seriesWord = "Series: \(viewModel.series)"
-//        self.seriesLabel.attributedText = seriesWord.bold
-//        let eventsWord = "Events: \(viewModel.events)"
-//        self.eventsLabel.attributedText = eventsWord.bold
+        comicsLabel.textColor = .white
+        storiesLabel.textColor = .white
+        seriesLabel.textColor = .white
+        eventsLabel.textColor = .white
+        
         self.characterImageView.sd_setImage(with: viewModel.imageUrl)
     }
     

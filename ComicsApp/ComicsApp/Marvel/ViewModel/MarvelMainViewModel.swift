@@ -17,7 +17,6 @@ class MarvelMainViewModel{
     var filteredCharacters: [Character] = []
     var onCharactersUpdated: (()->Void)?
 
-    
     func numberOfSections()->Int{
         1
     }
@@ -26,34 +25,53 @@ class MarvelMainViewModel{
         return dataSource?.count ?? 0
     }
     
-    func getData(){
-        
+    func getData(offset: Int){
+//        print(NetworkConstant.shared.offset)
+//        Se já estiver a carregar, não faz nada
         if isLoading.value ?? true {
             return
         }
-        
+
         isLoading.value = true
-        APICaller.getCharactersInfo(){ [weak self] characters in
-            self?.isLoading.value = false
-            print("Numero de personagens:\(characters.count)")
-            self?.dataSource = characters
-            self?.mapCellData()
-            for character in characters {
-                print("\(String(describing: character.name!))")
+
+        APICaller.getCharactersInfo(offset: offset) { [weak self] characters in
+            guard let self = self else { return }
+            
+            self.isLoading.value = false
+            
+            // Se a resposta da API for vazia, não faz mais nada
+            guard !characters.isEmpty else { return }
+
+            print("Número de personagens carregados: \(characters.count)")
+
+            // Se for a primeira carga, inicializa a lista
+            if self.dataSource == nil {
+                self.dataSource = characters
+            } else {
+                self.dataSource?.append(contentsOf: characters)
             }
+            self.mapCellData()
         }
+        NetworkConstant.shared.offset += NetworkConstant.shared.limit
     }
     
     func mapCellData(){
-        self.cellDataSource.value = self.dataSource?.compactMap({CharacterTableCellViewModel(character: $0)})
+        guard let dataSource = self.dataSource, !dataSource.isEmpty else { return }
+        
+        DispatchQueue.global(qos: .userInitiated).async {
+            let mappedData = dataSource.map { CharacterTableCellViewModel(character: $0) }
+            
+            DispatchQueue.main.async {
+                self.cellDataSource.value = mappedData
+                self.onCharactersUpdated?()
+            }
+        }
     }
+
     
     func getCharacterName(_ character: Character) -> String{
         return character.name ?? ""
     }
-    
-
-    
 }
     
 

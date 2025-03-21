@@ -13,6 +13,7 @@ extension MarvelMainViewModel {
         let searchText = searchController.searchBar.text ?? ""
         return isActive && !searchText.isEmpty
     }
+    
     public func updateSearchController(searchBarText: String?) {
         self.filteredCharacters = dataSource ?? []
 
@@ -21,11 +22,8 @@ extension MarvelMainViewModel {
                 self.onCharactersUpdated?()
                 return
             }
-            
             self.filteredCharacters = self.filteredCharacters.filter({ $0.name?.lowercased().contains(searchText) ?? false })
         }
-        
         self.onCharactersUpdated?()
     }
-
 }

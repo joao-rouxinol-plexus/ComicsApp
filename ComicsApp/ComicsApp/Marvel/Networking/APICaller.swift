@@ -16,10 +16,9 @@ enum NetworkError: Error {
 }
 
 public class APICaller {
-
-    static func getCharactersInfo(completionHandler: @escaping (_ result: [Character]) -> Void) {
-        // Construindo a URL corretamente
-        let urlString = NetworkConstant.shared.serverAdress + "/characters?ts=" + NetworkConstant.shared.ts + "&apikey=" + NetworkConstant.shared.apiKey + "&hash=" + NetworkConstant.shared.hash + "&offset=" + "\(NetworkConstant.shared.offset)"
+//rever esta parte
+    static func getCharactersInfo(offset: Int, completionHandler: @escaping (_ result: [Character]) -> Void) {
+        let urlString = NetworkConstant.shared.serverAdress + "/characters?ts=" + NetworkConstant.shared.ts + "&apikey=" + NetworkConstant.shared.apiKey + "&hash=" + NetworkConstant.shared.hash + "&offset=" + "\(NetworkConstant.shared.offset)" + "&limit=" + "\(NetworkConstant.shared.limit)"
         
         guard let url = URL(string: urlString) else {
             print("Erro: URL inválida")
@@ -28,7 +27,6 @@ public class APICaller {
         
         print(urlString)
 
-        
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             if let error = error {
                 print("Erro de rede: \(error)")
@@ -37,15 +35,13 @@ public class APICaller {
             
             if let data = data {
                 do {
-                    // Tentando decodificar a resposta
-                    let response = try JSONDecoder().decode(CharactersModel.self, from: data)
                     
-                    // Passando os resultados para o completionHandler
+                    let response = try JSONDecoder().decode(CharactersModel.self, from: data)
                     DispatchQueue.main.async {
-                        completionHandler(response.data.results) // Passando os resultados diretamente
+                        completionHandler(response.data.results)
                     }
                 } catch {
-                    print("Erro ao decodificar os dados: \(error)")
+                    print("Erro ao descodificar os dados: \(error)")
                 }
             } else {
                 print("Erro: Dados não recebidos.")
@@ -57,8 +53,7 @@ public class APICaller {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute:{
             
         })
-            
-        
+ 
     }
 }
 

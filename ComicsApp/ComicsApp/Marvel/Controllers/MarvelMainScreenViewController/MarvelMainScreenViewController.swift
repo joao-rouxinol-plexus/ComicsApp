@@ -8,36 +8,34 @@ import Foundation
 import UIKit
 
 class MarvelMainScreenViewController: UIViewController {
-    
-   
     //IBoutlets:
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-     let searchController = UISearchController(searchResultsController: nil)
     //ViewModel
     var viewModel: MarvelMainViewModel = MarvelMainViewModel()
     
-    //Variables
+    //Variaveis
     var cellDataSource : [CharacterTableCellViewModel] = []
+    
+    //Paginação
+    var footerView: UIView!
+    var topButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configView()
         bindViewModel()
-        self.setUpSearchController()
+        navBar()
     }
     
     func configView(){
-        self.title = "MarvelApp"
-        self.view.backgroundColor = .red
-        
         setupTableView()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        viewModel.getData()
+        viewModel.getData(offset: NetworkConstant.shared.offset)
     }
     
     func bindViewModel(){
@@ -50,10 +48,11 @@ class MarvelMainScreenViewController: UIViewController {
                     self.activityIndicator.startAnimating( )
                 }else {
                     self.activityIndicator.stopAnimating()
+                    self.setupFooterView()
                 }
-                
             }
         }
+        
         viewModel.cellDataSource.bind { [weak self] Characters in
             guard let self = self, let Characters = Characters else {
                 return
@@ -63,16 +62,26 @@ class MarvelMainScreenViewController: UIViewController {
         }
     }
     
-    private func setUpSearchController() {
-        self.searchController.searchResultsUpdater = self
-        self.searchController.obscuresBackgroundDuringPresentation = false
-        self.searchController.hidesNavigationBarDuringPresentation = false
-        self.searchController.searchBar.placeholder = "Search Marvel Characters"
-    
-        self.navigationItem.searchController = searchController
-        self.definesPresentationContext = false
-        self.navigationItem.hidesSearchBarWhenScrolling = false
+    func navBar(){
+        self.title = "MarvelApp"
+        self.view.backgroundColor = .black
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .black
+        //MarveApp cor
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.systemYellow]
+        //MarvelApp tamanho e bold
+        appearance.titleTextAttributes = [
+                .foregroundColor: UIColor.systemYellow,
+                .font: UIFont.boldSystemFont(ofSize: 20)
+                ]
+        appearance.backButtonAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemYellow] //muda a cor do botão Back
+        
+        //header? nao mudar de cor
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.tintColor = .systemYellow //muda a cor da < do botao back
     }
+
         
 }
-

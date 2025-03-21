@@ -13,10 +13,9 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     func setupTableView(){
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        
         self.tableView.backgroundColor = .clear
-        
         self.registerCells()
+        
     }
     
     func registerCells(){
@@ -34,24 +33,10 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return viewModel.numberOfRows(in: section)
-        let inSearchMode = self.viewModel.inSearchMode(self.searchController)
-        return inSearchMode ? self.viewModel.filteredCharacters.count : self.viewModel.numberOfRows(in: section)
-
+        return viewModel.numberOfRows(in: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
-//            return UITableViewCell()
-//        }
-//        let inSearchMode = self.viewModel.inSearchMode(searchController)
-//        
-//        let character = inSearchMode ? self.viewModel.filteredCharacters[indexPath.row] : self.viewModel.dataSource![indexPath.row]
-//        
-//        cell.setUpCell(viewModel:character)
-//        
-//        return cell
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
             return UITableViewCell()
         }
@@ -66,6 +51,52 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
         150
     }
     
-
+    func setupFooterView() {
+        
+        footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
+        
+        topButton = UIButton(type: .system)
+        topButton.setTitle("Top", for: .normal)
+        topButton.setTitleColor(.systemYellow, for: .normal)
+        topButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        topButton.addTarget(self, action: #selector(handleTopButton), for: .touchUpInside)
+        topButton.translatesAutoresizingMaskIntoConstraints = false
+        footerView.addSubview(topButton)
+        
+        self.tableView.tableFooterView = footerView
+        
+        NSLayoutConstraint.activate([
+            footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+            footerView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        NSLayoutConstraint.activate([
+            topButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
+            topButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
+        ])
+    }
+    
+    @objc func handleTopButton() {
+        DispatchQueue.main.async {
+            self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCharacter = cellDataSource[indexPath.row]
+        print("Personagem Selecionado: \(selectedCharacter.name)")  
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        let contentHeight = scrollView.contentSize.height
+        let frameHeight = scrollView.frame.size.height
+        
+        if position > (contentHeight - frameHeight ) {
+            viewModel.getData(offset: NetworkConstant.shared.offset)
+            print(NetworkConstant.shared.offset)
+        }
+    }
     
 }
