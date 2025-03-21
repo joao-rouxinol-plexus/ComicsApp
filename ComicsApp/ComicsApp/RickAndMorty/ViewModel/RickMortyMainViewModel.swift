@@ -90,7 +90,6 @@ class RickMortyMainViewModel {
                 self.nextPageUrl = newCharacters.info.next
                 
                 DispatchQueue.main.async {
-//                    self.visibleCharactersCount += 10
                     self.mapCellData()
                 }
                 

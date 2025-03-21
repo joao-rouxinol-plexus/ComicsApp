@@ -29,11 +29,12 @@ class CharacterViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        backView.addBorder(color: .label, width: 1)
+        backView.addBorder(color: .black, width: 2)
         backView.round()
         
-        characterImageView.round(5)
+        characterImageView.round(10)
         
+        self.backgroundColor = UIColor.init(red: 56/255, green: 173/255, blue: 169/255, alpha: 0.7)
     }
 
     func setUpCell(viewModel: CharacterTableCellViewModel){
