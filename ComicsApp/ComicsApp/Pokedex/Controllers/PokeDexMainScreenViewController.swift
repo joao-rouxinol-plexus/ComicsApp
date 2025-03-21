@@ -20,6 +20,15 @@ class PokeDexMainScreenViewController: UIViewController {
             self.setupTableView()
         }
     }
+    
+    func OpenPokemonDetails(for pokemon: PokemonViewModel){
+        print("opening")
+        DispatchQueue.main.async {
+            let controller = PokemonDetailsScreenViewController(viewModel: pokemon)
+            
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }
 
 extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataSource {
@@ -47,6 +56,14 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("indexpath \(indexPath.row)")
+        let url = viewModel.pokemons[indexPath.row].url
+        OpenPokemonDetails(for: viewModel.getPokemonData(url)!)
+        //        OpenPokemonDetails(for: viewModel.pokeArrayTest[indexPath.row]!)
+        
+    }
+    
     func reloadTableView() {
         PokemonTableView.reloadData()
     }
@@ -68,7 +85,7 @@ import CoreImage
 import CoreImage.CIFilterBuiltins
 
 extension UIImage {
-    func dominantColor() -> UIColor? {
+    func dominantColor(_ returnAlphaValue : CGFloat = 1) -> UIColor? {
         
         guard let inputImage = CIImage(image: self) else { return nil }
         
@@ -94,6 +111,33 @@ extension UIImage {
         let green = alpha > 0 ? CGFloat(bitmap[1]) / 255.0 / alpha : 0
         let blue = alpha > 0 ? CGFloat(bitmap[2]) / 255.0 / alpha : 0
         
-        return UIColor(red: red, green: green, blue: blue, alpha: 1)
+        return UIColor(red: red, green: green, blue: blue, alpha: returnAlphaValue)
     }
+}
+
+extension UIColor {
+    
+    func lighter(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: abs(percentage) )
+    }
+    
+    func darker(by percentage: CGFloat = 30.0) -> UIColor? {
+        return self.adjust(by: -1 * abs(percentage) )
+    }
+    
+    private func adjust(by percentage: CGFloat) -> UIColor? {
+        var hue: CGFloat = 0
+        var saturation: CGFloat = 0
+        var brightness: CGFloat = 0
+        var alpha: CGFloat = 0
+        
+        self.getHue(&hue, saturation: &saturation, brightness: &brightness, alpha: &alpha)
+        
+        brightness = max(min(brightness + percentage, 1.0),0.1)
+        
+        return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
+    }
+    
+
+    
 }

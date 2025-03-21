@@ -30,14 +30,13 @@ class PokeCellTableViewCell: UITableViewCell {
         self.pokemonLabel.text = viewModel.listInfo
         
         self.pokemonSprite.sd_setImage(with: viewModel.sprite) {_,_,_,_ in
-            let daimage: UIImage = self.pokemonSprite.image ?? UIImage()
-            self.contentView.backgroundColor = daimage.dominantColor()
+            let image: UIImage = self.pokemonSprite.image ?? UIImage()
+            self.contentView.backgroundColor = image.dominantColor(0.85)
         }
         
         self.shiny.isHidden = !viewModel.shiny
         self.Type1Label.text = viewModel.type1
         self.Type2Label.text = viewModel.type2
-        
 
     }
     

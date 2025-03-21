@@ -46,7 +46,6 @@ class PokemonMainViewModel {
     var pokemons: [PokemonListViewModel] = []
     var currentList = 0
     let pageLimit: Int = 20
-    var threeDoubles = [Pokemon?]()
     
     
     var first = true
@@ -110,14 +109,10 @@ class PokemonMainViewModel {
         
         if listDataSource.count <= currentList {
             loadList(url: url, list: currentList)
-            previous = listDataSource[currentList].previous
-            next = listDataSource[currentList].next
         }
-        
-        else {
-            self.next = listDataSource[currentList].next
-            self.previous = listDataSource[currentList].previous
-        }
+
+        previous = listDataSource[currentList].previous
+        next = listDataSource[currentList].next
         
         let nextPage = DispatchGroup()
         DispatchQueue.global(qos: .userInitiated).async {
