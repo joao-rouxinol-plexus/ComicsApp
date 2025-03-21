@@ -11,10 +11,9 @@ class ViewController: UIViewController {
     
     let pokedexVC = PokeDexMainScreenViewController()
     let MarvelVC = MarvelMainScreenViewController()
-    let RMVC = RickAndMortyMainScreenViewController()
-    
+    let RMVC = RickMortyMainViewController()
     var color : UIColor?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         if let navigationController = self.navigationController {
