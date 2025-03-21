@@ -1,5 +1,5 @@
 //
-//  Quote.swift
+//  PokemonList.swift
 //  testeapipokemon
 //
 //  Created by Duarte Miguel Charrua Silva on 28/02/2025.
@@ -7,14 +7,7 @@
 
 import Foundation
 
-
-
-struct results: Codable {
-    let name : String
-    let url : String
-}
-
-struct SpeciesList: Codable {
+struct PokemonList: Codable {
     let count : Int
     var next : String?
     var previous : String?

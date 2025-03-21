@@ -10,9 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PokeDexMainScreenViewController" customModule="ComicsApp" customModuleProvider="target">
             <connections>
-                <outlet property="NextButtonOutlet" destination="c1r-rY-l03" id="orJ-VV-82D"/>
                 <outlet property="PokemonTableView" destination="taZ-Lk-QiD" id="cUx-aK-6BR"/>
-                <outlet property="PreviousButtonOutlet" destination="HeS-4F-peH" id="3C6-ik-G5N"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -21,11 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="taZ-Lk-QiD">
-                    <rect key="frame" x="0.0" y="59" width="393" height="721"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWc-Bq-IfG">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PWc-Bq-IfG">
                     <rect key="frame" x="0.0" y="800" width="393" height="38"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HeS-4F-peH" userLabel="PreviousButton">
@@ -34,9 +28,6 @@
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="arrowshape.left.circle.fill" catalog="system"/>
-                            <connections>
-                                <action selector="PreviousButton:" destination="-1" eventType="touchUpInside" id="8sQ-UR-Cth"/>
-                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1r-rY-l03" userLabel="NextButton">
                             <rect key="frame" x="331" y="-11" width="50" height="35"/>
@@ -44,9 +35,6 @@
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" image="arrowshape.right.circle.fill" catalog="system"/>
-                            <connections>
-                                <action selector="NextButton:" destination="-1" eventType="touchUpInside" id="P2v-Ov-rc2"/>
-                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -54,6 +42,10 @@
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="50" id="y6g-c2-616"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="taZ-Lk-QiD">
+                    <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="W9k-0z-32I"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -63,7 +55,7 @@
                 <constraint firstItem="PWc-Bq-IfG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="UZI-xV-lLT"/>
                 <constraint firstAttribute="bottom" secondItem="PWc-Bq-IfG" secondAttribute="bottom" constant="14" id="gmW-Fz-zbq"/>
                 <constraint firstItem="taZ-Lk-QiD" firstAttribute="top" secondItem="W9k-0z-32I" secondAttribute="top" id="haB-kR-zX8"/>
-                <constraint firstItem="PWc-Bq-IfG" firstAttribute="top" secondItem="taZ-Lk-QiD" secondAttribute="bottom" constant="20" id="lC5-rj-kVq"/>
+                <constraint firstItem="W9k-0z-32I" firstAttribute="bottom" secondItem="taZ-Lk-QiD" secondAttribute="bottom" id="lC5-rj-kVq"/>
                 <constraint firstItem="PWc-Bq-IfG" firstAttribute="height" secondItem="W9k-0z-32I" secondAttribute="height" multiplier="0.05" id="miQ-WM-HES"/>
                 <constraint firstAttribute="trailing" secondItem="PWc-Bq-IfG" secondAttribute="trailing" id="zxW-tn-orD"/>
             </constraints>
