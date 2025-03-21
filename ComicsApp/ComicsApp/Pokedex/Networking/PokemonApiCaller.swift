@@ -12,8 +12,6 @@ public class PokemonApiCaller {
     
     static func getPokemonInfo(urlString: String, completionHandler: @escaping (_ result: Pokemon) -> Void) {
         
-//        let urlstring = PokemonNetworkConstants().pokemonURL + "\(pokemonID)"
-        
         let url = URL(string: urlString)!
         URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
             if err == nil,

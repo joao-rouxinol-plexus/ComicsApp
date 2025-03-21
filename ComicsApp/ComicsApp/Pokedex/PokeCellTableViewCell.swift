@@ -29,7 +29,7 @@ class PokeCellTableViewCell: UITableViewCell {
         self.pokemonNumber.text = "\(viewModel.formattedID)"
         self.pokemonLabel.text = viewModel.listInfo
         
-        self.pokemonSprite.sd_setImage(with: viewModel.imageURL) {_,_,_,_ in
+        self.pokemonSprite.sd_setImage(with: viewModel.sprite) {_,_,_,_ in
             let daimage: UIImage = self.pokemonSprite.image ?? UIImage()
             self.contentView.backgroundColor = daimage.dominantColor()
         }

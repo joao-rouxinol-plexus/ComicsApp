@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 struct results: Codable {
     let name : String
     let url : String

@@ -12,8 +12,9 @@ class PokemonListViewModel {
     var pokemon : String
     var url : String
     var shiny : Bool = false
-    var types : [types]
+    var types : [Types]
     var id : Int
+    var sprite : URL
     
     var formattedID : String{
         get {
@@ -21,18 +22,18 @@ class PokemonListViewModel {
         }
     }
     
-    
     var type1 : String{
         get {
-            return types[0].type.name
+            return types[0].type.name.capitalized
         }
     }
+    
     var type2 : String{
         get {
             if types.count < 2 {
                 return ""
             }
-            return types[1].type.name
+            return types[1].type.name.capitalized
         }
     }
     
@@ -43,40 +44,12 @@ class PokemonListViewModel {
     }
     
     
-    
-    
     init (_ listResult: PokemonViewModel ){
         self.pokemon = listResult.name
         self.id = listResult.id
         self.types = listResult.types
         self.url = PokemonNetworkConstants().speciesURL + String(listResult.id)
         self.shiny = listResult.shiny
-    }
-    
-}
-
-
-
-
-//MARK - Imagens
-extension PokemonListViewModel {
-    
-    var imagerURL: URL {
-        get {
-            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + String(id) + ".png")!
-            
-            //            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/showdown/" + String(id) + ".gif")!
-        }
-    }
-    
-    var imageURL: URL {
-        get {
-            var shinystring = ""
-            if (shiny == true){
-                shinystring = "shiny/"
-            }
-            
-            return URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/" + shinystring + String(id) + ".png")!
-        }
+        self.sprite = (listResult.shiny ? URL(string: listResult.shinySprite) : URL(string: listResult.sprite))!
     }
 }
