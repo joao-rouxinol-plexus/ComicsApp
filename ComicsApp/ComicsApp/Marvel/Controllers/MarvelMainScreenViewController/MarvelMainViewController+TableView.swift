@@ -37,18 +37,29 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
-            return UITableViewCell()
-        }
+//        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
+//            return UITableViewCell()
+//        }
+//        
+//        let cellViewModel = cellDataSource[indexPath.row]
+//        cell.setUpCell(viewModel:cellViewModel)
+//        cell.selectionStyle = .none
+//        return cell
         
-        let cellViewModel = cellDataSource[indexPath.row]
-        cell.setUpCell(viewModel:cellViewModel)
-        cell.selectionStyle = .none
-        return cell
+        guard indexPath.row < cellDataSource.count else { return UITableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
+                return UITableViewCell()
+            }
+
+            let cellViewModel = cellDataSource[indexPath.row]
+            cell.setUpCell(viewModel: cellViewModel)
+            cell.selectionStyle = .none
+            return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         150
+        
     }
     
     func setupFooterView() {
@@ -85,7 +96,10 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCharacter = cellDataSource[indexPath.row]
-        print("Personagem Selecionado: \(selectedCharacter.name)")  
+        print("Personagem Selecionado: \(selectedCharacter.name)")
+        let detailVC = DetailViewController()
+        detailVC.character = selectedCharacter
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

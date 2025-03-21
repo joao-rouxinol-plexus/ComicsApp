@@ -7,6 +7,23 @@
 
 import Foundation
 
+// Coloquei por cauda do mockData.json
+struct APIResponse: Codable {
+    let code: Int
+    let status: String
+    let etag: String
+    let data: CharacterDataWrapper
+}
+
+//  Coloquei por cauda do mockData.json
+struct CharacterDataWrapper: Codable {
+    let offset: Int
+    let limit: Int
+    let total: Int
+    let count: Int
+    let results: [Character]
+}
+
 // MARK: - Welcome
 struct CharactersModel: Codable {
     let code: Int

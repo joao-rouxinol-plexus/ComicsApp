@@ -20,7 +20,6 @@ class MainCharacterCell: UITableViewCell {
         UINib(nibName: "MainCharacterCell", bundle: nil)
     }
     
-//    IBoutlets:
     @IBOutlet weak var backView: UIView!
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -38,15 +37,16 @@ class MainCharacterCell: UITableViewCell {
         characterImageView.round(10)
         backView.backgroundColor = .darkGray
     }
+    
     func setUpCell(viewModel: CharacterTableCellViewModel){
         self.nameLabel.text = viewModel.name
         nameLabel.textColor = .systemYellow
         self.descriptionLabel.text = viewModel.description
         descriptionLabel.textColor = .white
-        let comicsText = "Comics: \(viewModel.comics)"
-        let storiesText = "Stories: \(viewModel.stories)"
-        let seriesText = "Series: \(viewModel.series)"
-        let eventsText = "Events: \(viewModel.events)"
+        let comicsText = "Comics: \(viewModel.comics.count)"
+        let storiesText = "Stories: \(viewModel.stories.count)"
+        let seriesText = "Series: \(viewModel.series.count)"
+        let eventsText = "Events: \(viewModel.events.count)"
         
         let comicsRange = (comicsText as NSString).range(of: "Comics:")
         let boldComicsText = comicsText.boldPart(range: comicsRange)

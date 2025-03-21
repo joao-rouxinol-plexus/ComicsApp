@@ -27,7 +27,6 @@ class MarvelMainViewModel{
     
     func getData(offset: Int){
 //        print(NetworkConstant.shared.offset)
-//        Se já estiver a carregar, não faz nada
         if isLoading.value ?? true {
             return
         }
@@ -39,12 +38,11 @@ class MarvelMainViewModel{
             
             self.isLoading.value = false
             
-            // Se a resposta da API for vazia, não faz mais nada
+            
             guard !characters.isEmpty else { return }
 
             print("Número de personagens carregados: \(characters.count)")
 
-            // Se for a primeira carga, inicializa a lista
             if self.dataSource == nil {
                 self.dataSource = characters
             } else {
