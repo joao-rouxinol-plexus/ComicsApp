@@ -100,4 +100,11 @@ class RickMortyMainViewModel {
         
         
     }
+    
+    func retrieveCharacter(whit id: Int) -> Character?{
+        guard let character = characters.first(where: {$0.id == id}) else {
+            return nil
+        }
+        return character
+    }
 }
