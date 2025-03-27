@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -125,6 +125,10 @@
 		DF7F2C55741AF4B45D797A4F /* Pods-ComicsApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsApp.debug.xcconfig"; path = "Target Support Files/Pods-ComicsApp/Pods-ComicsApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		5AED5BCD2D9592D70024959C /* DetailsCharactersController */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DetailsCharactersController; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		6B81B16B2D79DCBA0034BCB9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -164,9 +168,8 @@
 		5A79DF712D832F260097A9F2 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				5A79DF7E2D83324C0097A9F2 /* RickMortyMainViewController+TableViewController.swift */,
-				5A79DF8B2D833CDD0097A9F2 /* RickMortyMainViewController.swift */,
-				5A79DF8C2D833CDD0097A9F2 /* RickMortyMainViewController.xib */,
+				5AED5BCD2D9592D70024959C /* DetailsCharactersController */,
+				5AED5BCC2D9592BA0024959C /* MainViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -211,6 +214,16 @@
 				5A79DF802D8333130097A9F2 /* RickMortyMainViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5AED5BCC2D9592BA0024959C /* MainViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5A79DF8C2D833CDD0097A9F2 /* RickMortyMainViewController.xib */,
+				5A79DF8B2D833CDD0097A9F2 /* RickMortyMainViewController.swift */,
+				5A79DF7E2D83324C0097A9F2 /* RickMortyMainViewController+TableViewController.swift */,
+			);
+			path = MainViewController;
 			sourceTree = "<group>";
 		};
 		5AF56C6C2D8DAC0300D661AF /* Model */ = {
@@ -404,6 +417,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				5AED5BCD2D9592D70024959C /* DetailsCharactersController */,
 			);
 			name = ComicsApp;
 			productName = ComicsApp;

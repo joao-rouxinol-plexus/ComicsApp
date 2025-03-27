@@ -63,5 +63,12 @@ extension RickMortyMainViewController: UITableViewDelegate, UITableViewDataSourc
        }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+        let secondVC = DetailsCharactersController()
+        print(indexPath.row)
+        navigationController?.pushViewController(secondVC, animated: false)
+    }
+    
 }
 
