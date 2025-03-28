@@ -55,6 +55,7 @@ class RickMortyMainViewController: UIViewController {
 
         }
     }
+    
     func openDetail(charaterId: Int){
         guard let character = viewModel.retrieveCharacter(whit: charaterId) else{
             return

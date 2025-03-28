@@ -10,10 +10,15 @@ import SDWebImage
 
 class CharactersDetailsController: UIViewController {
     
-    var viewModel : CharacterDetailsViewModel
+    private let viewModel : CharacterDetailsViewModel
+    
+    private let detailView: CharacterDetailView
+    
+    //    MARK: - Inits
     
     init(viewModel: CharacterDetailsViewModel) {
         self.viewModel = viewModel
+        self.detailView = CharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -21,64 +26,60 @@ class CharactersDetailsController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //    MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = "Character Details"
+        self.title = viewModel.characterName
         view.backgroundColor = .systemBackground
+        view.addSubview(detailView)
+        addConstraints()
         
-        
-        let view1 = UIView()
-        view1.translatesAutoresizingMaskIntoConstraints = false
-        view1.backgroundColor = UIColor.init(red: 56/255, green: 173/255, blue: 169/255, alpha: 0.6)
-        
-        
-        view.addSubview(view1)
-        
-        
-        NSLayoutConstraint.activate([
-            view1.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            view1.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
-            view1.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-            view1.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
-        ])
-        
-        let titleLabel = UILabel()
-        titleLabel.text = viewModel.characterName
-        titleLabel.font = .systemFont(ofSize: 30, weight: .bold)
-        view1.addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            titleLabel.centerXAnchor.constraint(equalTo: view1.centerXAnchor),
-            titleLabel.topAnchor.constraint(equalTo: view1.topAnchor, constant: 20)
-        ])
-        
-        let imageView = UIImageView()
-        imageView.sd_setImage(with: viewModel.characterImgUrl)
-        imageView.contentMode = .center
-        view1.addSubview(imageView)
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            imageView.centerXAnchor.constraint(equalTo: view1.safeAreaLayoutGuide.centerXAnchor),
-            imageView.safeAreaLayoutGuide.topAnchor.constraint(equalTo: view1.safeAreaLayoutGuide.topAnchor,constant: 100)
-        ])
-        
-        let statusLabel = UILabel()
-        if viewModel.characterStatus.rawValue == "Alive" {
-            statusLabel.textColor = .green
-        } else {
-            statusLabel.textColor = .red
-        }
-        statusLabel.text = "\(viewModel.characterStatus)".capitalized
-        view1.addSubview(statusLabel)
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            statusLabel.safeAreaLayoutGuide.bottomAnchor.constraint(equalTo: view1.safeAreaLayoutGuide.bottomAnchor,constant: -40),
-            statusLabel.safeAreaLayoutGuide.centerXAnchor.constraint(equalTo: view1.safeAreaLayoutGuide.centerXAnchor)
-        ])
-    
-        
+        detailView.collectionView?.delegate = self
+        detailView.collectionView?.dataSource = self
     }
     
+    private func addConstraints() {
+        NSLayoutConstraint.activate([
+            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+            detailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+        ])
+    }
+    
+}
+
+// MARK: - CollectionView
+
+extension CharactersDetailsController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.sections.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section{
+        case 0:
+           return 1
+        case 1:
+            return 8
+        case 2:
+            return 20
+        default:
+            return 1
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        if indexPath.section == 0 {
+            cell.backgroundColor = .red
+        }else if indexPath.section == 1  {
+            cell.backgroundColor = .blue
+        }else{
+            cell.backgroundColor = .yellow
+        }
+        return cell
+    }
 }
