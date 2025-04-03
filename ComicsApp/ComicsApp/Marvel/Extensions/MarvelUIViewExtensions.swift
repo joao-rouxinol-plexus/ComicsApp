@@ -17,5 +17,4 @@ extension UIView {
         self.layer.borderWidth = width
         self.layer.borderColor = color.cgColor
     }
-
 }

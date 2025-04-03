@@ -8,14 +8,16 @@
 import Foundation
 import CryptoKit
 
-class NetworkConstant{
+class MarvelNetworkConstant{
     
-    public static var shared: NetworkConstant = NetworkConstant()
-        
+    // MARK: - Singleton Instance
+    public static var shared: MarvelNetworkConstant = MarvelNetworkConstant()
+    
     private init(){
         //Singletone
     }
     
+    // MARK: - Public Properties
     public var apiKey:String{
         get{
             return "b18356b0bd09f22fb50be8003571c0e4"
@@ -32,7 +34,7 @@ class NetworkConstant{
     public var ts:String{
         get{
             return String(Int(Date().timeIntervalSince1970))
-
+            
         }
     }
     
@@ -47,11 +49,13 @@ class NetworkConstant{
             return "https://gateway.marvel.com/v1/public/"
         }
     }
+    
+    // MARK: - Pagination Properties
     var offset: Int = 0
     var limit: Int = 10
     var total = 1564 //NAO DEIXAR ASSIM
     
-    
+    // MARK: - Private Methods
     private func md5(data: String) -> String {
         let hash = Insecure.MD5.hash(data: data.data(using: .utf8) ?? Data())
         

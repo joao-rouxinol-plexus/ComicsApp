@@ -10,39 +10,74 @@ import UIKit
 
 extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataSource{
     
+    // MARK: - Setup
     func setupTableView(){
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = .clear
         self.registerCells()
-        
+        self.bindViewModel()
     }
     
     func registerCells(){
-        tableView.register(MainCharacterCell.register(),forCellReuseIdentifier: MainCharacterCell.identifier)
+        tableView.register(MarvelMainCharacterCell.register(),forCellReuseIdentifier: MarvelMainCharacterCell.identifier)
     }
     
-    func reloadTableView() {
+    func setupButton() {
+        if topButton == nil {
+            topButton = UIButton(type: .system)
+            topButton.setImage(UIImage(named: "marvelTop")?.withRenderingMode(.alwaysOriginal), for: .normal)
+            topButton.imageView?.contentMode = .scaleAspectFit
+            topButton.addTarget(self, action: #selector(handleTopButton), for: .touchUpInside)
+            topButton.backgroundColor = .topButtonColor
+            topButton.layer.cornerRadius = 25
+            topButton.addBorder(color: .systemYellow, width: 1)
+            topButton.translatesAutoresizingMaskIntoConstraints = false
+            self.view.addSubview(topButton)
+            
+            NSLayoutConstraint.activate([
+                topButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
+                topButton.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
+                topButton.widthAnchor.constraint(equalToConstant: 50),
+                topButton.heightAnchor.constraint(equalToConstant: 50)
+            ])
+        }
+        
+        topButton.isHidden = true
+        
+    }
+    
+    // MARK: - Buttons
+    @objc func handleTopButton() {
         DispatchQueue.main.async {
-            self.tableView.reloadData()
+            self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
         }
     }
     
+    // MARK: - TableView
     func numberOfSections(in tableView: UITableView) -> Int {
         viewModel.numberOfSections()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows(in: section)
+        let inSearchMode = searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
+        return inSearchMode ? (viewModel.cellDataSource.value?.count ?? 0) : (viewModel.dataSource?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MainCharacterCell.identifier, for: indexPath) as? MainCharacterCell else {
+        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MarvelMainCharacterCell.identifier, for: indexPath) as? MarvelMainCharacterCell else {
             return UITableViewCell()
         }
         
-        let cellViewModel = cellDataSource[indexPath.row]
-        cell.setUpCell(viewModel:cellViewModel)
+        let inSearchMode = searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
+        let cellViewModel = inSearchMode ? viewModel.cellDataSource.value?[indexPath.row] :
+        viewModel.cellDataSource.value?[indexPath.row]
+        
+        if let cellViewModel = cellViewModel {
+            cell.setUpCell(viewModel: cellViewModel)
+        }
+        
         cell.selectionStyle = .none
         return cell
     }
@@ -51,52 +86,67 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
         150
     }
     
-    func setupFooterView() {
-        
-        footerView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height: 50))
-        
-        topButton = UIButton(type: .system)
-        topButton.setTitle("Top", for: .normal)
-        topButton.setTitleColor(.systemYellow, for: .normal)
-        topButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
-        topButton.addTarget(self, action: #selector(handleTopButton), for: .touchUpInside)
-        topButton.translatesAutoresizingMaskIntoConstraints = false
-        footerView.addSubview(topButton)
-        
-        self.tableView.tableFooterView = footerView
-        
-        NSLayoutConstraint.activate([
-            footerView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-            footerView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-            footerView.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        
-        NSLayoutConstraint.activate([
-            topButton.centerXAnchor.constraint(equalTo: footerView.centerXAnchor),
-            topButton.centerYAnchor.constraint(equalTo: footerView.centerYAnchor),
-        ])
-    }
-    
-    @objc func handleTopButton() {
-        DispatchQueue.main.async {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-        }
-    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCharacter = cellDataSource[indexPath.row]
-        print("Personagem Selecionado: \(selectedCharacter.name)")  
+        print("Personagem Selecionado: \(selectedCharacter.name)")
+        let detailVC = MarvelDetailViewController()
+        detailVC.character = selectedCharacter
+        navigationController?.pushViewController(detailVC, animated: true)
     }
     
+    // MARK: - ScrollView
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let topButton = topButton else { return }
         let position = scrollView.contentOffset.y
+        if position > 200 {
+            if topButton.isHidden {
+                topButton.isHidden = false
+            }
+        } else {
+            
+            if !topButton.isHidden {
+                topButton.isHidden = true
+            }
+        }
         let contentHeight = scrollView.contentSize.height
         let frameHeight = scrollView.frame.size.height
         
         if position > (contentHeight - frameHeight ) {
-            viewModel.getData(offset: NetworkConstant.shared.offset)
-            print(NetworkConstant.shared.offset)
+            viewModel.getData(offset: MarvelNetworkConstant.shared.offset)
+            print(MarvelNetworkConstant.shared.offset)
         }
+    }
+    
+    // MARK: - ViewModel Binding
+    func bindViewModel(){
+        viewModel.isLoading.bind { [weak self] isLoading in
+            guard let self = self , let isLoading = isLoading else {
+                return
+            }
+            DispatchQueue.main.async {
+                if isLoading {
+                    self.activityIndicator.startAnimating( )
+                }else {
+                    self.activityIndicator.stopAnimating()
+                    self.setupButton()
+                }
+            }
+        }
+        
+        viewModel.cellDataSource.bind { [weak self] Characters in
+            guard let self = self, let Characters = Characters else {
+                return
+            }
+            self.cellDataSource = Characters
+            reloadTableView()
+        }
+        
+        func reloadTableView() {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+        
     }
     
 }

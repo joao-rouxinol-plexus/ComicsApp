@@ -34,7 +34,7 @@ class PokeCellTableViewCell: UITableViewCell {
         contentView.frame = contentView.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
         contentView.layer.cornerRadius = 8
         contentView.clipsToBounds = true
-        contentView.backgroundColor = .lightGray
+        contentView.backgroundColor = .systemGray
     }
     
 }

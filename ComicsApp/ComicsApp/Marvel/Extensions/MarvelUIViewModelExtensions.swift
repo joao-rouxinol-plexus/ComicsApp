@@ -15,15 +15,16 @@ extension MarvelMainViewModel {
     }
     
     public func updateSearchController(searchBarText: String?) {
-        self.filteredCharacters = dataSource ?? []
-
-        if let searchText = searchBarText?.lowercased() {
-            guard !searchText.isEmpty else {
-                self.onCharactersUpdated?()
-                return
-            }
-            self.filteredCharacters = self.filteredCharacters.filter({ $0.name?.lowercased().contains(searchText) ?? false })
+        guard let searchText = searchBarText?.lowercased() else { return }
+        
+        if searchText.isEmpty {
+            self.cellDataSource.value = dataSource?.map { MarvelCharacterViewModel(character: $0) } ?? []
+        } else {
+            self.cellDataSource.value = dataSource?.filter {
+                $0.name?.lowercased().contains(searchText) ?? false
+            }.map { MarvelCharacterViewModel(character: $0) } ?? []
         }
-        self.onCharactersUpdated?()
     }
+    
 }
+

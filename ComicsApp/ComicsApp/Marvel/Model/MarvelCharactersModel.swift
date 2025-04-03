@@ -7,8 +7,25 @@
 
 import Foundation
 
+// Modelo principal que representa toda a resposta da API
+struct APIResponse: Codable {
+    let code: Int
+    let status: String
+    let etag: String
+    let data: CharacterDataWrapper
+}
+
+// Contém a lista de personagens e metadados (offset, total, etc.)
+struct CharacterDataWrapper: Codable {
+    let offset: Int
+    let limit: Int
+    let total: Int
+    let count: Int
+    let results: [Character]
+}
+
 // MARK: - Welcome
-struct CharactersModel: Codable {
+struct MarvelCharactersModel: Codable {
     let code: Int
     let status, copyright, attributionText, attributionHTML: String
     let etag: String
