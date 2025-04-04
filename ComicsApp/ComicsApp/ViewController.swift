@@ -28,6 +28,8 @@ class ViewController: UIViewController {
         if let navigationController = self.navigationController {
             navigationController.navigationBar.tintColor = color
         }
+        // TODO: REMOVER
+//        PokeButton(UIButton())
     }
     
     

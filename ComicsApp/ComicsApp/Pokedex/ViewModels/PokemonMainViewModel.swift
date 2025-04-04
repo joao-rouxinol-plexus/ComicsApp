@@ -158,7 +158,6 @@ class PokemonMainViewModel {
                 next = nil
             }
         }
-        
         closure?()
     }
     

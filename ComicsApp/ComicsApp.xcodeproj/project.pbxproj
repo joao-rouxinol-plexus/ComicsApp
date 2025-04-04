@@ -20,7 +20,6 @@
 		6D566B6A2D7B3A8F007A45EE /* RickAndMortyMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D566B642D7B3A8F007A45EE /* RickAndMortyMainScreenViewController.xib */; };
 		6D566B6B2D7B3A8F007A45EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D566B4F2D7B3A8F007A45EE /* LaunchScreen.storyboard */; };
 		6D566B6C2D7B3A8F007A45EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D566B512D7B3A8F007A45EE /* Main.storyboard */; };
-		6D566B6D2D7B3A8F007A45EE /* PokeCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D566B602D7B3A8F007A45EE /* PokeCellTableViewCell.xib */; };
 		6D566B6E2D7B3A8F007A45EE /* PokeDexMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D566B612D7B3A8F007A45EE /* PokeDexMainScreenViewController.xib */; };
 		6D566B702D7B3A8F007A45EE /* PokeDexMainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D566B542D7B3A8F007A45EE /* PokeDexMainScreenViewController.swift */; };
 		6D566B712D7B3A8F007A45EE /* PokemonMainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D566B5C2D7B3A8F007A45EE /* PokemonMainViewModel.swift */; };
@@ -36,6 +35,7 @@
 		6D6611392D83156700E930CA /* listNav.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D6611382D83156000E930CA /* listNav.swift */; };
 		6DB04A582D9E93DA00476DE8 /* PokemonTypeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB04A572D9E93DA00476DE8 /* PokemonTypeInfo.swift */; };
 		6DB04A5A2D9E951500476DE8 /* PokemonTypeViewModel.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB04A592D9E951500476DE8 /* PokemonTypeViewModel.swift.swift */; };
+		6DB04A5E2D9FDC0000476DE8 /* PokeCellTableViewCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DB04A5D2D9FDC0000476DE8 /* PokeCellTableViewCell2.swift */; };
 		6DF186712D834DD800B2C8D3 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF186702D834DD800B2C8D3 /* Pokemon.swift */; };
 		6DF1867B2D843D1F00B2C8D3 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF1867A2D843D1F00B2C8D3 /* PokemonList.swift */; };
 		6DF186812D8C38C400B2C8D3 /* PokemonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6DF186802D8C38C300B2C8D3 /* PokemonViewModel.swift */; };
@@ -90,7 +90,6 @@
 		6D566B5C2D7B3A8F007A45EE /* PokemonMainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonMainViewModel.swift; sourceTree = "<group>"; };
 		6D566B5D2D7B3A8F007A45EE /* PokemonListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonListViewModel.swift; sourceTree = "<group>"; };
 		6D566B5F2D7B3A8F007A45EE /* PokeCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeCellTableViewCell.swift; sourceTree = "<group>"; };
-		6D566B602D7B3A8F007A45EE /* PokeCellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokeCellTableViewCell.xib; sourceTree = "<group>"; };
 		6D566B612D7B3A8F007A45EE /* PokeDexMainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokeDexMainScreenViewController.xib; sourceTree = "<group>"; };
 		6D566B632D7B3A8F007A45EE /* RickAndMortyMainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickAndMortyMainScreenViewController.swift; sourceTree = "<group>"; };
 		6D566B642D7B3A8F007A45EE /* RickAndMortyMainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RickAndMortyMainScreenViewController.xib; sourceTree = "<group>"; };
@@ -99,6 +98,7 @@
 		6D6611382D83156000E930CA /* listNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listNav.swift; sourceTree = "<group>"; };
 		6DB04A572D9E93DA00476DE8 /* PokemonTypeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeInfo.swift; sourceTree = "<group>"; };
 		6DB04A592D9E951500476DE8 /* PokemonTypeViewModel.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonTypeViewModel.swift.swift; sourceTree = "<group>"; };
+		6DB04A5D2D9FDC0000476DE8 /* PokeCellTableViewCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeCellTableViewCell2.swift; sourceTree = "<group>"; };
 		6DF186702D834DD800B2C8D3 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		6DF1867A2D843D1F00B2C8D3 /* PokemonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonList.swift; sourceTree = "<group>"; };
 		6DF186802D8C38C300B2C8D3 /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
@@ -110,6 +110,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		6D1A08412DA0305400254A97 /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 		6DF0471E2D7B6B3200DCE2D1 /* Scenes */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Scenes; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -251,6 +252,7 @@
 		6D566B622D7B3A8F007A45EE /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				6D1A08412DA0305400254A97 /* Extensions */,
 				6D6611382D83156000E930CA /* listNav.swift */,
 				6DF0471E2D7B6B3200DCE2D1 /* Scenes */,
 				6D566B552D7B3A8F007A45EE /* Controllers */,
@@ -258,7 +260,7 @@
 				6D566B5B2D7B3A8F007A45EE /* Networking */,
 				6D566B5E2D7B3A8F007A45EE /* ViewModels */,
 				6D566B5F2D7B3A8F007A45EE /* PokeCellTableViewCell.swift */,
-				6D566B602D7B3A8F007A45EE /* PokeCellTableViewCell.xib */,
+				6DB04A5D2D9FDC0000476DE8 /* PokeCellTableViewCell2.swift */,
 				6D566B612D7B3A8F007A45EE /* PokeDexMainScreenViewController.xib */,
 			);
 			path = Pokedex;
@@ -323,6 +325,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				6D1A08412DA0305400254A97 /* Extensions */,
 				6DF0471E2D7B6B3200DCE2D1 /* Scenes */,
 			);
 			name = ComicsApp;
@@ -423,7 +426,6 @@
 				6D566B6A2D7B3A8F007A45EE /* RickAndMortyMainScreenViewController.xib in Resources */,
 				6D566B6B2D7B3A8F007A45EE /* LaunchScreen.storyboard in Resources */,
 				6D566B6C2D7B3A8F007A45EE /* Main.storyboard in Resources */,
-				6D566B6D2D7B3A8F007A45EE /* PokeCellTableViewCell.xib in Resources */,
 				6D566B6E2D7B3A8F007A45EE /* PokeDexMainScreenViewController.xib in Resources */,
 				6D566B7E2D7B3AC2007A45EE /* MarvelMainScreenViewController.xib in Resources */,
 				6B81B1792D79DCBA0034BCB9 /* Base in Resources */,
@@ -566,6 +568,7 @@
 				6DB04A582D9E93DA00476DE8 /* PokemonTypeInfo.swift in Sources */,
 				6DF1867B2D843D1F00B2C8D3 /* PokemonList.swift in Sources */,
 				6D566B762D7B3A8F007A45EE /* PokemonSpecies.swift in Sources */,
+				6DB04A5E2D9FDC0000476DE8 /* PokeCellTableViewCell2.swift in Sources */,
 				6D566B772D7B3A8F007A45EE /* PokemonNetworkConstants.swift in Sources */,
 				6DF186812D8C38C400B2C8D3 /* PokemonViewModel.swift in Sources */,
 				6D566B782D7B3A8F007A45EE /* PokemonApiCaller.swift in Sources */,
