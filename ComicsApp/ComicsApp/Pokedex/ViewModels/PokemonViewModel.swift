@@ -5,6 +5,11 @@
 //  Created by Duarte Miguel Charrua Silva on 20/03/2025.
 //
 
+struct StatViewModel {
+    let name : String
+    let value : Int
+}
+
 struct PokemonViewModel {
     let name : String
     let id : Int
@@ -12,7 +17,12 @@ struct PokemonViewModel {
     let types : [Types]
     let sprite : String
     let shinySprite : String
-    
+    let abilities : [Abilities]
+    let statsVM : [StatViewModel]
+    let largestStat : Int
+    let height : Int
+    let weight : Int
+
     var shiny : Bool = {
         let random = Int.random(in: 1...25)
         if (random == 5){
@@ -23,13 +33,57 @@ struct PokemonViewModel {
         }
     }()
     
+    var shinyCorrectedSprite : String {
+        shiny ? shinySprite : sprite
+    }
+    
+    var type1 : String{
+        get {
+            return types[0].type.name.capitalized
+        }
+    }
+    
+    var type2 : String{
+        get {
+            if types.count < 2 {
+                return ""
+            }
+            return types[1].type.name.capitalized
+        }
+    }
+    
     init(pokemon: Pokemon) {
-        self.name = pokemon.name
+        self.name = pokemon.name.split(separator: "-").joined(separator: " ").capitalized
         self.id = pokemon.id
         self.species = pokemon.species
         self.types = pokemon.types
         self.sprite = pokemon.sprites.other.officialArtwork.front_default
         self.shinySprite = pokemon.sprites.other.officialArtwork.front_shiny
+        self.abilities = pokemon.abilities
+        var tempStatsVM : [StatViewModel] = []
+        var tempLargestStat : Int = 0
+        for stat in pokemon.stats {
+            tempStatsVM.append(StatViewModel(name: stat.stat.name, value: stat.base_stat))
+            if (stat.base_stat > tempLargestStat){
+                tempLargestStat = stat.base_stat
+            }
+        }
+        self.height = pokemon.height * 10
+        self.weight = pokemon.weight * 100
+//        for i in 1...10 {
+//            if (i < pokemon.stats.count){
+//                tempStatsVM.append(StatViewModel(name: pokemon.stats[i].stat.name, value: i*10))
+//            }
+//            else {
+//                tempStatsVM.append(StatViewModel(name: String(i), value: i*10))
+//            }
+//            if (i*10 > tempLargestStat){
+//                tempLargestStat = i*10
+//            }
+//        }
+        
+        self.statsVM = tempStatsVM
+        self.largestStat = tempLargestStat
     }
 }
 

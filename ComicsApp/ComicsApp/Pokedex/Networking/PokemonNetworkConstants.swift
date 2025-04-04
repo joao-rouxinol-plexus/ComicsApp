@@ -33,10 +33,4 @@ class PokemonNetworkConstants{
             return "limit="
         }
     }
-    
-    public var spriteURL: String {
-        get {
-            return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
-        }
-    }
 }

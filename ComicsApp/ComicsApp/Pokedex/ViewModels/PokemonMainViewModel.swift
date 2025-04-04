@@ -12,14 +12,39 @@ class PokemonMainViewModel {
     var next : String?
     var previous : String?
     
-    var pokeArrayTest = [PokemonViewModel?]()
+    
+    var cachedTypesArray = [PokemonTypeViewModel?]()
+    
+    func getPokemonTypeData(_ url: String) -> PokemonTypeViewModel?{
+        let id = Int((url.split(separator: "/").last!))!
+        
+        if let cachedTypes = cachedTypesArray[id-1] {
+            print("returning type \(id)")
+            return cachedTypes
+        }
+        print("getting type \(id)")
+        
+        var typeIsReady = false
+        
+        PokemonApiCaller.getTypeInfo(urlString: url) { [weak self] typeresult in
+            self?.cachedTypesArray[id-1] = PokemonTypeViewModel(type: typeresult)
+            typeIsReady = true
+        }
+        
+        while (!typeIsReady) {
+            _ = wait()
+        }
+        
+        return self.cachedTypesArray[id-1]
+    }
+    
+    var cachedPokemonArray = [PokemonViewModel?]()
     
     func getPokemonData(_ url: String) -> PokemonViewModel?{
         
-        
         let id = Int((url.split(separator: "/").last!))!
         
-        if let cachedPokemon = pokeArrayTest[id-1] {
+        if let cachedPokemon = cachedPokemonArray[id-1] {
             print("returning \(id)")
             return cachedPokemon
         }
@@ -28,7 +53,7 @@ class PokemonMainViewModel {
         
         print("getting \(id)")
         PokemonApiCaller.getPokemonInfo(urlString: url) { [weak self] pokemonResult in
-            self?.pokeArrayTest[id-1] = PokemonViewModel(pokemon: pokemonResult)
+            self?.cachedPokemonArray[id-1] = PokemonViewModel(pokemon: pokemonResult)
             pokemonIsReady = true
         }
         
@@ -36,7 +61,7 @@ class PokemonMainViewModel {
             _ = wait()
         }
         
-        return self.pokeArrayTest[id-1]
+        return self.cachedPokemonArray[id-1]
         
     }
     
@@ -66,7 +91,7 @@ class PokemonMainViewModel {
         }
         
         if first {
-            pokeArrayTest = Array<PokemonViewModel?>(repeating: nil, count: listDataSource[0].count)
+            cachedPokemonArray = Array<PokemonViewModel?>(repeating: nil, count: listDataSource[0].count)
             first = false
         }
         

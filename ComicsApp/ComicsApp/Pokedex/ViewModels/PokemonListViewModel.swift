@@ -15,6 +15,7 @@ class PokemonListViewModel {
     var types : [Types]
     var id : Int
     var sprite : URL
+//    var typesVM : [PokemonTypeViewModel] = []
     
     var formattedID : String{
         get {
@@ -42,7 +43,6 @@ class PokemonListViewModel {
             return "\(pokemon.split(separator: "-").joined(separator: " ").capitalized)"
         }
     }
-    
     
     init (_ listResult: PokemonViewModel ){
         self.pokemon = listResult.name

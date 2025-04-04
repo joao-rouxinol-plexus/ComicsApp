@@ -39,4 +39,19 @@ public class PokemonApiCaller {
             }
         }.resume()
     }
+    
+    static func getTypeInfo(urlString: String, completionHandler: @escaping (_ result: PokemonTypeInfo) -> Void) {
+        
+        let url = URL(string: urlString)!
+        URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, err in
+            if err == nil,
+               let data = dataResponse,
+               let resultData = try? JSONDecoder().decode(PokemonTypeInfo.self, from: data) {
+                completionHandler(resultData)
+            } else {
+                print("erro. rawdata: \(String(describing: dataResponse))")
+            }
+        }.resume()
+    }
+    
 }

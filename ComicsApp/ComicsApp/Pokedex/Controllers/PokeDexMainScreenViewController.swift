@@ -11,21 +11,33 @@ import SDWebImage
 class PokeDexMainScreenViewController: UIViewController {
     
     var viewModel: PokemonMainViewModel = PokemonMainViewModel()
+    var color : UIColor?
     
     @IBOutlet weak var PokemonTableView: UITableView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewModel.getList(position: listNav.first){
             self.setupTableView()
         }
+        if let navigationController = self.navigationController {
+            color = navigationController.navigationBar.tintColor
+        }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let navigationController = self.navigationController {
+            navigationController.navigationBar.tintColor = color
+        }
+    }
+    
     
     func OpenPokemonDetails(for pokemon: PokemonViewModel){
         print("opening")
         DispatchQueue.main.async {
-            let controller = PokemonDetailsScreenViewController(viewModel: pokemon)
-            
+            let controller = PokemonDetailsScreenViewController(pokemonViewModel: pokemon)
             self.navigationController?.pushViewController(controller, animated: true)
         }
     }
@@ -50,7 +62,7 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
             }
         }
         
-        cell.setupCell(viewModel: viewModel.pokemons[indexPath.row], indexPath: indexPath)
+        cell.setupCell(viewModel: viewModel.pokemons[indexPath.row])
         cell.selectionStyle = .none
         
         return cell
@@ -59,7 +71,10 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("indexpath \(indexPath.row)")
         let url = viewModel.pokemons[indexPath.row].url
+        //        OpenPokemonDetails(for: viewModel.getPokemonData(url)!, pokemonListViewModel: viewModel.pokemons[indexPath.row])
         OpenPokemonDetails(for: viewModel.getPokemonData(url)!)
+        //        print(tableView.cellForRow(at: indexPath))
+        
         //        OpenPokemonDetails(for: viewModel.pokeArrayTest[indexPath.row]!)
         
     }
@@ -137,7 +152,12 @@ extension UIColor {
         
         return UIColor(hue: hue, saturation: saturation, brightness: brightness, alpha: alpha)
     }
-    
+}
 
-    
+extension UIView {
+    func squircle() {
+        self.frame = self.frame.inset(by: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10))
+        self.layer.cornerRadius = 8
+        self.clipsToBounds = true
+    }
 }
