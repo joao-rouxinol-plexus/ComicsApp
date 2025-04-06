@@ -14,6 +14,7 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.font = .systemFont(ofSize: 18, weight: .light)
         return label
     }()
@@ -72,10 +73,10 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
             titleLabel.trailingAnchor.constraint(equalTo: titleContainerView.trailingAnchor),
             titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
             
-            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -20),
+            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10),
             valueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 15),
             valueLabel.trailingAnchor.constraint(equalTo: iconImgView.trailingAnchor,constant: -30),
-            valueLabel.heightAnchor.constraint(equalToConstant: 60),
+            valueLabel.heightAnchor.constraint(equalToConstant: 70),
             
             iconImgView.heightAnchor.constraint(equalToConstant: 30),
             iconImgView.widthAnchor.constraint(equalToConstant: 30),
