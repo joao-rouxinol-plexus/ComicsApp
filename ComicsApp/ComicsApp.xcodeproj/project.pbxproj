@@ -16,6 +16,7 @@
 		5A79DF912D84303F0097A9F2 /* CharacterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A79DF902D84303F0097A9F2 /* CharacterViewCell.xib */; };
 		5A79DF922D84303F0097A9F2 /* CharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79DF8F2D84303F0097A9F2 /* CharacterViewCell.swift */; };
 		5A79DF942D8435080097A9F2 /* UIViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A79DF932D8434FA0097A9F2 /* UIViewExtensions.swift */; };
+		5AA007A72DA285B8002A027F /* EpisodesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AA007A62DA285B1002A027F /* EpisodesModel.swift */; };
 		5AED5BD22D95B6AC0024959C /* CharacterDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED5BD12D95B6AA0024959C /* CharacterDetailsViewModel.swift */; };
 		5AED5BD82D96E0250024959C /* CharacterDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED5BD72D96E01D0024959C /* CharacterDetailView.swift */; };
 		5AED5BDC2D97196B0024959C /* CharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AED5BDB2D97196B0024959C /* CharacterPhotoCollectionViewCell.swift */; };
@@ -88,6 +89,7 @@
 		5A79DF8F2D84303F0097A9F2 /* CharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewCell.swift; sourceTree = "<group>"; };
 		5A79DF902D84303F0097A9F2 /* CharacterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewCell.xib; sourceTree = "<group>"; };
 		5A79DF932D8434FA0097A9F2 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
+		5AA007A62DA285B1002A027F /* EpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesModel.swift; sourceTree = "<group>"; };
 		5AED5BD12D95B6AA0024959C /* CharacterDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsViewModel.swift; sourceTree = "<group>"; };
 		5AED5BD72D96E01D0024959C /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		5AED5BDB2D97196B0024959C /* CharacterPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		5AF56C6C2D8DAC0300D661AF /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5AA007A62DA285B1002A027F /* EpisodesModel.swift */,
 				5AF56C6B2D8DAC0300D661AF /* CharactersModel.swift */,
 			);
 			path = Model;
@@ -619,9 +622,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComicsApp/Pods-ComicsApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComicsApp/Pods-ComicsApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -636,9 +643,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComicsApp-ComicsAppUITests/Pods-ComicsApp-ComicsAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ComicsApp-ComicsAppUITests/Pods-ComicsApp-ComicsAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -697,6 +708,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A79DF8A2D8334220097A9F2 /* Observable.swift in Sources */,
+				5AA007A72DA285B8002A027F /* EpisodesModel.swift in Sources */,
 				5AED5BE62D971A430024959C /* CharacterInformationCollectionViewCellViewModel.swift in Sources */,
 				5AED5BE82D971A5A0024959C /* CharacterEpisodesCollectionViewCellViewModel.swift in Sources */,
 				5A79DF8E2D833CDD0097A9F2 /* RickMortyMainViewController.swift in Sources */,

@@ -9,44 +9,53 @@ import UIKit
 
 class CharacterDetailsViewModel {
     
-    var character: Character
+    private let character: Character
     
-    var characterName: String
-    var characterStatus: Status
-    var characterImgUrl: URL?
-    
-    enum SectionType : CaseIterable{
-        case photo
-        case information
-        case episodes
+    enum SectionType {
+        case photo(viewModel: CharacterPhotoCollectionViewCellViewModel)
+        
+        case information(viewModel: [CharacterInformationCollectionViewCellViewModel])
+        
+        case episodes(viewModel: [CharacterEpisodesCollectionViewCellViewModel])
     }
     
-    public let sections = SectionType.allCases
+    public var sections : [SectionType] = []
     
     // MARK: - Init
     
     init(character: Character) {
         self.character = character
-        self.characterName = character.name
-        self.characterStatus = character.status
-        self.characterImgUrl = makeImageURL(character.image)
+        setUpSections()
     }
     
-    private func makeImageURL(_ image: String?) -> URL? {
-        guard let imageUrlString = image else { return nil }
-        return URL(string: imageUrlString)
+    private func setUpSections() {
+        sections = [
+            .photo(viewModel: .init(imageUrl: URL(string: character.image))),
+            .information(viewModel: [
+                .init(value: character.status.rawValue, type: .status),
+                .init(value: character.gender.rawValue, type: .gender),
+                .init(value: character.species, type: .species),
+                .init(value: character.origin.name, type: .origin),
+                .init(value: character.location.name, type: .location),
+                .init(value: "\(character.episode.count)", type: .episodeCount)
+            ]),
+            .episodes(viewModel: character.episode.compactMap({
+                return CharacterEpisodesCollectionViewCellViewModel(episodeURL: URL(string: $0))
+            }))
+        ]
+        
     }
     
-//    MARKS: - Layouts
+    //    MARKS: - Layouts
     
-     func createPhotoSectionLayout() -> NSCollectionLayoutSection {
+    func createPhotoSectionLayout() -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .fractionalHeight(1))
         )
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
-
+        
         let group = NSCollectionLayoutGroup.vertical(layoutSize:
                                                         NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                                                heightDimension: .fractionalHeight(0.5)
@@ -57,40 +66,44 @@ class CharacterDetailsViewModel {
         return section
     }
     
-     func createInformationSectionLayout() -> NSCollectionLayoutSection {
+    func createInformationSectionLayout() -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.5),
                                                heightDimension: .fractionalHeight(1))
         )
         item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-
+        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:
                                                         NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                                                heightDimension: .absolute(150)
                                                                               ),
-                                                     subitems: [item, item]
+                                                       subitems: [item, item]
         )
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
     
-     func createEpisodesSectionLayout() -> NSCollectionLayoutSection {
+    func createEpisodesSectionLayout() -> NSCollectionLayoutSection {
         
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
                                                heightDimension: .fractionalHeight(1))
         )
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 5, bottom: 10, trailing: 8)
-
+        
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:
                                                         NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8),
                                                                                heightDimension: .absolute(150)
                                                                               ),
-                                                     subitems: [item]
+                                                       subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPaging
         return section
     }
+    
+    public var getCharacterName: String {
+            return character.name
+        }
 }

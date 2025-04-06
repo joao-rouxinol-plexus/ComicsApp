@@ -62,6 +62,7 @@ class RickMortyMainViewController: UIViewController {
         }
         let detailsViewModel = CharacterDetailsViewModel(character: character)
         let detailsController = CharactersDetailsController(viewModel: detailsViewModel)
+        
         DispatchQueue.main.async {
             self.navigationController?.pushViewController(detailsController, animated: true)
         }

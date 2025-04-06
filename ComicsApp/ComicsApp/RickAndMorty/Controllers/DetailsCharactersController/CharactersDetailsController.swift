@@ -11,7 +11,6 @@ import SDWebImage
 class CharactersDetailsController: UIViewController {
     
     private let viewModel : CharacterDetailsViewModel
-    
     private let detailView: CharacterDetailView
     
     //    MARK: - Inits
@@ -31,8 +30,11 @@ class CharactersDetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = viewModel.characterName
         view.backgroundColor = .systemBackground
+        title = viewModel.getCharacterName
+        navigationController?.navigationBar.titleTextAttributes = [
+            .font: UIFont.systemFont(ofSize: 24, weight: .bold)
+        ]
         view.addSubview(detailView)
         addConstraints()
         
@@ -59,27 +61,47 @@ extension CharactersDetailsController: UICollectionViewDelegate, UICollectionVie
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch section{
-        case 0:
-           return 1
-        case 1:
-            return 8
-        case 2:
-            return 20
-        default:
+        
+        let sectionType = viewModel.sections[section]
+        
+        switch sectionType{
+        case .photo:
             return 1
+        case .information(let viewModels):
+            return viewModels.count
+        case .episodes(let viewModels):
+            return viewModels.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        if indexPath.section == 0 {
-            cell.backgroundColor = .red
-        }else if indexPath.section == 1  {
-            cell.backgroundColor = .blue
-        }else{
-            cell.backgroundColor = .yellow
+        
+        let sectionType = viewModel.sections[indexPath.section]
+        
+        switch sectionType{
+        case .photo(let viewModel):
+            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterPhotoCollectionViewCell.cellIdentifier, for: indexPath)
+                    as? CharacterPhotoCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: viewModel)
+            return cell
+            
+        case .information(let viewModels):
+            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterInformationCollectionViewCell.cellIdentifier, for: indexPath)
+                    as? CharacterInformationCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: viewModels[indexPath.row])
+            return cell
+            
+        case .episodes(let viewModels):
+            guard  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterEpisodesCollectionViewCell.cellIdentifier, for: indexPath)
+                    as? CharacterEpisodesCollectionViewCell else {
+                fatalError()
+            }
+            cell.configure(with: viewModels[indexPath.row])
+            return cell
         }
-        return cell
     }
 }

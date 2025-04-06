@@ -6,7 +6,17 @@
 //
 
 import Foundation
+import SDWebImage
 
 final class CharacterPhotoCollectionViewCellViewModel {
     
+    private let imageURL: URL?
+    
+    init(imageUrl: URL?){
+        self.imageURL = imageUrl
+    }
+    
+    var getImageURL: URL? {
+        return imageURL
+    }
 }
