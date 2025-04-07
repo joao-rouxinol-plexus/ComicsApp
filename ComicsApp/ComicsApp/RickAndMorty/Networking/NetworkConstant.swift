@@ -9,12 +9,25 @@ class NetworkConstant{
     
     public static var shared: NetworkConstant = NetworkConstant()
     
+    
     private init(){}
     
   public var serverURL: String {
       get {
-          return "https://rickandmortyapi.com/api/character"
-
+          return "https://rickandmortyapi.com/api/"
       }
     }
+    
+    public var charactersURL: String {
+        get {
+            return "character"
+        }
+    }
+    
+    public var episodesURL: String {
+        get {
+            return "episode"
+        }
+    }
+    
 }

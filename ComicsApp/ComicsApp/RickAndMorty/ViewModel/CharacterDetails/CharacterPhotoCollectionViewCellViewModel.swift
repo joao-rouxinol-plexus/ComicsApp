@@ -16,7 +16,7 @@ final class CharacterPhotoCollectionViewCellViewModel {
         self.imageURL = imageUrl
     }
     
-    var getImageURL: URL? {
+    func getImageURL() -> URL? {
         return imageURL
     }
 }

@@ -44,6 +44,6 @@ final class CharacterPhotoCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with viewModel: CharacterPhotoCollectionViewCellViewModel){
-        imageView.sd_setImage(with: viewModel.getImageURL)
+        imageView.sd_setImage(with: viewModel.getImageURL())
     }
 }

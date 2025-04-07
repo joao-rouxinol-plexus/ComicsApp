@@ -71,7 +71,7 @@ final class CharacterDetailView: UIView {
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
         
         let sectionTypes = viewModel.sections
-        
+    
         switch sectionTypes[sectionIndex]{
         case .photo:
             return viewModel.createPhotoSectionLayout()

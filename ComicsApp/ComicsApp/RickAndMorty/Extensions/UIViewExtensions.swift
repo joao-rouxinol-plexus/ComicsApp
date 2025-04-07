@@ -5,8 +5,6 @@
 //  Created by Diogo Alexandre Pereira on 14/3/25.
 //
 
-
-import Foundation
 import UIKit
 
 extension UIView {
