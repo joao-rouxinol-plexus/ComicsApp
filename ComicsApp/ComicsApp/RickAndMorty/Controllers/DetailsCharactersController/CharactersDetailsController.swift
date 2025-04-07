@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import SDWebImage
 
 class CharactersDetailsController: UIViewController {
     
@@ -19,6 +18,7 @@ class CharactersDetailsController: UIViewController {
         self.viewModel = viewModel
         self.detailView = CharacterDetailView(frame: .zero, viewModel: viewModel)
         super.init(nibName: nil, bundle: nil)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -105,3 +105,5 @@ extension CharactersDetailsController: UICollectionViewDelegate, UICollectionVie
         }
     }
 }
+
+

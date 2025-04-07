@@ -42,7 +42,7 @@ class RickMortyMainViewModel {
         }
         isLoading.value = true
         
-        APICaller.getCharacters(from: NetworkConstant.shared.serverURL) { [weak self] result in
+        APICaller.getCharacters(from: NetworkConstant.shared.serverURL.appending(NetworkConstant.shared.charactersURL)) { [weak self] result in
             self?.isLoading.value = false
             
             switch result {

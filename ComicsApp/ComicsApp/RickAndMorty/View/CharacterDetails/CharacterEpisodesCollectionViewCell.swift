@@ -81,7 +81,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
     }
     
     public func configure(with viewModel: CharacterEpisodesCollectionViewCellViewModel){
-        episodeLabel.text = "S01E01"
+        viewModel.getEpisodeData()
+        episodeLabel.text = "asd"
         episodeNameLabel.text = "Pilot"
         airDateLabel.text = "December 2, 2013"
     }

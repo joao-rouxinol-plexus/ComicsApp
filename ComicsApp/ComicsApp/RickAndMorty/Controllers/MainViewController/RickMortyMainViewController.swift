@@ -25,7 +25,7 @@ class RickMortyMainViewController: UIViewController {
     func configView(){
         
         self.title = "Characters"
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .systemBackground
         
         setupTableView()
         viewModel.getData()
