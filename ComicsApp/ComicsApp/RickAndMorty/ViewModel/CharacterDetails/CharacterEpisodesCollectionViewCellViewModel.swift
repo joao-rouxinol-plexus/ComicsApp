@@ -10,21 +10,19 @@ import Foundation
 final class CharacterEpisodesCollectionViewCellViewModel {
     
     private let episodeURL : URL?
+    public var episodeData : EpisodesModel?
     
     init(episodeURL : URL?){
         self.episodeURL = episodeURL
+        getEpisodeData(episodeURLString: episodeURL?.absoluteString ?? "")
         
     }
-    private var episodeURLString : String? {
-        guard let episodeURL = episodeURL else { return nil }
-        return String(describing: episodeURL)
-    }
     
-    func getEpisodeData(){
-        APICaller.getEpisodes(from: episodeURLString ?? "") { result in
+    func getEpisodeData(episodeURLString : String){
+        APICaller.getEpisodes(from: episodeURLString) { result in
             switch result {
             case .success(let episodeData):
-                print(episodeData)
+                self.episodeData = episodeData
             case .failure(let error):
                 print(error)
             }

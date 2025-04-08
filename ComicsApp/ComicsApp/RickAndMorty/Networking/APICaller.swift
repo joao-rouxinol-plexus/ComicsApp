@@ -63,18 +63,14 @@ public class APICaller{
     static func getEpisodes(from urlString: String, completionHandler: @escaping((_ result: Result<EpisodesModel, NetworkError>) -> Void)) {
         
         
-        guard let url = URL(string: urlString), !isFetching else{
+        guard let url = URL(string: urlString) else{
             completionHandler(.failure(.invalidURL))
             return
             
         }
-        
-        isFetching = true
-        
+                
         URLSession.shared.dataTask(with: url){ dataResponse, urlResponse, error in
-            
-            defer{  isFetching = false}
-            
+                        
             if let error = error {
                 print("Error: \(error)")
                 completionHandler(.failure(.urlRequestFailed))
