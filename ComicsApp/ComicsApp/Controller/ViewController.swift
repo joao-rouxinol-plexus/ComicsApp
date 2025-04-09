@@ -15,7 +15,7 @@ class ViewController: UIViewController {
     
     private let pokedexVC = PokeDexMainScreenViewController()
     private let MarvelVC = MarvelMainScreenViewController()
-    private let RMVC = RickMortyMainViewController()    
+    private let RMVC = RickMortyMainViewController()
     
     init(detailView : ViewControllerView, viewModel : ViewControllerViewModel) {
         self.detailView = detailView

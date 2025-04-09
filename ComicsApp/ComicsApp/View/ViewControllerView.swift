@@ -92,7 +92,6 @@ class ViewControllerView : UIView{
         marvelImageView.addGestureRecognizer(tapMarvelImageView)
         rmImageView.addGestureRecognizer(tapRMImageView)
         
-        
     }
     
     @objc private func dectetedTap(_ sender: UITapGestureRecognizer) {
@@ -106,20 +105,17 @@ class ViewControllerView : UIView{
             getUniverseTapped?(.pokemon)
             
         case marvelImageView:
-
+            
             getUniverseTapped?(.marvel)
             
         case rmImageView:
-
+            
             getUniverseTapped?(.rm)
             
         default:
             break
         }
     }
-    
-    //        public func configure(with viewModel: ViewControllerViewModel){
-    //        }
 }
 
 

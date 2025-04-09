@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewControllerViewModel {
- 
+    
     weak var navigationController : UINavigationController?
     
     public var pokemonImage:  UIImage? {

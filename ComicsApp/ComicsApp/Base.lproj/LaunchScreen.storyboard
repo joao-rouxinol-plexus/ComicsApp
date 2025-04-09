@@ -19,11 +19,20 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="2zt-dx-KgV">
                                 <rect key="frame" x="76.666666666666686" y="306" width="240" height="240"/>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Internships 2024/2025" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AIC-Of-YOw">
+                                <rect key="frame" x="5" y="261.33333333333331" width="383" height="39.666666666666686"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="33"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="2zt-dx-KgV" firstAttribute="top" secondItem="AIC-Of-YOw" secondAttribute="bottom" constant="5" id="9lx-RS-TBN"/>
+                            <constraint firstItem="AIC-Of-YOw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="cgG-X4-NF5"/>
                             <constraint firstItem="2zt-dx-KgV" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dr3-C8-Ixd"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="AIC-Of-YOw" secondAttribute="trailing" constant="5" id="oGE-Ks-6b0"/>
                             <constraint firstItem="2zt-dx-KgV" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="tIW-mz-UC6"/>
                         </constraints>
                     </view>
