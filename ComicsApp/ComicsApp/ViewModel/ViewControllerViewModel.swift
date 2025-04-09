@@ -12,11 +12,11 @@ class ViewControllerViewModel {
     weak var navigationController : UINavigationController?
     
     public var pokemonImage:  UIImage? {
-        return UIImage(named: "pokemon1")
+        return UIImage(named: "pokemon")
     }
     
     public var marvelImage:  UIImage? {
-        return UIImage(named: "marvel1")
+        return UIImage(named: "marvel")
     }
     
     public var rmImage:  UIImage? {
