@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "shiny.png",
+      "filename" : "puzzle-ravensburger-5000-pieces-pokemon-5000.jpg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "shiny@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "shiny@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
