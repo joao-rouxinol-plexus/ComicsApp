@@ -75,6 +75,7 @@ class PokemonDetailsScreenViewController: UIViewController {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.backgroundColor = .blue
+//        scrollView.contentSize = CGSize(width: 375, height: 1000)
         return scrollView
     }()
     
@@ -127,6 +128,7 @@ class PokemonDetailsScreenViewController: UIViewController {
     }
     
     func setupImage(){
+        self.setupColor()
         imageView.sd_setImage(with: URL(string: viewModel.shinyCorrectedSprite)){_,_,_,_ in
             
             let image: UIImage = self.imageView.image ?? UIImage(named: "pokemon")!

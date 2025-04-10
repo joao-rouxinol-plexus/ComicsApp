@@ -62,7 +62,6 @@ class PokemonMainViewModel {
         }
         
         return self.cachedPokemonArray[id-1]
-        
     }
     
     
