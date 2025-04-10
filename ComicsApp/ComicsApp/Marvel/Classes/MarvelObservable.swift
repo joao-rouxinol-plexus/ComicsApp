@@ -10,8 +10,8 @@ import Foundation
 class MarvelObservable <T> {
     
     // MARK: - Properties
-    var value: T?{
-        didSet{
+    var value: T? {
+        didSet {
             DispatchQueue.main.async {
                 self.listeners?(self.value)
             }
@@ -21,12 +21,12 @@ class MarvelObservable <T> {
     private var listeners: ((T?) -> Void)?
     
     // MARK: - Initializer
-    init (_ value : T?){
+    init (_ value : T?) {
         self.value = value
     }
     
     // MARK: - Binding
-    func bind(_ listener: @escaping (T?) -> Void){
+    func bind(_ listener: @escaping (T?) -> Void) {
         self.listeners = listener
     }
 }

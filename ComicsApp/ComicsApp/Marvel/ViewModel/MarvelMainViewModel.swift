@@ -9,25 +9,25 @@ import Foundation
 import UIKit
 import CryptoKit
 
-class MarvelMainViewModel{
+class MarvelMainViewModel {
     
     // MARK: - Properties
-    var isLoading: MarvelObservable <Bool> = MarvelObservable(false)
+    var isLoading: MarvelObservable <Bool> = MarvelObservable(false) //controla o carregamento dos dados (se estao a ser carregados ou nao )
     var cellDataSource: MarvelObservable<[MarvelCharacterViewModel]> = MarvelObservable(nil)
     var dataSource: [Character]?
     
     // MARK: - UI Management Methods
-    func numberOfSections()->Int{
+    func numberOfSections() -> Int {
         1
     }
     
-    func numberOfRows(in section: Int)->Int{
+    func numberOfRows(in section: Int) -> Int {
         return dataSource?.count ?? 0
     }
     
     // MARK: - Networking Methods
-    func getData(offset: Int){
-        //        print(NetworkConstant.shared.offset)
+    func getData(offset: Int) {
+//        print(NetworkConstant.shared.offset)
         if isLoading.value ?? true {
             return
         }
@@ -36,10 +36,7 @@ class MarvelMainViewModel{
         
         MarvelAPICaller.getCharactersInfo(offset: offset) { [weak self] characters in
             guard let self = self else { return }
-            
             self.isLoading.value = false
-            
-            
             guard !characters.isEmpty else { return }
             
             print("Número de personagens carregados: \(characters.count)")
@@ -55,7 +52,7 @@ class MarvelMainViewModel{
     }
     
     // MARK: - Data Management Methods
-    func mapCellData(){
+    func mapCellData() {
         guard let dataSource = self.dataSource, !dataSource.isEmpty else { return }
         
         DispatchQueue.global(qos: .userInitiated).async {
@@ -65,8 +62,6 @@ class MarvelMainViewModel{
                 self.cellDataSource.value = mappedData
             }
         }
-        
-        
     }
 }
 

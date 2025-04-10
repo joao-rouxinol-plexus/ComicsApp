@@ -15,7 +15,7 @@ struct APIResponse: Codable {
     let data: CharacterDataWrapper
 }
 
-// Contém a lista de personagens e metadados (offset, total, etc.)
+// Lista de personagens e metadados (offset, total, etc.)
 struct CharacterDataWrapper: Codable {
     let offset: Int
     let limit: Int

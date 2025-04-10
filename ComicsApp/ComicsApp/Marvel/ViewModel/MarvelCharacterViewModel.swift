@@ -7,7 +7,7 @@
 
 import Foundation
 
-class MarvelCharacterViewModel{
+class MarvelCharacterViewModel {
     
     // MARK: - Properties
     var id: Int

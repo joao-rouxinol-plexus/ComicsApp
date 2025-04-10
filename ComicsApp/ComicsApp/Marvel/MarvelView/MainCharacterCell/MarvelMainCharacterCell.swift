@@ -11,7 +11,7 @@ class MarvelMainCharacterCell: UITableViewCell {
     
     // MARK: - Identifier & Registration
     public static var identifier: String {
-        get{
+        get {
             return "MarvelMainCharacterCell"
         }
     }
@@ -32,31 +32,32 @@ class MarvelMainCharacterCell: UITableViewCell {
     // MARK: - Lifecycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         backView.addBorder(color: .systemYellow , width: 2)
         backView.round()
+        backView.backgroundColor = .boxBackgroundColor
+        
         characterImageView.addBorder(color: .systemYellow, width: 2)
         characterImageView.round(10)
-        backView.backgroundColor = .boxBackgroundColor
-    }
-    
-    // MARK: - Helper Methods
-    func applyImpactFont(to text: String, for keyword: String) -> NSAttributedString {
-        let attributedString = NSMutableAttributedString(string: text)
         
-        if let range = text.range(of: keyword) {
-            let nsRange = NSRange(range, in: text)
-            attributedString.addAttribute(.font, value: UIFont(name: "Impact", size: 13) ?? UIFont.systemFont(ofSize: 13, weight: .bold), range: nsRange)
-            attributedString.addAttribute(.foregroundColor, value: UIColor.systemYellow, range: nsRange)
-        }
-        return attributedString
     }
-    
+    // MARK: - Helper Methods
+    func applyImpactFont(to text: String, for word: String) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: text, attributes: [.font: UIFont.systemFont(ofSize: 13),.foregroundColor: UIColor.textColor])
+
+            let wordRange = (text as NSString).range(of: word)
+
+            attributedString.setAttributes([.font: UIFont(name: "Impact", size: 13) ?? UIFont.boldSystemFont(ofSize: 13),.foregroundColor: UIColor.systemYellow], range: wordRange)
+            
+            return attributedString
+    }
     // MARK: - Cell Configuration
-    func setUpCell(viewModel: MarvelCharacterViewModel){
+    func setUpCell(viewModel: MarvelCharacterViewModel) {
         self.nameLabel.text = viewModel.name
         nameLabel.textColor = .systemYellow
         self.descriptionLabel.text = viewModel.description
         descriptionLabel.textColor =  .textColor
+        
         let comicsText = "Comics: \(viewModel.comics.count)"
         let storiesText = "Stories: \(viewModel.stories.count)"
         let seriesText = "Series: \(viewModel.series.count)"

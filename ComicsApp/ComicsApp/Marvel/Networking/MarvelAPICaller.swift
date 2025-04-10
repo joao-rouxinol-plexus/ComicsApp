@@ -41,16 +41,16 @@ public class MarvelAPICaller {
         print(urlString)
         
         URLSession.shared.dataTask(with: url) { (data, _, error) in
-            if let error = error {
+            if let error = error { // confirma se o url é valido
                 print("Erro de rede: \(error)")
                 return
             }
             
             if let data = data {
                 do {
-                    let response = try JSONDecoder().decode(MarvelCharactersModel.self, from: data)
+                    let response = try JSONDecoder().decode(MarvelCharactersModel.self, from: data) //se houver json tenta converter para MarvelCharacterModel
                     DispatchQueue.main.async {
-                        completionHandler(response.data.results)
+                        completionHandler(response.data.results) //volta a enviara para o viewModel
                     }
                 } catch {
                     print("Erro ao descodificar os dados: \(error)")

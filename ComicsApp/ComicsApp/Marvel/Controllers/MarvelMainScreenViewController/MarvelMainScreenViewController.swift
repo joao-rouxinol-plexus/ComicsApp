@@ -34,8 +34,9 @@ class MarvelMainScreenViewController: UIViewController {
         super.viewDidAppear(animated)
         viewModel.getData(offset: MarvelNetworkConstant.shared.offset)
     }
+    
     // MARK: - Setup
-    func setup(){
+    func setup() {
         setupTableView()
         navigationController?.setupMarvelNavBar()
         
@@ -64,7 +65,6 @@ class MarvelMainScreenViewController: UIViewController {
             }
         }
     }
-    
 }
 
 

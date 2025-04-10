@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataSource{
+extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataSource {
     
     // MARK: - Setup
-    func setupTableView(){
+    func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = .clear
@@ -19,7 +19,7 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
         self.bindViewModel()
     }
     
-    func registerCells(){
+    func registerCells() {
         tableView.register(MarvelMainCharacterCell.register(),forCellReuseIdentifier: MarvelMainCharacterCell.identifier)
     }
     
@@ -42,9 +42,7 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
                 topButton.heightAnchor.constraint(equalToConstant: 50)
             ])
         }
-        
         topButton.isHidden = true
-        
     }
     
     // MARK: - Buttons
@@ -66,13 +64,9 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MarvelMainCharacterCell.identifier, for: indexPath) as? MarvelMainCharacterCell else {
-            return UITableViewCell()
-        }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MarvelMainCharacterCell.identifier, for: indexPath) as? MarvelMainCharacterCell else { return UITableViewCell()} // isto é para reutilizar a cell
         
-        let inSearchMode = searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
-        let cellViewModel = inSearchMode ? viewModel.cellDataSource.value?[indexPath.row] :
-        viewModel.cellDataSource.value?[indexPath.row]
+        let cellViewModel = viewModel.cellDataSource.value?[indexPath.row]
         
         if let cellViewModel = cellViewModel {
             cell.setUpCell(viewModel: cellViewModel)

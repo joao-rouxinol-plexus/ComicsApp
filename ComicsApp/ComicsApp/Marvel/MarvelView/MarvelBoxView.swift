@@ -24,7 +24,7 @@ class MarvelBoxView: UIView {
     
     private let contentLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 17, weight: .regular)
+        label.font = UIFont.systemFont(ofSize: 17)
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = .textColor
@@ -44,7 +44,6 @@ class MarvelBoxView: UIView {
         
         titleLabel.text = title
         contentLabel.text = content
-        
     }
     
     required init?(coder: NSCoder) {
@@ -52,7 +51,7 @@ class MarvelBoxView: UIView {
     }
     
     // MARK: - Setup Methods
-    func setup(){
+    func setup() {
         addSubview(titleLabel)
         addSubview(contentLabel)
         

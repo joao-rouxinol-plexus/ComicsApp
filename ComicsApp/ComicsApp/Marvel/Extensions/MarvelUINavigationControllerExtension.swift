@@ -4,7 +4,6 @@
 //
 //  Created by Mariana Alexandre Dos Santos on 28/03/2025.
 //
-
 import Foundation
 import UIKit
 
@@ -18,15 +17,11 @@ extension UINavigationController {
             .foregroundColor: UIColor.systemYellow,
             .font: UIFont.boldSystemFont(ofSize: 20)
         ]
-        
         appearance.backButtonAppearance.normal.titleTextAttributes = [
             .foregroundColor: UIColor.systemYellow
         ]
-        
         navigationBar.standardAppearance = appearance
         navigationBar.scrollEdgeAppearance = appearance
-        
         navigationBar.tintColor = .systemYellow
     }
 }
-

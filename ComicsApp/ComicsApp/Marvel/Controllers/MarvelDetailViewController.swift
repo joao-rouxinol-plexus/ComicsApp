@@ -4,15 +4,14 @@
 //
 //  Created by Mariana Alexandre Dos Santos on 21/03/2025.
 //
-
 import Foundation
 import UIKit
 import SDWebImage
 
-class MarvelDetailViewController : UIViewController{
+class MarvelDetailViewController: UIViewController {
     
     // MARK: - Properties
-    var character : MarvelCharacterViewModel?
+    var character: MarvelCharacterViewModel?
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -81,9 +80,13 @@ class MarvelDetailViewController : UIViewController{
         
         let characterBox = createBoxView(title: "Description", content: character?.description ?? "No description")
         let comicsBox = createBoxView(title: "Comics", content: "• \(character?.comics.joined(separator: "\n •") ?? "")")
+        comicsBox.tag = 1
         let storiesBox = createBoxView(title: "Stories", content: "• \(character?.stories.joined(separator: "\n •") ?? "")")
+        storiesBox.tag = 2
         let seriesBox = createBoxView(title: "Series", content: "• \(character?.series.joined(separator: "\n •") ?? "")")
+        seriesBox.tag = 3
         let eventsBox = createBoxView(title: "Events", content: "• \(character?.events.joined(separator: "\n •") ?? "")")
+        eventsBox.tag = 4
         
         characterBox.setup()
         comicsBox.setup()
@@ -94,6 +97,20 @@ class MarvelDetailViewController : UIViewController{
         contentView.addSubview(imageView)
         contentView.addSubview(nameLabel)
         
+        let comicsButton = MarvelCreateButtons.createButton(title: "Comics", action:  #selector(scrollToComicsBox))
+        let storiesButton = MarvelCreateButtons.createButton(title: "Stories", action: #selector(scrollToStoriesBox))
+        let seriesButton = MarvelCreateButtons.createButton(title: "Series", action: #selector(scrollToSeriesBox))
+        let eventsButton = MarvelCreateButtons.createButton(title: "Events", action: #selector(scrollToEventsBox))
+        
+        let buttonsStackView = UIStackView(arrangedSubviews: [comicsButton, storiesButton, seriesButton, eventsButton])
+        buttonsStackView.axis = .horizontal
+        buttonsStackView.spacing = 10
+        buttonsStackView.alignment = .center
+        buttonsStackView.distribution = .fillEqually
+        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        contentView.addSubview(buttonsStackView)
+        
         contentView.addSubview(characterBox)
         contentView.addSubview(comicsBox)
         contentView.addSubview(storiesBox)
@@ -101,7 +118,11 @@ class MarvelDetailViewController : UIViewController{
         contentView.addSubview(eventsBox)
         
         NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 20),
+            buttonsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
+            buttonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            buttonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+                        
+            imageView.topAnchor.constraint(equalTo: buttonsStackView.topAnchor, constant: 50),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 200),
             imageView.heightAnchor.constraint(equalToConstant: 200),
@@ -131,7 +152,7 @@ class MarvelDetailViewController : UIViewController{
             eventsBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
-    
+
     // MARK: - Configuration Methods
     private func configure() {
         guard let character = character else { return }
@@ -139,6 +160,29 @@ class MarvelDetailViewController : UIViewController{
         
         if let imageUrl = character.imageUrl {
             imageView.sd_setImage(with: imageUrl)
+        }
+    }
+    
+    @objc private func scrollToComicsBox() {
+        scrollToView(withTag: 1)
+    }
+    
+    @objc private func scrollToStoriesBox() {
+        scrollToView(withTag: 2)
+    }
+    
+    @objc private func scrollToSeriesBox() {
+        scrollToView(withTag: 3)
+    }
+    
+    @objc private func scrollToEventsBox() {
+        scrollToView(withTag: 4)
+    }
+    
+    private func scrollToView(withTag tag: Int) {
+        if let targetView = contentView.viewWithTag(tag) { // Esta funcao procura um elemento na tela com aquela tag
+            let offset = CGPoint(x: 0, y: targetView.frame.origin.y) // calculo de quanto precisa de dar scroll para chegar a um sitio na tela
+            scrollView.setContentOffset(offset, animated: true) // dá scroll
         }
     }
 }

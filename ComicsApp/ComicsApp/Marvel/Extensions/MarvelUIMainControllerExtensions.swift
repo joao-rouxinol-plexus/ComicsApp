@@ -14,3 +14,5 @@ extension MarvelMainScreenViewController: UISearchResultsUpdating {
         print("Search Bar:\(String(describing: searchController.searchBar.text))")
     }
 }
+
+// Sempre que o texto muda, este método é chamado automaticamente
