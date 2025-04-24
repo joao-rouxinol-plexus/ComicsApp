@@ -19,13 +19,14 @@ struct PokemonViewModel {
     let shinySprite : String
     let abilities : [Abilities]
     let statsVM : [StatViewModel]
+    let largestStatName : String
     let largestStat : Int
     let height : Int
     let weight : Int
 
     var shiny : Bool = {
-        let random = Int.random(in: 1...25)
-        if (random == 5){
+        let random = Int.random(in: 1...50)
+        if (random == 1){
             return true
         }
         else {
@@ -62,28 +63,22 @@ struct PokemonViewModel {
         self.abilities = pokemon.abilities
         var tempStatsVM : [StatViewModel] = []
         var tempLargestStat : Int = 0
+        var tempLargestStatName : String = ""
         for stat in pokemon.stats {
-            tempStatsVM.append(StatViewModel(name: stat.stat.name, value: stat.base_stat))
+            let currentStatName : String = stat.stat.name.split(separator: "-").joined(separator: " ").capitalized
+            tempStatsVM.append(StatViewModel(name: currentStatName, value: stat.base_stat))
             if (stat.base_stat > tempLargestStat){
                 tempLargestStat = stat.base_stat
+            }
+            if (currentStatName.count > tempLargestStatName.count){
+                tempLargestStatName = currentStatName
             }
         }
         self.height = pokemon.height * 10
         self.weight = pokemon.weight * 100
-//        for i in 1...10 {
-//            if (i < pokemon.stats.count){
-//                tempStatsVM.append(StatViewModel(name: pokemon.stats[i].stat.name, value: i*10))
-//            }
-//            else {
-//                tempStatsVM.append(StatViewModel(name: String(i), value: i*10))
-//            }
-//            if (i*10 > tempLargestStat){
-//                tempLargestStat = i*10
-//            }
-//        }
-        
         self.statsVM = tempStatsVM
         self.largestStat = tempLargestStat
+        self.largestStatName = tempLargestStatName
     }
 }
 

@@ -51,6 +51,8 @@ class PokeCellTableViewCell: UITableViewCell {
     }
     
     func setupCell(viewModel: PokemonListViewModel) {
+        accessibilityLabel = "Number \(viewModel.id), \(viewModel.listInfo), Type \(viewModel.type1), \(viewModel.type2)"
+        
         infoView.configure(id: "\(viewModel.formattedID)", name: viewModel.listInfo, type1: viewModel.type1, type2: viewModel.type2)
         self.pokemonSprite.sd_setImage(with: viewModel.sprite) {_,_,_,_ in
             let image: UIImage = self.pokemonSprite.image ?? UIImage()
@@ -72,6 +74,7 @@ class PokeCellTableViewCell: UITableViewCell {
             infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             infoView.trailingAnchor.constraint(equalTo: spriteUIView.leadingAnchor, constant: -5),
             infoView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            infoView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15),
             
             spriteUIView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             spriteUIView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
@@ -101,14 +104,15 @@ class InfoView : UIView {
     
     private var nameandnumberview : NameAndNumberView = NameAndNumberView()
     private var poketypeview : pokeTypeView = pokeTypeView()
+    private var isAccessible : Bool
     
     
-    init(){
+    init(isAccessible: Bool = false){
+        self.isAccessible = isAccessible
         super.init(frame: .zero)
         addSubview(nameandnumberview)
         addSubview(poketypeview)
         translatesAutoresizingMaskIntoConstraints = false
-        //        backgroundColor = .red
         setupConstraints()
     }
     
@@ -119,6 +123,11 @@ class InfoView : UIView {
     func configure (id: String, name: String, type1: String, type2: String){
         nameandnumberview.configure(id: id, name: name)
         poketypeview.configure(type1: type1, type2: type2)
+        
+        if isAccessible{
+            isAccessibilityElement = true
+            accessibilityLabel = "Number \(id), \(name), Type \(type1), \(type2)"
+        }
     }
     
     func setupConstraints(){
@@ -144,7 +153,6 @@ class NameAndNumberView: UIView {
     let pokemonNumber: UILabel = {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
-        //        view.backgroundColor = .black
         view.font = .systemFont(ofSize: 20, weight: .bold)
         return view
     }()
@@ -153,7 +161,6 @@ class NameAndNumberView: UIView {
         let view = UILabel()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.font = .systemFont(ofSize: 20, weight: .regular)
-        //        view.backgroundColor = .systemPink
         return view
     }()
     

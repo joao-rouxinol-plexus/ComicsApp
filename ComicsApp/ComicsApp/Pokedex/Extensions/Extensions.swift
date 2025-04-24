@@ -6,7 +6,6 @@
 //
 
 import UIKit
-//import CoreImage
 import CoreImage.CIFilterBuiltins
 
 extension UIImage {

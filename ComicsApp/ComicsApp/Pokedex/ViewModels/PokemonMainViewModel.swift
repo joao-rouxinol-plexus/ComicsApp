@@ -12,32 +12,6 @@ class PokemonMainViewModel {
     var next : String?
     var previous : String?
     
-    
-    var cachedTypesArray = [PokemonTypeViewModel?]()
-    
-    func getPokemonTypeData(_ url: String) -> PokemonTypeViewModel?{
-        let id = Int((url.split(separator: "/").last!))!
-        
-        if let cachedTypes = cachedTypesArray[id-1] {
-            print("returning type \(id)")
-            return cachedTypes
-        }
-        print("getting type \(id)")
-        
-        var typeIsReady = false
-        
-        PokemonApiCaller.getTypeInfo(urlString: url) { [weak self] typeresult in
-            self?.cachedTypesArray[id-1] = PokemonTypeViewModel(type: typeresult)
-            typeIsReady = true
-        }
-        
-        while (!typeIsReady) {
-            _ = wait()
-        }
-        
-        return self.cachedTypesArray[id-1]
-    }
-    
     var cachedPokemonArray = [PokemonViewModel?]()
     
     func getPokemonData(_ url: String) -> PokemonViewModel?{
@@ -45,13 +19,11 @@ class PokemonMainViewModel {
         let id = Int((url.split(separator: "/").last!))!
         
         if let cachedPokemon = cachedPokemonArray[id-1] {
-            print("returning \(id)")
             return cachedPokemon
         }
         
         var pokemonIsReady = false
         
-        print("getting \(id)")
         PokemonApiCaller.getPokemonInfo(urlString: url) { [weak self] pokemonResult in
             self?.cachedPokemonArray[id-1] = PokemonViewModel(pokemon: pokemonResult)
             pokemonIsReady = true
@@ -81,11 +53,10 @@ class PokemonMainViewModel {
             PokemonApiCaller.listSpecies(urlstring: url){ [weak self] listResult in
                 self?.listDataSource.append(listResult)
                 listReady = true
-                print("loaded list \(url)")
             }
         }
         
-        while listReady != true {
+        while !listReady {
             _ = wait()
         }
         
@@ -138,15 +109,11 @@ class PokemonMainViewModel {
         previous = listDataSource[currentList].previous
         next = listDataSource[currentList].next
         
-        let nextPage = DispatchGroup()
         DispatchQueue.global(qos: .userInitiated).async {
-            nextPage.enter()
-            if let nexturl = self.listDataSource[self.currentList].next {
-                self.loadList(url: nexturl, list: self.currentList+1)
+            if let nextUrl = self.listDataSource[self.currentList].next {
+                self.loadList(url: nextUrl, list: self.currentList+1)
             }
-            nextPage.leave()
         }
-        
         
         for i in listDataSource[currentList].results.indices {
             let id = Int((listDataSource[currentList].results[i].url.split(separator: "/").last!))!

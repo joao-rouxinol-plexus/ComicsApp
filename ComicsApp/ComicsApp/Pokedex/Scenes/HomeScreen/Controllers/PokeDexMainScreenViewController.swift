@@ -11,7 +11,6 @@ import SDWebImage
 class PokeDexMainScreenViewController: UIViewController {
     
     var viewModel: PokemonMainViewModel = PokemonMainViewModel()
-    var color : UIColor?
     
     @IBOutlet weak var PokemonTableView: UITableView!
     
@@ -21,16 +20,17 @@ class PokeDexMainScreenViewController: UIViewController {
         viewModel.getList(position: listNav.first){
             self.setupTableView()
         }
-        if let navigationController = self.navigationController {
-            color = navigationController.navigationBar.tintColor
-        }
+        self.title = "Pokémon List"
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
         if let navigationController = self.navigationController {
-            navigationController.navigationBar.tintColor = color
+            navigationController.navigationBar.tintColor = .red
+            navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
         }
+        
     }
     
     func OpenPokemonDetails(for pokemon: PokemonViewModel){
@@ -53,9 +53,10 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         }
         
         if ((viewModel.pokemons.count - indexPath.row) == (viewModel.pageLimit/2)){
+            
             self.viewModel.getList(position: listNav.next) {
-                DispatchQueue.main.async {
-                    self.reloadTableView()
+                DispatchQueue.main.async { [weak self] in
+                    self?.reloadTableView()
                 }
             }
         }
@@ -93,5 +94,3 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         return cellWidth / aspectRatio
     }
 }
-
-

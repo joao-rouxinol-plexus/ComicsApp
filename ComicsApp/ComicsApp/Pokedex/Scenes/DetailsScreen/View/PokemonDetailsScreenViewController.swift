@@ -11,6 +11,13 @@ import UIKit
 
 class PokemonDetailsScreenViewController: UIViewController {
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if traitCollection.preferredContentSizeCategory != previousTraitCollection?.preferredContentSizeCategory {
+            setOrientation()
+        }
+    }
+    
     var viewModel : PokemonViewModel
     
     private var backgroundColorVariable : UIColor = .systemGray.lighter(by: 0.3)!
@@ -28,14 +35,29 @@ class PokemonDetailsScreenViewController: UIViewController {
         return myView
     }()
     
+    private let heightAndInfoCell : HeightAndInfoCell = {
+        let speciesinfo = HeightAndInfoCell()
+        speciesinfo.translatesAutoresizingMaskIntoConstraints = false
+        return speciesinfo
+    }()
+    
     private let abilitiesTitle : UILabel = {
         let textField = UILabel()
         textField.text = "Abilities"
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = .darkText
         textField.textAlignment = .center
-        textField.font = .systemFont(ofSize: 18, weight: .bold)
+        let baseFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+        textField.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        textField.adjustsFontForContentSizeCategory = true
         return textField
+    }()
+    
+    private let imageview : UIImageView = {
+        let imageview = UIImageView()
+        imageview.translatesAutoresizingMaskIntoConstraints = false
+        imageview.image = UIImage(systemName: "pokemon")
+        return imageview
     }()
     
     private let abilitiesStackView : UIStackView = {
@@ -52,8 +74,18 @@ class PokemonDetailsScreenViewController: UIViewController {
         textField.translatesAutoresizingMaskIntoConstraints = false
         textField.textColor = .darkText
         textField.textAlignment = .center
-        textField.font = .systemFont(ofSize: 18, weight: .bold)
+        let baseFont = UIFont.systemFont(ofSize: 18, weight: .bold)
+        textField.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        textField.adjustsFontForContentSizeCategory = true
         return textField
+    }()
+    
+    private let statsContentStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.backgroundColor = .clear
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     private let statsStackView : UIStackView = {
@@ -74,17 +106,21 @@ class PokemonDetailsScreenViewController: UIViewController {
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.backgroundColor = .blue
-//        scrollView.contentSize = CGSize(width: 375, height: 1000)
         return scrollView
     }()
     
-    private var infoView : InfoView = InfoView()
+    private let contentView: UIView = {
+        let scrollView = UIView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        return scrollView
+    }()
+    
+    
+    private var infoView : InfoView = InfoView(isAccessible: true)
     
     init(pokemonViewModel: PokemonViewModel){
         self.viewModel = pokemonViewModel
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -96,13 +132,37 @@ class PokemonDetailsScreenViewController: UIViewController {
         self.PrepareDetails()
     }
     
+    func setOrientation(){
+        
+        var greaterThanMedium = false
+        
+        if traitCollection.preferredContentSizeCategory >= .accessibilityMedium {
+            greaterThanMedium = true
+        }
+        
+        abilitiesStackView.subviews.forEach {
+            if let abilityCell = $0 as? AbilityCell {
+                abilityCell.setOrientation(useVerticalLayout: greaterThanMedium)
+            }
+        }
+        
+        statsStackView.subviews.forEach {
+            if let statCell = $0 as? StatCell {
+                statCell.setOrientation(preferredContentSizeCategory: traitCollection.preferredContentSizeCategory)
+            }
+        }
+    }
+    
     func PrepareDetails(){
+        title = "Details"
         infoView.configure(id: String(format: "#%03d", viewModel.id), name: viewModel.name, type1: viewModel.type1, type2: viewModel.type2)
+        heightAndInfoCell.configure(heigth: String(viewModel.height), weight: String(viewModel.weight))
         setupHierarchy()
         setupImage()
         mapAbilitiesStackView()
         mapStatsStackView()
-        self.addConstraints()
+        addConstraints()
+        setOrientation()
     }
     
     func setupHierarchy(){
@@ -111,10 +171,15 @@ class PokemonDetailsScreenViewController: UIViewController {
         topView.addSubview(infoView)
         myView.addSubview(scrollView)
         
-        scrollView.addSubview(abilitiesTitle)
-        scrollView.addSubview(abilitiesStackView)
-        scrollView.addSubview(statsTitle)
-        scrollView.addSubview(statsStackView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(heightAndInfoCell)
+        contentView.addSubview(abilitiesTitle)
+        contentView.addSubview(abilitiesStackView)
+        contentView.addSubview(statsTitle)
+        contentView.addSubview(statsContentStackView)
+        
+        statsContentStackView.addArrangedSubview(statsStackView)
+        statsContentStackView.addArrangedSubview(UIView())
     }
     
     func setupColor(){
@@ -124,7 +189,24 @@ class PokemonDetailsScreenViewController: UIViewController {
         self.scrollView.backgroundColor = self.userInterfaceColor
         if let navigationController = self.navigationController {
             navigationController.navigationBar.tintColor = self.backgroundColorVariable.darker(by: 0.2)
+            navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.backgroundColorVariable.darker(by: 0.2)!]
         }
+        
+        
+        abilitiesStackView.subviews.forEach {
+            if let abilityCell = $0 as? AbilityCell {
+                abilityCell.backgroundColor = userInterfaceColor
+                abilityCell.hiddenAbilityView.backgroundColor = backgroundColorVariable
+            }
+        }
+        
+        statsStackView.subviews.forEach {
+            if let statCell = $0 as? StatCell {
+                statCell.statBar.backgroundColor = userInterfaceColor
+                statCell.textBackgroundView.backgroundColor = backgroundColorVariable
+            }
+        }
+        
     }
     
     func setupImage(){
@@ -150,43 +232,36 @@ class PokemonDetailsScreenViewController: UIViewController {
         
         let stats = viewModel.statsVM
         
-        var lastStat : StatCell? = nil
+        statsStackView.axis = .vertical
+        statsStackView.spacing = 10
+        statsStackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        statsStackView.isLayoutMarginsRelativeArrangement = true
         
         for stat in stats{
             
-            let statName = stat.name.split(separator: "-").joined(separator: " ").capitalized
-            let statCell = StatCell(name: statName, value: stat.value)
+            let statCell = StatCell(name: stat.name, value: stat.value, largestName: viewModel.largestStatName)
             
-            statCell.backgroundColor = userInterfaceColor
+            statCell.statBar.backgroundColor = userInterfaceColor
             statCell.textBackgroundView.backgroundColor = backgroundColorVariable
             
-            statsStackView.addSubview(statCell)
+            statsStackView.addArrangedSubview(statCell)
             
-            let constrainedPercentage : CGFloat = 0.35 + (0.92 - 0.35) * (CGFloat(stat.value) / CGFloat(viewModel.largestStat))
+            let percentageOfLargestStat : CGFloat = max((CGFloat(stat.value) / CGFloat(viewModel.largestStat)), 0.2)
+            
             
             NSLayoutConstraint.activate([
-                statCell.textBackgroundView.widthAnchor.constraint(equalTo: statsStackView.widthAnchor, multiplier: 0.35),
-                statCell.leadingAnchor.constraint(equalTo: statsStackView.leadingAnchor, constant: 15),
-                statCell.topAnchor.constraint(equalTo: lastStat?.bottomAnchor ?? statsStackView.topAnchor, constant: lastStat == nil ? 15 : 10),
-                statCell.widthAnchor.constraint(equalTo: statsStackView.widthAnchor, multiplier: constrainedPercentage)
+                statCell.statBar.widthAnchor.constraint(equalTo: statCell.statBarLimit.widthAnchor, multiplier: percentageOfLargestStat, constant: 10)
             ])
-            
-            lastStat = statCell
         }
-        
-        let initialAndFinalSpacing : CGFloat = 15*2
-        let listSpacing : CGFloat = 10
-        let cellHeight: CGFloat = lastStat?.cellHeight ?? 0
-        
-        NSLayoutConstraint.activate([
-            statsStackView.heightAnchor.constraint(equalToConstant: CGFloat(initialAndFinalSpacing + cellHeight * CGFloat(stats.count) + listSpacing * CGFloat(stats.count - 1)))
-        ])
     }
     
     func mapAbilitiesStackView(){
         
         let abilities = viewModel.abilities
-        var lastAbility : AbilityCell? = nil
+        abilitiesStackView.axis = .vertical
+        abilitiesStackView.spacing = 10
+        abilitiesStackView.layoutMargins = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+        abilitiesStackView.isLayoutMarginsRelativeArrangement = true
         
         for ability in abilities{
             
@@ -194,26 +269,10 @@ class PokemonDetailsScreenViewController: UIViewController {
             let abilityCell = AbilityCell(name: abilityName, hidden: ability.is_hidden)
             
             abilityCell.backgroundColor = userInterfaceColor
-            
             abilityCell.hiddenAbilityView.backgroundColor = backgroundColorVariable
             
-            abilitiesStackView.addSubview(abilityCell)
-            
-            NSLayoutConstraint.activate([
-                abilityCell.leadingAnchor.constraint(equalTo: abilitiesStackView.leadingAnchor, constant: 15),
-                abilityCell.centerXAnchor.constraint(equalTo: abilitiesStackView.centerXAnchor),
-                abilityCell.topAnchor.constraint(equalTo: lastAbility?.bottomAnchor ?? abilitiesStackView.topAnchor, constant: lastAbility == nil ? 15 : 10)
-            ])
-            lastAbility = abilityCell
+            abilitiesStackView.addArrangedSubview(abilityCell)
         }
-        
-        let initialAndFinalSpacing : CGFloat = 15*2
-        let listSpacing : CGFloat = 10
-        let cellHeight: CGFloat = lastAbility?.cellHeight ?? 0
-        
-        NSLayoutConstraint.activate([
-            abilitiesStackView.heightAnchor.constraint(equalToConstant: CGFloat(initialAndFinalSpacing + cellHeight * CGFloat(abilities.count) + listSpacing * CGFloat(abilities.count - 1)))
-        ])
     }
     
     func addConstraints(){
@@ -231,14 +290,21 @@ class PokemonDetailsScreenViewController: UIViewController {
         constraints.append(topView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10))
         constraints.append(topView.heightAnchor.constraint(equalTo: myView.heightAnchor, multiplier: 0.15))
         
-        
         // infoView
         constraints.append(infoView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10))
         constraints.append(infoView.centerYAnchor.constraint(equalTo: topView.centerYAnchor))
         
-        constraints.append(infoView.heightAnchor.constraint(equalTo: topView.heightAnchor))
+        constraints.append(infoView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 15))
         constraints.append(infoView.widthAnchor.constraint(equalTo: topView.widthAnchor, multiplier: 0.65))
+        constraints.append(infoView.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -15))
         
+        // CONTENT VIEW
+        constraints.append(contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor))
+        constraints.append(contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor))
+        constraints.append(contentView.topAnchor.constraint(equalTo: scrollView.topAnchor))
+        constraints.append(contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
+        constraints.append(contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor))
+        constraints.append(contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor))
         
         // SCROLL VIEW
         constraints.append(scrollView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor))
@@ -246,156 +312,30 @@ class PokemonDetailsScreenViewController: UIViewController {
         constraints.append(scrollView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20))
         constraints.append(scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10))
         
+        //heightAndWeightCell
+        constraints.append(heightAndInfoCell.topAnchor.constraint(equalTo: contentView.topAnchor))
+        constraints.append(heightAndInfoCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
+        constraints.append(heightAndInfoCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15))
+ 
         // ABILITIES TITLE
-        constraints.append(abilitiesTitle.topAnchor.constraint(equalTo: scrollView.topAnchor))
-        constraints.append(abilitiesTitle.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
+        constraints.append(abilitiesTitle.topAnchor.constraint(equalTo: heightAndInfoCell.bottomAnchor, constant: 10))
+        constraints.append(abilitiesTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
         
         // ABILITIES STACK VIEW
-        constraints.append(abilitiesStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 15))
+        constraints.append(abilitiesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
         constraints.append(abilitiesStackView.topAnchor.constraint(equalTo: abilitiesTitle.bottomAnchor, constant: 15))
-        constraints.append(abilitiesStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
+        constraints.append(abilitiesStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
         
         // STATS TITLE
         constraints.append(statsTitle.topAnchor.constraint(equalTo: abilitiesStackView.bottomAnchor, constant: 20))
-        constraints.append(statsTitle.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
+        constraints.append(statsTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
         
         // STATS STACK VIEW
-        constraints.append(statsStackView.topAnchor.constraint(equalTo: statsTitle.bottomAnchor, constant: 15))
-        constraints.append(statsStackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor, constant: 15))
-        constraints.append(statsStackView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor))
-        
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-}
-
-
-class AbilityCell : UIView {
-    
-    let cellHeight = CGFloat(30)
-    var isHiddenAbility : Bool = false
-    
-    let hiddenAbilityView : UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.isHidden = false
-        view.squircle()
-        let label = UILabel()
-        label.text = "Hidden"
-        label.textColor = .darkText
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
-        return view
-    }()
-    
-    let nameLabel : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkText
-        return label
-    }()
-    
-    init(name: String, hidden: Bool = false){
-        self.nameLabel.text = name
-        self.isHiddenAbility = hidden
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        squircle()
-        PrepareDetails()
-    }
-    
-    func PrepareDetails(){
-        addSubview(nameLabel)
-        addSubview(hiddenAbilityView)
-        hiddenAbilityView.isHidden = !isHiddenAbility
-        addConstraints()
-    }
-    
-    func addConstraints() {
-        var constraints : [NSLayoutConstraint] = []
-        constraints.append(heightAnchor.constraint(equalToConstant: cellHeight))
-        constraints.append(nameLabel.centerYAnchor.constraint(equalTo:centerYAnchor))
-        constraints.append(nameLabel.centerXAnchor.constraint(equalTo:centerXAnchor))
-        
-        constraints.append(hiddenAbilityView.leadingAnchor.constraint(equalTo:leadingAnchor))
-        constraints.append(hiddenAbilityView.heightAnchor.constraint(equalTo: heightAnchor))
-        constraints.append(hiddenAbilityView.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.2))
+        constraints.append(statsContentStackView.topAnchor.constraint(equalTo: statsTitle.bottomAnchor, constant: 15))
+        constraints.append(statsContentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
+        constraints.append(statsContentStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
+        constraints.append(statsContentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor))
         
         NSLayoutConstraint.activate(constraints)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-class StatCell : UIView {
-    
-    let textBackgroundView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .black
-        view.squircle()
-        return view
-    }()
-    
-    let cellHeight = CGFloat(30)
-    
-    let nameLabel : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkText
-        return label
-    }()
-    
-    let valueLabel : UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkText
-        return label
-    }()
-    
-    init(name: String, value: Int){
-        self.nameLabel.text = name
-        self.valueLabel.text = String(value)
-        super.init(frame: .zero)
-        translatesAutoresizingMaskIntoConstraints = false
-        squircle()
-        setupHierarchy()
-        addConstraints()
-    }
-    
-    func setupHierarchy(){
-        addSubview(textBackgroundView)
-        addSubview(nameLabel)
-        addSubview(valueLabel)
-    }
-    
-    func addConstraints() {
-        var constraints : [NSLayoutConstraint] = []
-        constraints.append(heightAnchor.constraint(equalToConstant: cellHeight))
-        
-        constraints.append(textBackgroundView.heightAnchor.constraint(equalTo: heightAnchor))
-        
-        constraints.append(nameLabel.centerYAnchor.constraint(equalTo:centerYAnchor))
-        constraints.append(nameLabel.leadingAnchor.constraint(equalTo:leadingAnchor, constant: 10))
-        
-        constraints.append(valueLabel.centerYAnchor.constraint(equalTo:centerYAnchor))
-        constraints.append(valueLabel.trailingAnchor.constraint(equalTo:trailingAnchor, constant: -15))
-        
-        NSLayoutConstraint.activate(constraints)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
 }
