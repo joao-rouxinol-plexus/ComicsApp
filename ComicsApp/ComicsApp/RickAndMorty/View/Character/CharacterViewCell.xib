@@ -32,7 +32,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnw-s6-zdQ">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnw-s6-zdQ" userLabel="Status Label">
                                 <rect key="frame" x="175.33333333333337" y="40" width="199.66666666666663" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -85,9 +85,9 @@
             <connections>
                 <outlet property="backView" destination="lo6-Pi-cDJ" id="Zyq-cU-eB5"/>
                 <outlet property="characterImageView" destination="bsh-NO-jF1" id="ozO-vJ-ZHh"/>
-                <outlet property="idLabel" destination="xnw-s6-zdQ" id="GCK-3z-o3r"/>
                 <outlet property="locationLabel" destination="FQl-QN-Uju" id="0o1-92-Yes"/>
                 <outlet property="nameLabel" destination="TdN-Jy-sMf" id="mIA-YF-sbB"/>
+                <outlet property="statusLabel" destination="xnw-s6-zdQ" id="RsU-OX-pVW"/>
                 <outlet property="statusView" destination="DSj-u2-CuD" id="CJM-a3-91a"/>
             </connections>
             <point key="canvasLocation" x="-288.54961832061065" y="27.816901408450704"/>

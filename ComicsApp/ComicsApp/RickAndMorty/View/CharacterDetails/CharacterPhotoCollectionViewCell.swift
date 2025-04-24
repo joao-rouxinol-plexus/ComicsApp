@@ -23,6 +23,7 @@ final class CharacterPhotoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         setUpConstrains()
+        setUpAccessibility()
     }
     
     required init?(coder: NSCoder) {
@@ -45,5 +46,10 @@ final class CharacterPhotoCollectionViewCell: UICollectionViewCell {
     
     public func configure(with viewModel: CharacterPhotoCollectionViewCellViewModel){
         imageView.sd_setImage(with: viewModel.getImageURL())
+    }
+    
+    private func setUpAccessibility() {
+        imageView.isAccessibilityElement = true
+        imageView.accessibilityHint = "Image of character"
     }
 }

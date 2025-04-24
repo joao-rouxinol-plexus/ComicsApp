@@ -10,12 +10,23 @@ import UIKit
 final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
     static let cellIdentifier = "CharacterEpisodesCollectionViewCell"
     
+    private let headerLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.round()
+        label.backgroundColor = .secondarySystemBackground
+        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.textColor = .systemMint
+        return label
+    }()
     
     private let episodeNameLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.numberOfLines = 0
+        label.font = .systemFont(ofSize: 18, weight: .medium)
         return label
     }()
     
@@ -23,7 +34,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.font = .systemFont(ofSize: 17, weight: .light)
         return label
     }()
     
@@ -31,7 +42,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 15, weight: .light)
+        label.font = .systemFont(ofSize: 17, weight: .light)
         return label
     }()
     
@@ -42,9 +53,6 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         contentView.backgroundColor = .tertiarySystemBackground
         contentView.round()
         contentView.addBorder(color: .systemGray, width: 1.0)
-        contentView.addSubview(episodeNameLabel)
-        contentView.addSubview(episodeLabel)
-        contentView.addSubview(airDateLabel)
         setUpConstrains()
     }
     
@@ -53,24 +61,29 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstrains(){
-        NSLayoutConstraint.activate([
-            episodeNameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15),
-            episodeNameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            episodeNameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            episodeNameLabel.heightAnchor.constraint(equalToConstant: 20),
+        
+        let stackView = UIStackView(arrangedSubviews: [episodeNameLabel,episodeLabel,airDateLabel])
+        let mainStackView = UIStackView(arrangedSubviews: [headerLabel,stackView])
+     
+        mainStackView.axis = .vertical
+        mainStackView.distribution = .fillProportionally
+        mainStackView.spacing = 2
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
             
-            episodeLabel.topAnchor.constraint(equalTo: episodeNameLabel.bottomAnchor, constant: 20),
-            episodeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            episodeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            episodeLabel.heightAnchor.constraint(equalToConstant: 20),
-            
-            airDateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -20),
-            airDateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            airDateLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -8),
-            airDateLabel.heightAnchor.constraint(equalToConstant: 20),
+        stackView.axis = .vertical
+        stackView.distribution = .fillEqually
+        stackView.spacing = 2
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        addSubview(mainStackView)
 
-            
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: topAnchor,constant: 1),
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 1),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -1),
+            mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
+
     }
     
     override func prepareForReuse() {
@@ -84,6 +97,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         episodeLabel.text = viewModel.episodeData?.episode
         episodeNameLabel.text = viewModel.episodeData?.name
         airDateLabel.text = viewModel.episodeData?.airDate
+        headerLabel.text = "EPISODE DETAILS"
     }
     
 }

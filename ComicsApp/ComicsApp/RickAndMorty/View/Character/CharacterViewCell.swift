@@ -25,29 +25,50 @@ class CharacterViewCell: UITableViewCell {
     @IBOutlet weak var characterImageView: UIImageView!
     @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var idLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var locationLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        backView.addBorder(color: .black, width: 2)
+        
+        backView.addBorder(color: .gray, width: 2)
         backView.round()
         characterImageView.round()
         statusView.layer.cornerRadius = statusView.frame.size.width / 2
-        statusView.clipsToBounds = true
-        //        self.backgroundColor = UIColor.init(red: 56/255, green: 173/255, blue: 169/255, alpha: 0.7)
+        setUpAcessibility()
     }
 
     func setUpCell(viewModel: CharacterTableCellViewModel){
         
         self.nameLabel.text = viewModel.name
         self.characterImageView.sd_setImage(with: viewModel.imageURL)
-        self.idLabel.text = viewModel.status.rawValue.capitalized
+        self.statusLabel.text = viewModel.status.rawValue.capitalized
         self.statusView.backgroundColor = viewModel.stautsColor(status: viewModel.status)
-        self.locationLabel.text = "Localização:  \(viewModel.location.capitalized)"
+        self.locationLabel.text = "Current location: \(viewModel.location.capitalized)"
     }
  
-    
+    private func setUpAcessibility() {
+            
+        self.isAccessibilityElement = false
+        
+        nameLabel.isAccessibilityElement = true
+        nameLabel.accessibilityHint = "Name of character"
+        
+        characterImageView.isAccessibilityElement = true
+        characterImageView.accessibilityHint = "Image of character"
+        
+        statusLabel.isAccessibilityElement = true
+        statusLabel.accessibilityHint = "Current status of the character"
+        
+        locationLabel.isAccessibilityElement = true
+        locationLabel.accessibilityHint = "Current location of the character"
+        
+
+        let actionHint = UIAccessibilityElement(accessibilityContainer: self)
+        actionHint.accessibilityLabel = "Double Tap to open details"
+        actionHint.accessibilityTraits = .button
+        
+        self.accessibilityElements = [nameLabel!, characterImageView!, statusLabel!, locationLabel!, actionHint]
+    }
 }
 

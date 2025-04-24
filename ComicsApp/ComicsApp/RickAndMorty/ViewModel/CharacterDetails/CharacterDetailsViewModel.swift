@@ -38,7 +38,7 @@ class CharacterDetailsViewModel {
                 .init(value: character.origin.name, type: .origin),
             ]),
             .episodes(viewModel: character.episode.compactMap({
-                return CharacterEpisodesCollectionViewCellViewModel(episodeURL: URL(string: $0))
+                return CharacterEpisodesCollectionViewCellViewModel(episodeURL:  $0)
             }))
         ]
         
@@ -91,13 +91,13 @@ class CharacterDetailsViewModel {
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:
-                                                        NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                        NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
                                                                                heightDimension: .absolute(150)
                                                                               ),
                                                        subitems: [item]
         )
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
+        section.orthogonalScrollingBehavior = .groupPagingCentered
         return section
     }
     

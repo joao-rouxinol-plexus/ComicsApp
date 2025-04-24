@@ -9,12 +9,12 @@ import Foundation
 
 final class CharacterEpisodesCollectionViewCellViewModel {
     
-    private let episodeURL : URL?
+    private let episodeString : String
     public var episodeData : EpisodesModel?
     
-    init(episodeURL : URL?){
-        self.episodeURL = episodeURL
-        getEpisodeData(episodeURLString: episodeURL?.absoluteString ?? "")
+    init(episodeURL : String) {
+        self.episodeString = episodeURL
+        getEpisodeData(episodeURLString: episodeString)
         
     }
     
