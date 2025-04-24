@@ -4,7 +4,6 @@
 //
 //  Created by Duarte Miguel Charrua Silva on 06/03/2025.
 
-
 import UIKit
 import SDWebImage
 
@@ -13,7 +12,6 @@ class PokeDexMainScreenViewController: UIViewController {
     var viewModel: PokemonMainViewModel = PokemonMainViewModel()
     
     @IBOutlet weak var PokemonTableView: UITableView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +28,6 @@ class PokeDexMainScreenViewController: UIViewController {
             navigationController.navigationBar.tintColor = .red
             navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
         }
-        
     }
     
     func OpenPokemonDetails(for pokemon: PokemonViewModel){

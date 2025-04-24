@@ -23,7 +23,7 @@ struct PokemonViewModel {
     let largestStat : Int
     let height : Int
     let weight : Int
-
+    
     var shiny : Bool = {
         let random = Int.random(in: 1...50)
         if (random == 1){

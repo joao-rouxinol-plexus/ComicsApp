@@ -8,6 +8,7 @@
 import Foundation
 
 class PokemonNetworkConstants{
+    
     public static var shared: PokemonNetworkConstants = PokemonNetworkConstants()
     
     public var pokemonURL: String {

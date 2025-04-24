@@ -90,12 +90,10 @@ class AbilityCell : UIView {
         
         else {
             NSLayoutConstraint.activate([
-                
                 hiddenAbilityView.topAnchor.constraint(equalTo: topAnchor),
                 hiddenAbilityView.leadingAnchor.constraint(equalTo: leadingAnchor),
                 hiddenAbilityView.widthAnchor.constraint(equalTo: widthAnchor),
                 hiddenAbilityView.heightAnchor.constraint(equalTo: nameLabel.heightAnchor),
-                
                 nameLabel.topAnchor.constraint(equalTo: hiddenAbilityView.bottomAnchor),
                 nameLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
             ])

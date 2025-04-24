@@ -5,7 +5,6 @@
 //  Created by Duarte Miguel Charrua Silva on 21/03/2025.
 //
 
-
 import Foundation
 import UIKit
 
@@ -276,66 +275,64 @@ class PokemonDetailsScreenViewController: UIViewController {
     }
     
     func addConstraints(){
-        var constraints : [NSLayoutConstraint] = []
-        
-        // myView
-        constraints.append(myView.leadingAnchor.constraint(equalTo: view.leadingAnchor))
-        constraints.append(myView.trailingAnchor.constraint(equalTo: view.trailingAnchor))
-        constraints.append(myView.topAnchor.constraint(equalTo: view.topAnchor))
-        constraints.append(myView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
-        
-        // topView
-        constraints.append(topView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor, constant: 10))
-        constraints.append(topView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor, constant: -10))
-        constraints.append(topView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10))
-        constraints.append(topView.heightAnchor.constraint(equalTo: myView.heightAnchor, multiplier: 0.15))
-        
-        // infoView
-        constraints.append(infoView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10))
-        constraints.append(infoView.centerYAnchor.constraint(equalTo: topView.centerYAnchor))
-        
-        constraints.append(infoView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 15))
-        constraints.append(infoView.widthAnchor.constraint(equalTo: topView.widthAnchor, multiplier: 0.65))
-        constraints.append(infoView.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -15))
-        
-        // CONTENT VIEW
-        constraints.append(contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor))
-        constraints.append(contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor))
-        constraints.append(contentView.topAnchor.constraint(equalTo: scrollView.topAnchor))
-        constraints.append(contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor))
-        constraints.append(contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor))
-        constraints.append(contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor))
-        
-        // SCROLL VIEW
-        constraints.append(scrollView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor))
-        constraints.append(scrollView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor))
-        constraints.append(scrollView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20))
-        constraints.append(scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10))
-        
-        //heightAndWeightCell
-        constraints.append(heightAndInfoCell.topAnchor.constraint(equalTo: contentView.topAnchor))
-        constraints.append(heightAndInfoCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
-        constraints.append(heightAndInfoCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15))
- 
-        // ABILITIES TITLE
-        constraints.append(abilitiesTitle.topAnchor.constraint(equalTo: heightAndInfoCell.bottomAnchor, constant: 10))
-        constraints.append(abilitiesTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
-        
-        // ABILITIES STACK VIEW
-        constraints.append(abilitiesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
-        constraints.append(abilitiesStackView.topAnchor.constraint(equalTo: abilitiesTitle.bottomAnchor, constant: 15))
-        constraints.append(abilitiesStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
-        
-        // STATS TITLE
-        constraints.append(statsTitle.topAnchor.constraint(equalTo: abilitiesStackView.bottomAnchor, constant: 20))
-        constraints.append(statsTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
-        
-        // STATS STACK VIEW
-        constraints.append(statsContentStackView.topAnchor.constraint(equalTo: statsTitle.bottomAnchor, constant: 15))
-        constraints.append(statsContentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15))
-        constraints.append(statsContentStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor))
-        constraints.append(statsContentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor))
-        
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate([
+            
+            // myView
+            myView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            myView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            myView.topAnchor.constraint(equalTo: view.topAnchor),
+            myView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            // topView
+            topView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            topView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+            topView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            topView.heightAnchor.constraint(equalTo: myView.heightAnchor, multiplier: 0.15),
+            
+            // infoView
+            infoView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10),
+            infoView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
+            
+            infoView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 15),
+            infoView.widthAnchor.constraint(equalTo: topView.widthAnchor, multiplier: 0.65),
+            infoView.bottomAnchor.constraint(equalTo: topView.bottomAnchor, constant: -15),
+            
+            // CONTENT VIEW
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            
+            // SCROLL VIEW
+            scrollView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20),
+            scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            //heightAndWeightCell
+            heightAndInfoCell.topAnchor.constraint(equalTo: contentView.topAnchor),
+            heightAndInfoCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            heightAndInfoCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
+            
+            // ABILITIES TITLE
+            abilitiesTitle.topAnchor.constraint(equalTo: heightAndInfoCell.bottomAnchor, constant: 10),
+            abilitiesTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            // ABILITIES STACK VIEW
+            abilitiesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            abilitiesStackView.topAnchor.constraint(equalTo: abilitiesTitle.bottomAnchor, constant: 15),
+            abilitiesStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            // STATS TITLE
+            statsTitle.topAnchor.constraint(equalTo: abilitiesStackView.bottomAnchor, constant: 20),
+            statsTitle.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            
+            // STATS STACK VIEW
+            statsContentStackView.topAnchor.constraint(equalTo: statsTitle.bottomAnchor, constant: 15),
+            statsContentStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
+            statsContentStackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            statsContentStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)])
     }
 }

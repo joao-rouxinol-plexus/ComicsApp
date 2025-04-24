@@ -107,36 +107,33 @@ class StatCell : UIView {
         
         NSLayoutConstraint.deactivate(constraints)
         
-        var constraints : [NSLayoutConstraint] = []
-        
-        constraints.append(heightAnchor.constraint(greaterThanOrEqualToConstant: CGFloat(cellHeight)))
-        constraints.append(heightAnchor.constraint(equalTo: textBackgroundView.heightAnchor))
-        constraints.append(textBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor))
-        
-        
-        constraints.append(nameLabel.heightAnchor.constraint(equalTo: heightAnchor))
-        constraints.append(nameLabel.centerYAnchor.constraint(equalTo:centerYAnchor))
-        constraints.append(nameLabel.leadingAnchor.constraint(equalTo:leadingAnchor, constant: 10))
-        
-        constraints.append(nameSpacer.heightAnchor.constraint(equalTo: heightAnchor))
-        constraints.append(nameSpacer.centerYAnchor.constraint(equalTo:centerYAnchor))
-        constraints.append(nameSpacer.leadingAnchor.constraint(equalTo:leadingAnchor, constant: 10))
-        constraints.append(textBackgroundView.trailingAnchor.constraint(equalTo: nameSpacer.trailingAnchor, constant: 10))
-        
-        
-        constraints.append(statBarLimit.leadingAnchor.constraint(equalTo: textBackgroundView.trailingAnchor, constant: 0))
-        constraints.append(statBarLimit.heightAnchor.constraint(equalTo: heightAnchor))
-        constraints.append(statBarLimit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0))
-        constraints.append(statBarLimit.topAnchor.constraint(equalTo: topAnchor))
-        
-        constraints.append(statBar.heightAnchor.constraint(equalTo: statBarLimit.heightAnchor))
-        constraints.append(statBar.topAnchor.constraint(equalTo: statBarLimit.topAnchor))
-        constraints.append(statBar.leadingAnchor.constraint(equalTo: statBarLimit.leadingAnchor, constant: -10))
-        
-        constraints.append(valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor))
-        constraints.append(valueLabel.trailingAnchor.constraint(equalTo:statBar.trailingAnchor, constant: -15))
-        
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate([
+            
+            heightAnchor.constraint(greaterThanOrEqualToConstant: CGFloat(cellHeight)),
+            heightAnchor.constraint(equalTo: textBackgroundView.heightAnchor),
+            textBackgroundView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            
+            nameLabel.heightAnchor.constraint(equalTo: heightAnchor),
+            nameLabel.centerYAnchor.constraint(equalTo:centerYAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo:leadingAnchor, constant: 10),
+            
+            nameSpacer.heightAnchor.constraint(equalTo: heightAnchor),
+            nameSpacer.centerYAnchor.constraint(equalTo:centerYAnchor),
+            nameSpacer.leadingAnchor.constraint(equalTo:leadingAnchor, constant: 10),
+            textBackgroundView.trailingAnchor.constraint(equalTo: nameSpacer.trailingAnchor, constant: 10),
+            
+            statBarLimit.leadingAnchor.constraint(equalTo: textBackgroundView.trailingAnchor, constant: 0),
+            statBarLimit.heightAnchor.constraint(equalTo: heightAnchor),
+            statBarLimit.trailingAnchor.constraint(equalTo: trailingAnchor, constant: 0),
+            statBarLimit.topAnchor.constraint(equalTo: topAnchor),
+            
+            statBar.heightAnchor.constraint(equalTo: statBarLimit.heightAnchor),
+            statBar.topAnchor.constraint(equalTo: statBarLimit.topAnchor),
+            statBar.leadingAnchor.constraint(equalTo: statBarLimit.leadingAnchor, constant: -10),
+            
+            valueLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            valueLabel.trailingAnchor.constraint(equalTo:statBar.trailingAnchor, constant: -15)
+        ])
     }
     
     required init?(coder: NSCoder) {

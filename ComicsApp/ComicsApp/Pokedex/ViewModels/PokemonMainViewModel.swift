@@ -37,7 +37,7 @@ class PokemonMainViewModel {
     }
     
     
-    //MARK - Lista Pokédex
+    // MARK - Lista Pokédex
     var listDataSource: [PokemonList] = []
     var pokemons: [PokemonListViewModel] = []
     var currentList = 0
@@ -105,7 +105,7 @@ class PokemonMainViewModel {
         if listDataSource.count <= currentList {
             loadList(url: url, list: currentList)
         }
-
+        
         previous = listDataSource[currentList].previous
         next = listDataSource[currentList].next
         

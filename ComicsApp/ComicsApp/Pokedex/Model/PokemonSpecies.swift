@@ -11,7 +11,7 @@ struct color: Codable {
     let name : String
     let url : String
 }
-            
+
 struct evolves_from_species: Codable {
     let name : String
     let url : String
@@ -29,5 +29,3 @@ struct PokemonSpecies: Codable {
     let id : Int
     let species : species
 }
-
-

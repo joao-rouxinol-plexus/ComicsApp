@@ -36,7 +36,6 @@ struct OtherSprites: Codable{
     
     enum CodingKeys: String, CodingKey {
         case officialArtwork = "official-artwork"
-//        case showdown = "showdown"
     }
 }
 
@@ -64,7 +63,6 @@ struct Stat: Codable{
 
 struct Stats: Codable {
     let base_stat : Int
-//    let effort : Int
     let stat : Stat
 }
 
@@ -79,6 +77,3 @@ struct Pokemon: Codable {
     let height : Int
     let weight : Int
 }
-
-
-
