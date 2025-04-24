@@ -51,13 +51,6 @@ final class CharacterInformationCollectionViewCellViewModel {
             
         case .origin:
             return UIImage(systemName: "globe.europe.africa.fill")
-            
-        case  .location:
-            return UIImage(systemName: "mappin.and.ellipse.circle.fill")
-            
-        case .episodeCount:
-            return UIImage(systemName: "number.circle.fill")
-            
         }
     }
     
@@ -71,8 +64,7 @@ final class CharacterInformationCollectionViewCellViewModel {
         case gender
         case species
         case origin
-        case location
-        case episodeCount
+
         
         
         var tintedColor: UIColor {
@@ -86,10 +78,6 @@ final class CharacterInformationCollectionViewCellViewModel {
                 return .systemGreen
             case .origin:
                 return .systemOrange
-            case .location:
-                return .systemYellow
-            case .episodeCount:
-                return .systemMint
             }
         }
         
@@ -99,11 +87,9 @@ final class CharacterInformationCollectionViewCellViewModel {
             case    .status,
                     .gender,
                     .species,
-                    .origin,
-                    .location:
+                    .origin:
                 return rawValue.uppercased()
-            case .episodeCount:
-                return "EPISODE COUNT"
+
             }
         }
     }

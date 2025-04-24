@@ -36,8 +36,6 @@ class CharacterDetailsViewModel {
                 .init(value: character.gender.rawValue, type: .gender),
                 .init(value: character.species, type: .species),
                 .init(value: character.origin.name, type: .origin),
-                .init(value: character.location.name, type: .location),
-                .init(value: "\(character.episode.count)", type: .episodeCount)
             ]),
             .episodes(viewModel: character.episode.compactMap({
                 return CharacterEpisodesCollectionViewCellViewModel(episodeURL: URL(string: $0))

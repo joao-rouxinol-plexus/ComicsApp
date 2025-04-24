@@ -130,6 +130,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5A73DF252DB7EC7000936330 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+		5A73DF282DB7F43000936330 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 		5AA007D42DA5503A002A027F /* Controller */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controller; sourceTree = "<group>"; };
 		5AA007D82DA550B1002A027F /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
 		5AED5BCD2D9592D70024959C /* DetailsCharactersController */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = DetailsCharactersController; sourceTree = "<group>"; };
@@ -164,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A73DF1C2DB7C91D00936330 /* Rick&MortyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				5A73DF282DB7F43000936330 /* Controllers */,
+				5A73DF252DB7EC7000936330 /* ViewModel */,
+			);
+			path = "Rick&MortyAppTests";
+			sourceTree = "<group>";
+		};
 		5A79DF702D832F1B0097A9F2 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -325,6 +336,7 @@
 			isa = PBXGroup;
 			children = (
 				6B81B1882D79DCBB0034BCB9 /* ComicsAppTests.swift */,
+				5A73DF1C2DB7C91D00936330 /* Rick&MortyAppTests */,
 			);
 			path = ComicsAppTests;
 			sourceTree = "<group>";
@@ -478,6 +490,10 @@
 			);
 			dependencies = (
 				6B81B1862D79DCBB0034BCB9 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				5A73DF252DB7EC7000936330 /* ViewModel */,
+				5A73DF282DB7F43000936330 /* Controllers */,
 			);
 			name = ComicsAppTests;
 			productName = ComicsAppTests;
