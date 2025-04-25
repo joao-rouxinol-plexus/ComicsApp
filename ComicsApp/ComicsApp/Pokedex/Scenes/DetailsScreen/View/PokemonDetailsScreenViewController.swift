@@ -12,7 +12,6 @@ class PokemonDetailsScreenViewController: UIViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
-        print("called")
         if traitCollection.preferredContentSizeCategory != previousTraitCollection?.preferredContentSizeCategory {
             setOrientation()
         }
@@ -136,10 +135,6 @@ class PokemonDetailsScreenViewController: UIViewController {
         
         statsStackView.subviews.compactMap { $0 as? PokemonStatCell }
             .forEach { $0.setOrientation(useVerticalLayout: greaterThanMedium)}
-        
-        let isLandscape = view.bounds.width > view.bounds.height
-        print("is landscape \(isLandscape)")
-        
     }
     
     func prepareDetails(){
@@ -156,12 +151,12 @@ class PokemonDetailsScreenViewController: UIViewController {
     
     func setupHierarchy(){
         view.addSubview(myView)
-        myView.addSubview(topView)
-        topView.addSubview(infoView)
         myView.addSubview(scrollView)
         
         scrollView.addSubview(contentView)
         
+        contentView.addSubview(topView)
+        topView.addSubview(infoView)
         contentView.addSubview(heightAndInfoCell)
         contentView.addSubview(abilitiesTitle)
         contentView.addSubview(abilitiesStackView)
@@ -275,10 +270,6 @@ class PokemonDetailsScreenViewController: UIViewController {
             myView.topAnchor.constraint(equalTo: view.topAnchor),
             myView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-//             topView
-            topView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
-            topView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
-            topView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10),
             
             // infoView
             infoView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10),
@@ -288,6 +279,13 @@ class PokemonDetailsScreenViewController: UIViewController {
             infoView.widthAnchor.constraint(greaterThanOrEqualTo: topView.widthAnchor, multiplier: 0.65),
             topView.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: 15),
             
+            // SCROLL VIEW
+            scrollView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor),
+            scrollView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10),
+            scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
+            
+            
             // CONTENT VIEW
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
@@ -296,14 +294,13 @@ class PokemonDetailsScreenViewController: UIViewController {
             contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor),
             contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             
-            // SCROLL VIEW
-            scrollView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor),
-            scrollView.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20),
-            scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            
+            // TopView
+            topView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 0),
+            topView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor, constant: 10),
+            topView.trailingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.trailingAnchor, constant: -10),
+ 
             //heightAndWeightCell
-            heightAndInfoCell.topAnchor.constraint(equalTo: contentView.topAnchor),
+            heightAndInfoCell.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20),
             heightAndInfoCell.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15),
             heightAndInfoCell.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15),
             
