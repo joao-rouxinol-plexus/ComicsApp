@@ -91,6 +91,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         episodeLabel.text = nil
         episodeNameLabel.text = nil
         airDateLabel.text = nil
+        headerLabel.text = nil
     }
     
     public func configure(with viewModel: CharacterEpisodesCollectionViewCellViewModel){

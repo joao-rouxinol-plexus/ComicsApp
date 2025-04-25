@@ -26,29 +26,29 @@
                                     <constraint firstAttribute="width" secondItem="bsh-NO-jF1" secondAttribute="height" multiplier="120:131" id="nKT-oH-PCF"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdN-Jy-sMf">
-                                <rect key="frame" x="130.33333333333337" y="0.0" width="244.66666666666663" height="26.333333333333332"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TdN-Jy-sMf">
+                                <rect key="frame" x="130.33333333333337" y="0.0" width="244.66666666666663" height="24"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnw-s6-zdQ" userLabel="Status Label">
-                                <rect key="frame" x="175.33333333333337" y="40" width="199.66666666666663" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnw-s6-zdQ" userLabel="Status Label">
+                                <rect key="frame" x="175.33333333333337" y="29" width="199.66666666666663" height="19.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DSj-u2-CuD">
-                                <rect key="frame" x="145.33333333333334" y="40.666666666666664" width="20" height="20"/>
+                                <rect key="frame" x="145.33333333333334" y="28.666666666666664" width="20" height="20"/>
                                 <color key="backgroundColor" systemColor="systemBlueColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="KqR-Ve-F9b"/>
                                     <constraint firstAttribute="width" constant="20" id="UDf-xh-nIE"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQl-QN-Uju">
-                                <rect key="frame" x="135.33333333333337" y="105.33333333333333" width="234.66666666666663" height="21.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FQl-QN-Uju">
+                                <rect key="frame" x="135.33333333333337" y="106.66666666666667" width="234.66666666666663" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -68,7 +68,7 @@
                             <constraint firstItem="TdN-Jy-sMf" firstAttribute="top" secondItem="bsh-NO-jF1" secondAttribute="top" id="nVk-qh-XW6"/>
                             <constraint firstItem="bsh-NO-jF1" firstAttribute="top" secondItem="lo6-Pi-cDJ" secondAttribute="top" id="og0-ff-xhZ"/>
                             <constraint firstItem="TdN-Jy-sMf" firstAttribute="leading" secondItem="bsh-NO-jF1" secondAttribute="trailing" constant="5" id="qYJ-Bk-9tH"/>
-                            <constraint firstItem="xnw-s6-zdQ" firstAttribute="top" secondItem="TdN-Jy-sMf" secondAttribute="bottom" constant="13.666666666666668" id="ryX-9t-ice"/>
+                            <constraint firstItem="xnw-s6-zdQ" firstAttribute="top" secondItem="TdN-Jy-sMf" secondAttribute="bottom" constant="5" id="ryX-9t-ice"/>
                         </constraints>
                     </view>
                 </subviews>
