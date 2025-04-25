@@ -70,3 +70,9 @@ extension UIView {
         self.clipsToBounds = true
     }
 }
+
+extension UIFont {
+    func makeScaleable() -> UIFont {
+        return UIFontMetrics(forTextStyle: .body).scaledFont(for: self)
+    }
+}

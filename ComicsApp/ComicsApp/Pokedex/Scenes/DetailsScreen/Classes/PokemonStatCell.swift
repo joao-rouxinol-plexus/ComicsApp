@@ -7,7 +7,7 @@
 
 import UIKit
 
-class StatCell : UIView {
+class PokemonStatCell : UIView {
     
     let statBarLimit : UIView = {
         let view = UIView()
@@ -31,39 +31,28 @@ class StatCell : UIView {
         return view
     }()
     
-    let nameSpacer : UILabel = {
+    private static func createLabel() -> UILabel {
         let label = UILabel()
-        let baseFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium).makeScaleable()
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 2
+        label.textColor = .darkText
+        return label
+    }
+    
+    let nameSpacer : UILabel = {
+        let label = createLabel()
         label.textColor = .clear
         label.isAccessibilityElement = false
-        
         return label
     }()
     
-    let nameLabel : UILabel = {
-        let label = UILabel()
-        let baseFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
-        label.adjustsFontForContentSizeCategory = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 2
-        label.textColor = .darkText
-        
-        return label
-    }()
+    let nameLabel = createLabel()
     
     let valueLabel : UILabel = {
-        let label = UILabel()
-        let baseFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
-        label.adjustsFontForContentSizeCategory = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = .darkText
-        
+        let label = createLabel()
+        label.numberOfLines = 1
         return label
     }()
     
@@ -87,20 +76,19 @@ class StatCell : UIView {
         addSubview(nameLabel)
     }
     
-    func setOrientation(preferredContentSizeCategory: UIContentSizeCategory){
-        var height = 0
-        if preferredContentSizeCategory < .accessibilityMedium {
-            height = 30
+    func setOrientation(useVerticalLayout: Bool){
+        
+        if !useVerticalLayout {
             nameLabel.text = nameLabel.text?.replacingOccurrences(of: "\n", with: " ")
             nameSpacer.text = nameSpacer.text?.replacingOccurrences(of: "\n", with: " ")
-        }
-        else if preferredContentSizeCategory >= .accessibilityMedium {
-            height = 60
-            nameLabel.text = nameLabel.text?.replacingOccurrences(of: " ", with: "\n")
-            nameSpacer.text = nameSpacer.text?.replacingOccurrences(of: " ", with: "\n")
+            addConstraints(cellHeight: 30)
         }
         
-        addConstraints(cellHeight: height)
+        else {
+            nameLabel.text = nameLabel.text?.replacingOccurrences(of: " ", with: "\n")
+            nameSpacer.text = nameSpacer.text?.replacingOccurrences(of: " ", with: "\n")
+            addConstraints(cellHeight: 60)
+        }
     }
     
     func addConstraints(cellHeight: Int = 30) {

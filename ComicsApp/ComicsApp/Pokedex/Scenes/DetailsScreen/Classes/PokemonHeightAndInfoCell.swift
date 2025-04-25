@@ -7,14 +7,13 @@
 
 import UIKit
 
-class HeightAndInfoCell : UIView {
+class PokemonHeightAndInfoCell : UIView {
     
-    let heightPill: UILabel = {
+    private static func createPill() -> UILabel {
         let label = UILabel()
         label.squircle()
         
-        let baseFont = UIFont.systemFont(ofSize: 17, weight: .regular)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        label.font = UIFont.systemFont(ofSize: 17, weight: .regular).makeScaleable()
         label.adjustsFontForContentSizeCategory = true
         label.layer.borderColor = UIColor.white.cgColor
         label.layer.backgroundColor = UIColor.white.cgColor
@@ -22,46 +21,27 @@ class HeightAndInfoCell : UIView {
         label.textColor = .black
         label.textAlignment = .center
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         return label
-    }()
+    }
     
-    let weightPill: UILabel = {
-        let view = UILabel()
-        view.squircle()
-        
-        let baseFont = UIFont.systemFont(ofSize: 17, weight: .regular)
-        view.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
-        view.adjustsFontForContentSizeCategory = true
-        view.layer.borderColor = UIColor.white.cgColor
-        view.layer.backgroundColor = UIColor.white.cgColor
-        view.layer.borderWidth = 3
-        view.textColor = .black
-        view.textAlignment = .center
-        view.translatesAutoresizingMaskIntoConstraints = false
-        return view
-    }()
+    let heightPill = createPill()
     
-    let heightLabel: UILabel = {
+    let weightPill = createPill()
+    
+    private static func createLabel(_ text: String) -> UILabel {
         let label = UILabel()
-        label.text = "Height"
+        label.text = text
         label.textColor = .darkText
-        let baseFont = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        label.font = UIFont.systemFont(ofSize: 13, weight: .medium).makeScaleable()
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
-    }()
+    }
     
-    let weightLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Weight"
-        label.textColor = .darkText
-        let baseFont = UIFont.systemFont(ofSize: 13, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
-        label.adjustsFontForContentSizeCategory = true
-        label.translatesAutoresizingMaskIntoConstraints = false
-        return label
-    }()
+    let heightLabel = createLabel("Height")
+    
+    let weightLabel = createLabel("Weight")
     
     init(){
         super.init(frame: .zero)
@@ -84,6 +64,13 @@ class HeightAndInfoCell : UIView {
         addSubview(heightLabel)
         addSubview(weightLabel)
         
+        addConstraints()
+    }
+    
+    func addConstraints() {
+        
+        NSLayoutConstraint.deactivate(constraints)
+        
         NSLayoutConstraint.activate([
             heightPill.topAnchor.constraint(equalTo: topAnchor),
             heightPill.leadingAnchor.constraint(equalTo: leadingAnchor),
@@ -101,7 +88,12 @@ class HeightAndInfoCell : UIView {
             weightLabel.topAnchor.constraint(equalTo: weightPill.bottomAnchor, constant: 3),
             weightLabel.centerXAnchor.constraint(equalTo: weightPill.centerXAnchor),
             
+            weightLabel.bottomAnchor.constraint(equalTo:heightLabel.bottomAnchor),
             heightLabel.bottomAnchor.constraint(equalTo:bottomAnchor),
         ])
+    }
+    
+    func setOrientation(){
+        addConstraints()
     }
 }

@@ -50,7 +50,6 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         }
         
         if ((viewModel.pokemons.count - indexPath.row) == (viewModel.pageLimit/2)){
-            
             self.viewModel.getList(position: listNav.next) {
                 DispatchQueue.main.async { [weak self] in
                     self?.reloadTableView()

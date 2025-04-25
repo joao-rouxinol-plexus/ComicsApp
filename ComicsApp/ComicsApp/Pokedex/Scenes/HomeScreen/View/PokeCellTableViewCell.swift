@@ -11,7 +11,7 @@ class PokeCellTableViewCell: UITableViewCell {
     
     public static let identifier = "PokeCellTableViewCell"
     
-    private var infoView : InfoView = InfoView()
+    private var infoView : PokemonInfoView = PokemonInfoView()
     
     private var pokemonSprite : UIImageView = {
         let uiimageview = UIImageView()
@@ -37,8 +37,7 @@ class PokeCellTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupHierarchy()
-        setupConstraints()
-        
+        addConstraints()
     }
     
     
@@ -68,7 +67,7 @@ class PokeCellTableViewCell: UITableViewCell {
         contentView.addSubview(shinyImageView)
     }
     
-    func setupConstraints(){
+    func addConstraints(){
         NSLayoutConstraint.activate([
             infoView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
             infoView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),

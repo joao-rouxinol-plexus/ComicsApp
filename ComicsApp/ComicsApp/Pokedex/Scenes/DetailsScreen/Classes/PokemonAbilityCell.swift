@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AbilityCell : UIView {
+class PokemonAbilityCell : UIView {
     
     var isHiddenAbility : Bool = false
     
@@ -18,8 +18,7 @@ class AbilityCell : UIView {
         label.textColor = .darkText
         label.translatesAutoresizingMaskIntoConstraints = false
         view.translatesAutoresizingMaskIntoConstraints = false
-        let baseFont = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular).makeScaleable()
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .center
         view.addSubview(label)
@@ -37,8 +36,7 @@ class AbilityCell : UIView {
     
     let nameLabel : UILabel = {
         let label = UILabel()
-        let baseFont = UIFont.systemFont(ofSize: 14, weight: .medium)
-        label.font = UIFontMetrics(forTextStyle: .body).scaledFont(for: baseFont)
+        label.font = UIFont.systemFont(ofSize: 14, weight: .medium).makeScaleable()
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textColor = .darkText
