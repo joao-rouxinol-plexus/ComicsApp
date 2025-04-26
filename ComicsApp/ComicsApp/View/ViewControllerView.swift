@@ -43,7 +43,7 @@ class ViewControllerView : UIView{
         
         pokeImageView.translatesAutoresizingMaskIntoConstraints = false
         pokeImageView.round()
-        pokeImageView.addBorder(color: .systemGray, width: 5)
+        pokeImageView.addBorder(width: 5)
         pokeImageView.contentMode = .scaleAspectFill
         pokeImageView.image = viewModel.pokemonImage
         pokeImageView.isUserInteractionEnabled = true
@@ -51,7 +51,7 @@ class ViewControllerView : UIView{
         
         marvelImageView.translatesAutoresizingMaskIntoConstraints = false
         marvelImageView.round()
-        marvelImageView.addBorder(color: .systemGray, width: 5)
+        marvelImageView.addBorder(width: 5)
         marvelImageView.contentMode = .scaleAspectFill
         marvelImageView.image = viewModel.marvelImage
         marvelImageView.isUserInteractionEnabled = true
@@ -59,7 +59,7 @@ class ViewControllerView : UIView{
         
         rmImageView.translatesAutoresizingMaskIntoConstraints = false
         rmImageView.round()
-        rmImageView.addBorder(color: .systemGray, width: 5)
+        rmImageView.addBorder(width: 5)
         rmImageView.contentMode = .scaleAspectFill
         rmImageView.image = viewModel.rmImage
         rmImageView.isUserInteractionEnabled = true

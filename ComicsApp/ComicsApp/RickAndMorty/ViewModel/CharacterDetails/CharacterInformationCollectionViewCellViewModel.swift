@@ -17,7 +17,8 @@ final class CharacterInformationCollectionViewCellViewModel {
     }
     
     public var displayValue : String {
-        if value.isEmpty{return "N/A"}
+        if value.isEmpty { return "N/A"
+        }
         
         return value.capitalized
     }
@@ -28,21 +29,21 @@ final class CharacterInformationCollectionViewCellViewModel {
             
         case .status:
             
-            if value == "Alive"{
+            if value == "Alive" {
                 return UIImage(systemName: "person.fill")
-            }else if value == "Dead"{
+            } else if value == "Dead" {
                 return UIImage(systemName: "person.slash.fill")
-            }else {
+            } else {
                 return UIImage(systemName: "questionmark.diamond.fill")
             }
             
         case .gender:
             
-            if value == "Male"{
+            if value == "Male" {
                 return UIImage(systemName: "figure.stand")
-            }else if value == "Female"{
+            } else if value == "Female" {
                 return UIImage(systemName: "figure.stand.dress")
-            }else{
+            } else {
                 return UIImage(systemName: "questionmark.diamond.fill")
             }
             
@@ -58,13 +59,13 @@ final class CharacterInformationCollectionViewCellViewModel {
         return type.tintedColor
     }
     
-    
-    enum `Type` : String{
+    enum `Type` : String {
+        
         case status
         case gender
         case species
         case origin
-
+        
         
         
         var tintedColor: UIColor {
@@ -83,18 +84,20 @@ final class CharacterInformationCollectionViewCellViewModel {
         
         
         var displayTitle : String{
+            
             switch self {
+                
             case    .status,
                     .gender,
                     .species,
                     .origin:
                 return rawValue.uppercased()
-
             }
         }
     }
     
     init(value: String, type: `Type`) {
+        
         self.value = value
         self.type = type
     }

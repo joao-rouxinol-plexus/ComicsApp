@@ -8,6 +8,7 @@
 import UIKit
 
 final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
+    
     static let cellIdentifier = "CharacterEpisodesCollectionViewCell"
     
     private let headerLabel : UILabel = {
@@ -47,12 +48,13 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
     }()
     
     //    MARK: - Init
-
-    override init(frame: CGRect){
+    
+    override init(frame: CGRect) {
+        
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
         contentView.round()
-        contentView.addBorder(color: .systemGray, width: 1.0)
+        contentView.addBorder()
         setUpConstrains()
     }
     
@@ -60,33 +62,34 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    private func setUpConstrains(){
+    private func setUpConstrains() {
         
         let stackView = UIStackView(arrangedSubviews: [episodeNameLabel,episodeLabel,airDateLabel])
         let mainStackView = UIStackView(arrangedSubviews: [headerLabel,stackView])
-     
+        
         mainStackView.axis = .vertical
         mainStackView.distribution = .fillProportionally
         mainStackView.spacing = 2
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
-            
+        
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(mainStackView)
-
+        
         NSLayoutConstraint.activate([
-            mainStackView.topAnchor.constraint(equalTo: topAnchor,constant: 1),
-            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 1),
-            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -1),
+            mainStackView.topAnchor.constraint(equalTo: topAnchor,constant: 2),
+            mainStackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 2),
+            mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -2),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-
+        
     }
     
     override func prepareForReuse() {
+        
         super.prepareForReuse()
         episodeLabel.text = nil
         episodeNameLabel.text = nil
@@ -94,7 +97,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         headerLabel.text = nil
     }
     
-    public func configure(with viewModel: CharacterEpisodesCollectionViewCellViewModel){
+    public func configure(with viewModel: CharacterEpisodesCollectionViewCellViewModel) {
+        
         episodeLabel.text = viewModel.episodeData?.episode
         episodeNameLabel.text = viewModel.episodeData?.name
         airDateLabel.text = viewModel.episodeData?.airDate

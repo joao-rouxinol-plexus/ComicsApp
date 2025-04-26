@@ -9,7 +9,6 @@ import UIKit
 import SDWebImage
 
 class CharacterViewCell: UITableViewCell {
-
     
     public static var identifier: String{
         get{
@@ -17,7 +16,7 @@ class CharacterViewCell: UITableViewCell {
         }
     }
     
-    public static func register() -> UINib{
+    public static func register() -> UINib {
         UINib(nibName: "CharacterViewCell", bundle: nil)
     }
     
@@ -31,14 +30,13 @@ class CharacterViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        backView.addBorder(color: .gray, width: 2)
+        backView.addBorder()
         backView.round()
-        characterImageView.round()
         statusView.layer.cornerRadius = statusView.frame.size.width / 2
         setUpAcessibility()
     }
-
-    func setUpCell(viewModel: CharacterTableCellViewModel){
+    
+    func setUpCell(viewModel: CharacterTableCellViewModel) {
         
         self.nameLabel.text = viewModel.name
         self.characterImageView.sd_setImage(with: viewModel.imageURL)
@@ -46,9 +44,9 @@ class CharacterViewCell: UITableViewCell {
         self.statusView.backgroundColor = viewModel.stautsColor(status: viewModel.status)
         self.locationLabel.text = "Current location: \(viewModel.location.capitalized)"
     }
- 
+    
     private func setUpAcessibility() {
-            
+        
         self.isAccessibilityElement = false
         
         nameLabel.isAccessibilityElement = true
@@ -63,7 +61,6 @@ class CharacterViewCell: UITableViewCell {
         locationLabel.isAccessibilityElement = true
         locationLabel.accessibilityHint = "Current location of the character"
         
-
         let actionHint = UIAccessibilityElement(accessibilityContainer: self)
         actionHint.accessibilityLabel = "Double Tap to open details"
         actionHint.accessibilityTraits = .button

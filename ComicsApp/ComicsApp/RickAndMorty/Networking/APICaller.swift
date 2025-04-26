@@ -16,7 +16,7 @@ enum NetworkError: Error {
 }
 
 
-public class APICaller{
+public class APICaller {
     
     private static var isFetching = false
     
@@ -24,7 +24,7 @@ public class APICaller{
     static func getCharacters(from urlString: String, completionHandler: @escaping((_ result: Result<CharactersModel, NetworkError>) -> Void)) {
         
         
-        guard let url = URL(string: urlString), !isFetching else{
+        guard let url = URL(string: urlString), !isFetching else {
             completionHandler(.failure(.invalidURL))
             return
             
@@ -32,9 +32,9 @@ public class APICaller{
         
         isFetching = true
         
-        URLSession.shared.dataTask(with: url){ dataResponse, urlResponse, error in
+        URLSession.shared.dataTask(with: url) { dataResponse, urlResponse, error in
             
-            defer{  isFetching = false}
+            defer {  isFetching = false}
             
             if let error = error {
                 print("Error: \(error)")
@@ -43,17 +43,20 @@ public class APICaller{
             }
             
             guard let data = dataResponse else {
+                
                 completionHandler(.failure(.noData))
                 return
             }
             
             
-            do{
+            do {
+                
                 let resultData = try JSONDecoder().decode(CharactersModel.self, from: data)
                 DispatchQueue.main.async{
                     completionHandler(.success(resultData))
                 }
-            }catch{
+            } catch {
+                
                 print(error)
                 completionHandler(.failure(.decodingError))
             }
@@ -63,14 +66,14 @@ public class APICaller{
     static func getEpisodes(from urlString: String, completionHandler: @escaping((_ result: Result<EpisodesModel, NetworkError>) -> Void)) {
         
         
-        guard let url = URL(string: urlString) else{
+        guard let url = URL(string: urlString) else {
+            
             completionHandler(.failure(.invalidURL))
             return
-            
         }
-                
+        
         URLSession.shared.dataTask(with: url){ dataResponse, urlResponse, error in
-                        
+            
             if let error = error {
                 print("Error: \(error)")
                 completionHandler(.failure(.urlRequestFailed))
@@ -83,12 +86,14 @@ public class APICaller{
             }
             
             
-            do{
+            do {
+                
                 let resultData = try JSONDecoder().decode(EpisodesModel.self, from: data)
                 DispatchQueue.main.async{
                     completionHandler(.success(resultData))
                 }
-            }catch{
+            } catch {
+                
                 print(error)
                 completionHandler(.failure(.decodingError))
             }

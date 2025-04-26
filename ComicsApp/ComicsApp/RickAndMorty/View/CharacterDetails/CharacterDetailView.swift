@@ -7,7 +7,6 @@
 
 import UIKit
 
-//View for single characrter info
 final class CharacterDetailView: UIView {
     
     public  var collectionView : UICollectionView?
@@ -38,7 +37,8 @@ final class CharacterDetailView: UIView {
         fatalError("Unsuported")
     }
     
-    private func addConstraints(){
+    private func addConstraints() {
+        
         guard let collectionView = collectionView else { return }
         
         NSLayoutConstraint.activate([
@@ -71,8 +71,9 @@ final class CharacterDetailView: UIView {
     private func createSection(for sectionIndex: Int) -> NSCollectionLayoutSection {
         
         let sectionTypes = viewModel.sections
-    
+        
         switch sectionTypes[sectionIndex]{
+            
         case .photo:
             return viewModel.createPhotoSectionLayout()
         case .information:

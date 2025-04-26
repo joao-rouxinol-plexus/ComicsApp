@@ -11,7 +11,12 @@ class CharacterDetailsViewModel {
     
     private let character: Character
     
+    public var getCharacterName: String {
+        return character.name
+    }
+    
     enum SectionType {
+        
         case photo(viewModel: CharacterPhotoCollectionViewCellViewModel)
         
         case information(viewModel: [CharacterInformationCollectionViewCellViewModel])
@@ -28,6 +33,8 @@ class CharacterDetailsViewModel {
         setUpSections()
     }
     
+    // MARK: - Sections Setup
+    
     private func setUpSections() {
         sections = [
             .photo(viewModel: .init(imageUrl: URL(string: character.image))),
@@ -41,10 +48,9 @@ class CharacterDetailsViewModel {
                 return CharacterEpisodesCollectionViewCellViewModel(episodeURL:  $0)
             }))
         ]
-        
     }
     
-    //    MARKS: - Layouts
+    // MARK: - Layouts
     
     func createPhotoSectionLayout() -> NSCollectionLayoutSection {
         
@@ -60,7 +66,9 @@ class CharacterDetailsViewModel {
                                                                               ),
                                                      subitems: [item]
         )
+        
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
@@ -79,6 +87,7 @@ class CharacterDetailsViewModel {
                                                        subitems: [item, item]
         )
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
@@ -96,12 +105,11 @@ class CharacterDetailsViewModel {
                                                                               ),
                                                        subitems: [item]
         )
+        
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .groupPagingCentered
+        
         return section
     }
     
-    public var getCharacterName: String {
-            return character.name
-        }
 }

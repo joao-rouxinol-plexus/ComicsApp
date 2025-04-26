@@ -13,21 +13,23 @@ final class CharacterEpisodesCollectionViewCellViewModel {
     public var episodeData : EpisodesModel?
     
     init(episodeURL : String) {
+        
         self.episodeString = episodeURL
         getEpisodeData(episodeURLString: episodeString)
         
     }
     
-    func getEpisodeData(episodeURLString : String){
+    private func getEpisodeData(episodeURLString : String) {
+        
         APICaller.getEpisodes(from: episodeURLString) { result in
             switch result {
+                
             case .success(let episodeData):
                 self.episodeData = episodeData
+                
             case .failure(let error):
                 print(error)
             }
         }
     }
 }
-
-

@@ -5,17 +5,16 @@
 //  Created by Diogo Alexandre Pereira on 13/3/25.
 //
 
-class NetworkConstant{
+class NetworkConstant {
     
     public static var shared: NetworkConstant = NetworkConstant()
-    
-    
+
     private init(){}
     
-  public var serverURL: String {
-      get {
-          return "https://rickandmortyapi.com/api/"
-      }
+    public var serverURL: String {
+        get {
+            return "https://rickandmortyapi.com/api/"
+        }
     }
     
     public var charactersURL: String {

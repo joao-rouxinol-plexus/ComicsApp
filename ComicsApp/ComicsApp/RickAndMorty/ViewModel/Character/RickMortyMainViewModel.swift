@@ -27,22 +27,25 @@ class RickMortyMainViewModel {
         return cellDataSource.value?[indexPath.row]
     }
     
-    func refreshData(){
+    func refreshData() {
         
         characters.removeAll()
         cellDataSource.value = nil
         visibleCharactersCount = 10
         getData()
+        
     }
     
-    func getData(){
+    func getData() {
         
-        if isLoading.value ?? false{
+        if isLoading.value ?? false {
             return
         }
+        
         isLoading.value = true
         
         APICaller.getCharacters(from: NetworkConstant.shared.serverURL.appending(NetworkConstant.shared.charactersURL)) { [weak self] result in
+            
             self?.isLoading.value = false
             
             switch result {
@@ -59,14 +62,13 @@ class RickMortyMainViewModel {
         }
     }
     
-    
     func mapCellData() {
+        
         self.cellDataSource.value = characters.compactMap{CharacterTableCellViewModel(character: $0)}
-      
     }
     
-    func loadMoreCharacters(){
-       
+    func loadMoreCharacters() {
+        
         guard let nextPageUrl = self.nextPageUrl, !isLoading.value! else {
             return
         }
@@ -78,7 +80,8 @@ class RickMortyMainViewModel {
         }
         
         APICaller.getCharacters(from: nextPageUrl) { [weak self] result in
-          guard let self = self else { return }
+            
+            guard let self = self else { return }
             
             self.isLoading.value = false
             
@@ -101,10 +104,12 @@ class RickMortyMainViewModel {
         
     }
     
-    func retrieveCharacter(whit id: Int) -> Character?{
+    func retrieveCharacter(whit id: Int) -> Character? {
+        
         guard let character = characters.first(where: {$0.id == id}) else {
             return nil
         }
+        
         return character
     }
 }
