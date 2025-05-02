@@ -6,23 +6,25 @@
 //
 
 
-import Foundation
 import UIKit
 
 extension RickMortyMainViewController: UITableViewDelegate, UITableViewDataSource {
     
-    func setupTableView(){
+    func setupTableView() {
+        
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.backgroundColor = .clear
         self.registerCells()
     }
     
-    func registerCells(){
+    func registerCells() {
+        
         tableView.register(CharacterViewCell.register(), forCellReuseIdentifier: CharacterViewCell.identifier)
     }
     
-    func reloadTableView(){
+    func reloadTableView() {
+        
         DispatchQueue.main.async {
             self.cellDataSource = self.viewModel.cellDataSource.value ?? []
             self.tableView.reloadData()
@@ -40,10 +42,12 @@ extension RickMortyMainViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard indexPath.row < cellDataSource.count else {
+            
             return UITableViewCell()
         }
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterViewCell.identifier, for: indexPath) as? CharacterViewCell else{
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CharacterViewCell.identifier, for: indexPath) as? CharacterViewCell else {
+            
             return UITableViewCell()
         }
         
@@ -57,10 +61,10 @@ extension RickMortyMainViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        
         if indexPath.row == cellDataSource.count - 10{
-                viewModel.loadMoreCharacters()
-            
-       }
+            viewModel.loadMoreCharacters()
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -68,7 +72,6 @@ extension RickMortyMainViewController: UITableViewDelegate, UITableViewDataSourc
         
         let characterId = cellDataSource[indexPath.row].id
         self.openDetail(charaterId: characterId)
-
     }
     
 }

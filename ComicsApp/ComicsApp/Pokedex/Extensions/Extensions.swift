@@ -9,6 +9,7 @@ import UIKit
 import CoreImage.CIFilterBuiltins
 
 extension UIImage {
+    
     func dominantColor(_ returnAlphaValue : CGFloat = 1) -> UIColor? {
         
         guard let inputImage = CIImage(image: self) else { return nil }

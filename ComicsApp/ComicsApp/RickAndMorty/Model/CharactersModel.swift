@@ -5,7 +5,6 @@
 //  Created by Diogo Alexandre Pereira on 13/3/25.
 //
 
-
 import Foundation
 
 // MARK: - CharactersModel
@@ -21,7 +20,7 @@ struct Info: Codable {
     let prev: String?
 }
 
-// MARK: - Result
+// MARK: - Character
 struct Character: Codable {
     let id: Int
     let name: String
@@ -36,6 +35,7 @@ struct Character: Codable {
     let created: String
 }
 
+// MARK: - Gender
 enum Gender: String, Codable {
     case female = "Female"
     case male = "Male"
@@ -49,9 +49,9 @@ struct Location: Codable {
     let url: String
 }
 
+// MARK: - Status
 enum Status: String, Codable {
     case alive = "Alive"
     case dead = "Dead"
     case unknown = "unknown"
 }
-

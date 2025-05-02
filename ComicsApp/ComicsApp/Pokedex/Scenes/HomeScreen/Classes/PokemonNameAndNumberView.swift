@@ -12,7 +12,6 @@ class PokemonNameAndNumberView: UIView {
     let pokemonNumber: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        
         label.font = UIFont.systemFont(ofSize: 20, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
         
@@ -30,7 +29,7 @@ class PokemonNameAndNumberView: UIView {
         return label
     }()
     
-    init(isScaleable : Bool = false){
+    init(){
         super.init(frame: .zero)
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(pokemonName)
