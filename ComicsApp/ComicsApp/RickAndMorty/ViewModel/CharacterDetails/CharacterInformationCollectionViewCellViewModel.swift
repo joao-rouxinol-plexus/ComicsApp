@@ -17,7 +17,8 @@ final class CharacterInformationCollectionViewCellViewModel {
     }
     
     public var displayValue : String {
-        if value.isEmpty{return "N/A"}
+        if value.isEmpty { return "N/A"
+        }
         
         return value.capitalized
     }
@@ -28,21 +29,21 @@ final class CharacterInformationCollectionViewCellViewModel {
             
         case .status:
             
-            if value == "Alive"{
+            if value == "Alive" {
                 return UIImage(systemName: "person.fill")
-            }else if value == "Dead"{
+            } else if value == "Dead" {
                 return UIImage(systemName: "person.slash.fill")
-            }else {
+            } else {
                 return UIImage(systemName: "questionmark.diamond.fill")
             }
             
         case .gender:
             
-            if value == "Male"{
+            if value == "Male" {
                 return UIImage(systemName: "figure.stand")
-            }else if value == "Female"{
+            } else if value == "Female" {
                 return UIImage(systemName: "figure.stand.dress")
-            }else{
+            } else {
                 return UIImage(systemName: "questionmark.diamond.fill")
             }
             
@@ -51,13 +52,6 @@ final class CharacterInformationCollectionViewCellViewModel {
             
         case .origin:
             return UIImage(systemName: "globe.europe.africa.fill")
-            
-        case  .location:
-            return UIImage(systemName: "mappin.and.ellipse.circle.fill")
-            
-        case .episodeCount:
-            return UIImage(systemName: "number.circle.fill")
-            
         }
     }
     
@@ -65,14 +59,13 @@ final class CharacterInformationCollectionViewCellViewModel {
         return type.tintedColor
     }
     
-    
-    enum `Type` : String{
+    enum `Type` : String {
+        
         case status
         case gender
         case species
         case origin
-        case location
-        case episodeCount
+        
         
         
         var tintedColor: UIColor {
@@ -86,29 +79,25 @@ final class CharacterInformationCollectionViewCellViewModel {
                 return .systemGreen
             case .origin:
                 return .systemOrange
-            case .location:
-                return .systemYellow
-            case .episodeCount:
-                return .systemMint
             }
         }
         
         
         var displayTitle : String{
+            
             switch self {
+                
             case    .status,
                     .gender,
                     .species,
-                    .origin,
-                    .location:
+                    .origin:
                 return rawValue.uppercased()
-            case .episodeCount:
-                return "EPISODE COUNT"
             }
         }
     }
     
     init(value: String, type: `Type`) {
+        
         self.value = value
         self.type = type
     }

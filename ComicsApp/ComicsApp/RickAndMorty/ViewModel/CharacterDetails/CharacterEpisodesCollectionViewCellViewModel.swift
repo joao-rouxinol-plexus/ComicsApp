@@ -9,25 +9,36 @@ import Foundation
 
 final class CharacterEpisodesCollectionViewCellViewModel {
     
-    private let episodeURL : URL?
+    private let episodeString : String
     public var episodeData : EpisodesModel?
     
-    init(episodeURL : URL?){
-        self.episodeURL = episodeURL
-        getEpisodeData(episodeURLString: episodeURL?.absoluteString ?? "")
+    init(episodeURL : String) {
+        
+        self.episodeString = episodeURL
+        getEpisodeData(episodeURLString: episodeString)
         
     }
     
-    func getEpisodeData(episodeURLString : String){
+    private func getEpisodeData(episodeURLString : String) {
+        
         APICaller.getEpisodes(from: episodeURLString) { result in
+            
             switch result {
+                
             case .success(let episodeData):
                 self.episodeData = episodeData
+                self.splitString(string: episodeData.episode)
+                
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
+    private func splitString(string: String) {
+        
+        let newString = string.replacingOccurrences(of: "S" , with: "Season: ")
+            .replacingOccurrences(of: "E" , with: " Episode: ")
+        episodeData?.episode = newString
+    }
 }
-
-

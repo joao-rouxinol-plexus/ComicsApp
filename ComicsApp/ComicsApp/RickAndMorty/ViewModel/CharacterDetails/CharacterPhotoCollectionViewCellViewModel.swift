@@ -12,7 +12,7 @@ final class CharacterPhotoCollectionViewCellViewModel {
     
     private let imageURL: URL?
     
-    init(imageUrl: URL?){
+    init(imageUrl: URL?) {
         self.imageURL = imageUrl
     }
     

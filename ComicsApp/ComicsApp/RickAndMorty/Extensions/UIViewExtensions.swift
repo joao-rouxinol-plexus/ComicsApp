@@ -9,12 +9,13 @@ import UIKit
 
 extension UIView {
     
-    func round(_ radius: CGFloat = 10){
+    func round(_ radius: CGFloat = 10) {
+        
         self.layer.cornerRadius = radius
         self.clipsToBounds = true
     }
     
-    func addBorder(color: UIColor, width: CGFloat){
+    func addBorder(color: UIColor = .systemGray, width: CGFloat = 2) {
         self.layer.borderColor = color.cgColor
         self.layer.borderWidth = width
     }

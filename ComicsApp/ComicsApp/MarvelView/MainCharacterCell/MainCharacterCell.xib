@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainCharacterCell" rowHeight="168" id="KGk-i7-Jjw" customClass="MainCharacterCell" customModule="MarvelApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="168"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KtT-72-k1D">
+                        <rect key="frame" x="16" y="8" width="288" height="152"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uxG-mo-WRB">
+                                <rect key="frame" x="8" y="5" width="129" height="142"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uxG-mo-WRB" secondAttribute="height" multiplier="89:98" id="2um-Ou-DvQ"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ye1-mG-S8a">
+                                <rect key="frame" x="145" y="5" width="135" height="21"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EQT-3Z-iyh">
+                                <rect key="frame" x="145" y="36" width="135" height="19.666666666666671"/>
+                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="6il-fi-hrj">
+                                <rect key="frame" x="145" y="104.66666666666667" width="135" height="42.333333333333329"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XJn-Lq-S1Q">
+                                        <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="42.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Comics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usQ-QL-e5a">
+                                                <rect key="frame" x="0.0" y="0.0" width="50.333333333333336" height="19.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Series" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KbQ-o6-tKE">
+                                                <rect key="frame" x="0.0" y="22.666666666666671" width="50.333333333333336" height="19.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <rect key="contentStretch" x="1" y="0.0" width="1" height="1"/>
+                                        <constraints>
+                                            <constraint firstItem="KbQ-o6-tKE" firstAttribute="top" secondItem="usQ-QL-e5a" secondAttribute="bottom" constant="3" id="qVd-hl-Rsz"/>
+                                        </constraints>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ndB-LM-FEh">
+                                        <rect key="frame" x="57.33333333333335" y="0.0" width="77.666666666666686" height="42.333333333333336"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Baf-VC-lGr">
+                                                <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="19.666666666666668"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L3F-d7-2mJ">
+                                                <rect key="frame" x="0.0" y="22.666666666666671" width="69.666666666666671" height="19.666666666666671"/>
+                                                <fontDescription key="fontDescription" name="Kailasa" family="Kailasa" pointSize="15"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Baf-VC-lGr" secondAttribute="trailing" constant="8" id="4yJ-sf-9cn"/>
+                                            <constraint firstItem="L3F-d7-2mJ" firstAttribute="top" secondItem="Baf-VC-lGr" secondAttribute="bottom" constant="3" id="UqJ-hy-hkz"/>
+                                            <constraint firstAttribute="trailing" secondItem="L3F-d7-2mJ" secondAttribute="trailing" constant="8" id="Yfe-g3-MhK"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="6il-fi-hrj" secondAttribute="trailing" constant="8" id="2yd-ZQ-LCb"/>
+                            <constraint firstAttribute="bottom" secondItem="uxG-mo-WRB" secondAttribute="bottom" constant="5" id="4Gb-8P-wAo"/>
+                            <constraint firstItem="EQT-3Z-iyh" firstAttribute="leading" secondItem="uxG-mo-WRB" secondAttribute="trailing" constant="8" id="Ep5-Vj-Rm6"/>
+                            <constraint firstAttribute="trailing" secondItem="ye1-mG-S8a" secondAttribute="trailing" constant="8" id="KbG-Z2-Uyh"/>
+                            <constraint firstItem="uxG-mo-WRB" firstAttribute="leading" secondItem="KtT-72-k1D" secondAttribute="leading" constant="8" id="UOY-yF-DqZ"/>
+                            <constraint firstItem="ye1-mG-S8a" firstAttribute="leading" secondItem="uxG-mo-WRB" secondAttribute="trailing" constant="8" id="YLw-b4-TCw"/>
+                            <constraint firstItem="ye1-mG-S8a" firstAttribute="top" secondItem="uxG-mo-WRB" secondAttribute="top" id="fRU-9d-dC3"/>
+                            <constraint firstItem="6il-fi-hrj" firstAttribute="leading" secondItem="uxG-mo-WRB" secondAttribute="trailing" constant="8" id="lio-hZ-fLW"/>
+                            <constraint firstItem="uxG-mo-WRB" firstAttribute="top" secondItem="KtT-72-k1D" secondAttribute="top" constant="5" id="nxe-mB-lwL"/>
+                            <constraint firstItem="6il-fi-hrj" firstAttribute="bottom" secondItem="uxG-mo-WRB" secondAttribute="bottom" id="y7v-hM-cCc"/>
+                            <constraint firstAttribute="trailing" secondItem="EQT-3Z-iyh" secondAttribute="trailing" constant="8" id="yaD-BO-0iX"/>
+                            <constraint firstItem="EQT-3Z-iyh" firstAttribute="top" secondItem="ye1-mG-S8a" secondAttribute="bottom" constant="10" id="zNI-V2-a9b"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="KtT-72-k1D" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cHX-Ob-42N"/>
+                    <constraint firstItem="KtT-72-k1D" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="dpq-aw-xUa"/>
+                    <constraint firstAttribute="bottom" secondItem="KtT-72-k1D" secondAttribute="bottom" constant="8" id="l89-38-SfW"/>
+                    <constraint firstAttribute="trailing" secondItem="KtT-72-k1D" secondAttribute="trailing" constant="16" id="zPH-VJ-mEO"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="backView" destination="KtT-72-k1D" id="PLQ-B2-T0O"/>
+                <outlet property="characterImageView" destination="uxG-mo-WRB" id="cPJ-Li-4vM"/>
+                <outlet property="comicsLabel" destination="usQ-QL-e5a" id="KHj-rO-S90"/>
+                <outlet property="descriptionLabel" destination="EQT-3Z-iyh" id="TKu-OK-IGv"/>
+                <outlet property="eventsLabel" destination="Baf-VC-lGr" id="TK0-9H-EmL"/>
+                <outlet property="nameLabel" destination="ye1-mG-S8a" id="LDc-FB-9kE"/>
+                <outlet property="seriesLabel" destination="KbQ-o6-tKE" id="gv9-k6-dGl"/>
+                <outlet property="storiesLabel" destination="L3F-d7-2mJ" id="ynW-oq-SZK"/>
+            </connections>
+            <point key="canvasLocation" x="83.969465648854964" y="41.549295774647888"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
