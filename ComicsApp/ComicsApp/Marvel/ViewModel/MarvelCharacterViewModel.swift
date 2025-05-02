@@ -42,7 +42,6 @@ class MarvelCharacterViewModel {
     // MARK: - Private Methods
     private func makeImageURL(path: String, ext: String) -> URL? {
         let securePath = path.replacingOccurrences(of: "http://", with: "https://")
-        print("\(securePath).\(ext)")
         return URL(string: "\(securePath).\(ext)")
     }
 }

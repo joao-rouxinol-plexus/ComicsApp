@@ -11,7 +11,6 @@ extension MarvelMainScreenViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         self.viewModel.updateSearchController(searchBarText: searchController.searchBar.text ?? "")
-        print("Search Bar:\(String(describing: searchController.searchBar.text))")
     }
 }
 

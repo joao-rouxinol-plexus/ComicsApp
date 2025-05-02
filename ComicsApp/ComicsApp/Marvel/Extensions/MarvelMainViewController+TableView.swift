@@ -85,7 +85,6 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let character = viewModel.cellDataSource.value?[indexPath.row] else { return }
-            print("Personagem Selecionado: \(character.name)")
             let detailVC = MarvelDetailViewController()
             detailVC.character = character
             navigationController?.pushViewController(detailVC, animated: true)
@@ -110,7 +109,6 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
         
         if position > (contentHeight - frameHeight ) {
             viewModel.getData(offset: MarvelNetworkConstant.shared.offset)
-            print(MarvelNetworkConstant.shared.offset)
         }
     }
     

@@ -37,8 +37,7 @@ class MarvelMainViewModel {
             guard let self = self else { return }
             self.isLoading.value = false
             guard !characters.isEmpty else { return }
-            
-            print("Número de personagens carregados: \(characters.count)")
+
             
             if self.dataSource == nil {
                 self.dataSource = characters

@@ -11,7 +11,6 @@ import UIKit
 extension UINavigationController {
     func setupMarvelNavBar() {
         let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .backgroundColor
         
         appearance.titleTextAttributes = [
