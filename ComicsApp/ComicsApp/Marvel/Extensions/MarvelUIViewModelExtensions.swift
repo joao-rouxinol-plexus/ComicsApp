@@ -25,6 +25,5 @@ extension MarvelMainViewModel {
             }.map { MarvelCharacterViewModel(character: $0) } ?? []
         }
     }
-    
 }
 

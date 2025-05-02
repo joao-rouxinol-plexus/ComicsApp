@@ -21,7 +21,7 @@ class ViewController: UIViewController {
             //            let pokedexVC = PokeDexMainScreenViewController()
             navigationController.pushViewController(pokedexVC, animated: true)
         }
-        
+
     }
     
     @IBAction func MarvelButton(_ sender: UIButton) {

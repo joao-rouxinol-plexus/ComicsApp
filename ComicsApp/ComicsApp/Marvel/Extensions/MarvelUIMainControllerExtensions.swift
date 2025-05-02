@@ -15,4 +15,3 @@ extension MarvelMainScreenViewController: UISearchResultsUpdating {
     }
 }
 
-// Sempre que o texto muda, este método é chamado automaticamente

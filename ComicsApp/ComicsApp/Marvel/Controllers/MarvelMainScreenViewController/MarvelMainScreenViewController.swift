@@ -40,14 +40,26 @@ class MarvelMainScreenViewController: UIViewController {
         setupTableView()
         navigationController?.setupMarvelNavBar()
         
-        self.title = "MarvelApp"
-        self.view.backgroundColor = .backgroundColor
+        let titleLabel = UILabel()
+        let baseFont = UIFont.boldSystemFont(ofSize: 20)
+        titleLabel.font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: baseFont)
+        titleLabel.adjustsFontForContentSizeCategory = true
+        titleLabel.text = "MarvelApp"
+        titleLabel.textColor = .systemYellow
+        titleLabel.isAccessibilityElement = true
+        titleLabel.accessibilityLabel = "Marvel App"
+        self.navigationItem.titleView = titleLabel
         
+        self.view.backgroundColor = .backgroundColor
         setupSearchController()
+        
+        navigationController?.navigationBar.isAccessibilityElement = false
+        navigationController?.navigationBar.accessibilityElementsHidden = true
     }
     
     // MARK: - Search Controller
     func setupSearchController() {
+        tableView.backgroundColor = .backgroundColor
         self.searchController.searchResultsUpdater = self
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.hidesNavigationBarDuringPresentation = false
@@ -55,6 +67,10 @@ class MarvelMainScreenViewController: UIViewController {
         self.navigationItem.searchController = searchController
         self.definesPresentationContext = false
         self.navigationItem.hidesSearchBarWhenScrolling = false
+        
+        searchController.searchBar.isAccessibilityElement = true
+        searchController.searchBar.accessibilityLabel = "Search Bar"
+        searchController.searchBar.accessibilityHint = "Search for characters"
         
         if let textField = searchController.searchBar.value(forKey: "searchField") as? UITextField {
             textField.attributedPlaceholder = NSAttributedString(string: "Search...", attributes: [

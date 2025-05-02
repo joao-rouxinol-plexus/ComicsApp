@@ -18,7 +18,7 @@ enum NetworkError: Error {
 
 // MARK: - Marvel API Caller
 public class MarvelAPICaller {
-    static var useMockData = false
+    static var useMockData = true
     
     // MARK: - Public API Methods
     static func getCharactersInfo(offset: Int, completionHandler: @escaping (_ result: [Character]) -> Void) {

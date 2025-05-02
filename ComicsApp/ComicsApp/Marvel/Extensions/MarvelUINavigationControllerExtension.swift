@@ -4,6 +4,7 @@
 //
 //  Created by Mariana Alexandre Dos Santos on 28/03/2025.
 //
+
 import Foundation
 import UIKit
 
@@ -25,3 +26,5 @@ extension UINavigationController {
         navigationBar.tintColor = .systemYellow
     }
 }
+
+

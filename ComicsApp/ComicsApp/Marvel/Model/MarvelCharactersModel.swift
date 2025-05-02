@@ -7,7 +7,6 @@
 
 import Foundation
 
-// Modelo principal que representa toda a resposta da API
 struct APIResponse: Codable {
     let code: Int
     let status: String
@@ -15,7 +14,6 @@ struct APIResponse: Codable {
     let data: CharacterDataWrapper
 }
 
-// Lista de personagens e metadados (offset, total, etc.)
 struct CharacterDataWrapper: Codable {
     let offset: Int
     let limit: Int
@@ -41,7 +39,8 @@ struct DataClass: Codable {
 // MARK: - Result
 struct Character: Codable {
     let id: Int
-    let name, description: String?
+    let name: String?
+    let description: String?
     let modified: String
     let thumbnail: Thumbnail
     let resourceURI: String

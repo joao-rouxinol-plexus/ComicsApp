@@ -15,7 +15,9 @@ class MarvelBoxView: UIView {
     // MARK: - UI Components
     private let titleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Impact", size: 20)
+        let baseFont = UIFont(name: "Impact", size: 20)!
+        label.font = UIFontMetrics(forTextStyle: .headline).scaledFont(for: baseFont)
+        label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .left
         label.textColor = .systemYellow
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +26,8 @@ class MarvelBoxView: UIView {
     
     private let contentLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 17)
+        label.font = UIFont.preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         label.numberOfLines = 0
         label.textAlignment = .left
         label.textColor = .textColor

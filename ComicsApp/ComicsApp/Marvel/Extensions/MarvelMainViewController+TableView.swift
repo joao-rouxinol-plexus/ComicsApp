@@ -14,13 +14,15 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.backgroundColor = .clear
+        self.tableView.backgroundColor = .backgroundColor
         self.registerCells()
+        tableView.estimatedRowHeight = 200
+        tableView.rowHeight = UITableView.automaticDimension
         self.bindViewModel()
     }
     
     func registerCells() {
-        tableView.register(MarvelMainCharacterCell.register(),forCellReuseIdentifier: MarvelMainCharacterCell.identifier)
+        MarvelMainCharacterCell.register(with: tableView)
     }
     
     func setupButton() {
@@ -34,6 +36,9 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
             topButton.addBorder(color: .systemYellow, width: 1)
             topButton.translatesAutoresizingMaskIntoConstraints = false
             self.view.addSubview(topButton)
+            
+            topButton.accessibilityLabel = "Go to the top"
+            topButton.accessibilityTraits = .button
             
             NSLayoutConstraint.activate([
                 topButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -20),
@@ -64,28 +69,26 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MarvelMainCharacterCell.identifier, for: indexPath) as? MarvelMainCharacterCell else { return UITableViewCell()} // isto é para reutilizar a cell
-        
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: MarvelMainCharacterCell.identifier, for: indexPath) as? MarvelMainCharacterCell else { return UITableViewCell()}
         let cellViewModel = viewModel.cellDataSource.value?[indexPath.row]
         
         if let cellViewModel = cellViewModel {
-            cell.setUpCell(viewModel: cellViewModel)
+            cell.setUpCell(viewModel: cellViewModel)            
         }
         
-        cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        150
+        return UITableView.automaticDimension
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCharacter = cellDataSource[indexPath.row]
-        print("Personagem Selecionado: \(selectedCharacter.name)")
-        let detailVC = MarvelDetailViewController()
-        detailVC.character = selectedCharacter
-        navigationController?.pushViewController(detailVC, animated: true)
+        guard let character = viewModel.cellDataSource.value?[indexPath.row] else { return }
+            print("Personagem Selecionado: \(character.name)")
+            let detailVC = MarvelDetailViewController()
+            detailVC.character = character
+            navigationController?.pushViewController(detailVC, animated: true)
     }
     
     // MARK: - ScrollView

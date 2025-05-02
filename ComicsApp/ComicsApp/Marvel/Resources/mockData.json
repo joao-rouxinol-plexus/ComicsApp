@@ -1,475 +1,233 @@
 {
-    "code": 200,
-    "status": "Ok",
-    "copyright": "© 2025 MARVEL",
-    "attributionText": "Data provided by Marvel. © 2025 MARVEL",
-    "attributionHTML": "<a href=\"http://marvel.com\">Data provided by Marvel. © 2025 MARVEL</a>",
-    "etag": "f755c060acbce229eafd64379584281f8929bd7c",
-    "data": {
-        "offset": 0,
-        "limit": 8,
-        "total": 8,
-        "count": 8,
-        "results": [
+  "code": 200,
+  "status": "Ok",
+  "copyright": "© 2025 MARVEL",
+  "attributionText": "Data provided by Marvel. © 2025 MARVEL",
+  "attributionHTML": "\u003Ca href=\"http://marvel.com\"\u003EData provided by Marvel. © 2025 MARVEL\u003C/a\u003E",
+  "etag": "84be3bd2b293a6a11bad8e69828d490574d7bbe2",
+  "data": {
+    "offset": 0,
+    "limit": 1,
+    "total": 1564,
+    "count": 1,
+    "results": [
+      {
+        "id": 1011334,
+        "name": "3-D Man",
+        "description": "",
+        "modified": "2014-04-29T14:18:17+0000",
+        "thumbnail": {
+          "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
+          "extension": "jpg"
+        },
+        "resourceURI": "https://gateway.marvel.com/v1/public/characters/1011334",
+        "comics": {
+          "available": 12,
+          "collectionURI": "https://gateway.marvel.com/v1/public/characters/1011334/comics",
+          "items": [
             {
-                "id": 1011334,
-                "name": "3-D Man",
-                "description": "",
-                "modified": "2014-04-29T14:18:17-0400",
-                "thumbnail": {
-                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/1011334",
-                "comics": {
-                    "available": 12,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011334/comics",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
-                            "name": "Avengers: The Initiative (2007) #14"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/24571",
-                            "name": "Avengers: The Initiative (2007) #14 (SPOTLIGHT VARIANT)"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21546",
-                            "name": "Avengers: The Initiative (2007) #15"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21741",
-                            "name": "Avengers: The Initiative (2007) #16"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21975",
-                            "name": "Avengers: The Initiative (2007) #17"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22299",
-                            "name": "Avengers: The Initiative (2007) #18"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22300",
-                            "name": "Avengers: The Initiative (2007) #18 (ZOMBIE VARIANT)"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22506",
-                            "name": "Avengers: The Initiative (2007) #19"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/8500",
-                            "name": "Deadpool (1997) #44"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10223",
-                            "name": "Marvel Premiere (1972) #35"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10224",
-                            "name": "Marvel Premiere (1972) #36"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10225",
-                            "name": "Marvel Premiere (1972) #37"
-                        }
-                    ],
-                    "returned": 12
-                },
-                "series": {
-                    "available": 12,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011334/series",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21366",
-                            "name": "Avengers: The Initiative (2007) #14"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/24571",
-                            "name": "Avengers: The Initiative (2007) #14 (SPOTLIGHT VARIANT)"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21546",
-                            "name": "Avengers: The Initiative (2007) #15"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21741",
-                            "name": "Avengers: The Initiative (2007) #16"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/21975",
-                            "name": "Avengers: The Initiative (2007) #17"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22299",
-                            "name": "Avengers: The Initiative (2007) #18"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22300",
-                            "name": "Avengers: The Initiative (2007) #18 (ZOMBIE VARIANT)"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/22506",
-                            "name": "Avengers: The Initiative (2007) #19"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/8500",
-                            "name": "Deadpool (1997) #44"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10223",
-                            "name": "Marvel Premiere (1972) #35"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10224",
-                            "name": "Marvel Premiere (1972) #36"
-                        },
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/10225",
-                            "name": "Marvel Premiere (1972) #37"
-                        }
-                    ],
-                    "returned": 12
-                },
-                "stories": {
-                    "available": 1,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011334/stories",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/19947",
-                            "name": "Cover #19947",
-                            "type": "cover"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "events": {
-                    "available": 1,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1011334/events",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/events/269",
-                            "name": "Secret Invasion"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/74/3-d_man?utm_campaign=apiRef&utm_source=2d3ac0101de18496f6b5c82497503ed8"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/24571",
+              "name": "Avengers: The Initiative (2007) #14"
             },
             {
-                "id": 2000001,
-                "name": "Shadow Phantom",
-                "description": "Um vigilante misterioso que pode se tornar invisível e atravessar paredes.",
-                "modified": "2025-03-25T12:00:00-0400",
-                "thumbnail": {
-                    "path": "https://static.wikia.nocookie.net/disney/images/5/51/Giffany",
-                    "extension": "png"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/2000001",
-                "comics": {
-                    "available": 5,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000001/comics",
-                    "items": [],
-                    "returned": 0
-                },
-                "series": {
-                    "available": 1,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000001/series",
-                    "items": [],
-                    "returned": 0
-                },
-                "stories": {
-                    "available": 2,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000001/stories",
-                    "items": [],
-                    "returned": 0
-                },
-                "events": {
-                    "available": 1,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000001/events",
-                    "items": [],
-                    "returned": 0
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/2000001/shadow_phantom"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/21366",
+              "name": "Avengers: The Initiative (2007) #14"
             },
             {
-                "id": 2000002,
-                "name": "Inferno Prime",
-                "description": "Um ser feito de fogo cósmico que controla chamas e energia térmica.",
-                "modified": "2025-03-25T12:10:00-0400",
-                "thumbnail": {
-                    "path": "https://static.wikia.nocookie.net/disney/images/5/5d/Em4",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/2000002",
-                "comics": {
-                    "available": 7,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000002/comics",
-                    "items": [],
-                    "returned": 0
-                },
-                "series": {
-                    "available": 2,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000002/series",
-                    "items": [],
-                    "returned": 0
-                },
-                "stories": {
-                    "available": 3,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000002/stories",
-                    "items": [],
-                    "returned": 0
-                },
-                "events": {
-                    "available": 2,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000002/events",
-                    "items": [],
-                    "returned": 0
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/2000002/inferno_prime"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/21546",
+              "name": "Avengers: The Initiative (2007) #15"
             },
             {
-                "id": 2000003,
-                "name": "Titan Vanguard",
-                "description": "Um guerreiro alienígena com força descomunal e resistência sobre-humana.",
-                "modified": "2025-03-25T12:15:00-0400",
-                "thumbnail": {
-                    "path": "https://static.wikia.nocookie.net/disney/images/d/d3/Ambrose",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/2000003",
-                "comics": {
-                    "available": 9,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000003/comics",
-                    "items": [],
-                    "returned": 0
-                },
-                "series": {
-                    "available": 3,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000003/series",
-                    "items": [],
-                    "returned": 0
-                },
-                "stories": {
-                    "available": 4,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000003/stories",
-                    "items": [],
-                    "returned": 0
-                },
-                "events": {
-                    "available": 2,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/2000003/events",
-                    "items": [],
-                    "returned": 0
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/2000003/titan_vanguard"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/21741",
+              "name": "Avengers: The Initiative (2007) #16"
             },
             {
-                "id": 1009368,
-                "name": "Iron Man",
-                "description": "Inventor Tony Stark dons his powerful armor to become Iron Man.",
-                "modified": "2024-03-20T10:00:00-0400",
-                "thumbnail": {
-                    "path": "http://i.annihil.us/u/prod/marvel/i/mg/9/c0/527bb7b37ff55",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009368",
-                "comics": {
-                    "available": 1800,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009368/comics",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/16230",
-                            "name": "Iron Man (2005) #1"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "series": {
-                    "available": 100,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009368/series",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/series/2029",
-                            "name": "Iron Man (2005 - 2009)"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "stories": {
-                    "available": 500,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009368/stories",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/1129",
-                            "name": "Iron Man Origin",
-                            "type": "story"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "events": {
-                    "available": 10,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009368/events",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/events/318",
-                            "name": "Civil War"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/29/iron_man"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/21975",
+              "name": "Avengers: The Initiative (2007) #17"
             },
             {
-                "id": 1009610,
-                "name": "Batman",
-                "description": "Bitten by a radioactive spider, Peter Parker became the web-slinging hero Spider-Man.",
-                "modified": "2024-03-20T10:30:00-0400",
-                "thumbnail": {
-                    "path": "https://www.superherodb.com/pictures2/portraits/10/100/639",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009610",
-                "comics": {
-                    "available": 2500,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/comics",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/62315",
-                            "name": "Amazing Spider-Man (2017) #1"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "series": {
-                    "available": 150,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/series",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/series/2258",
-                            "name": "Amazing Spider-Man (1999 - 2013)"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "stories": {
-                    "available": 800,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/stories",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/483",
-                            "name": "Amazing Fantasy #15",
-                            "type": "story"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "events": {
-                    "available": 15,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/events",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/events/310",
-                            "name": "Spider-Verse"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/54/spider-man"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/22299",
+              "name": "Avengers: The Initiative (2007) #18"
             },
             {
-                "id": 1009610,
-                "name": "Batman",
-                "description": "Bitten by a radioactive spider, Peter Parker became the web-slinging hero Spider-Man.",
-                "modified": "2024-03-20T10:30:00-0400",
-                "thumbnail": {
-                    "path": "https://www.superherodb.com/pictures2/portraits/10/100/639",
-                    "extension": "jpg"
-                },
-                "resourceURI": "http://gateway.marvel.com/v1/public/characters/1009610",
-                "comics": {
-                    "available": 2500,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/comics",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/comics/62315",
-                            "name": "Amazing Spider-Man (2017) #1"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "series": {
-                    "available": 150,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/series",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/series/2258",
-                            "name": "Amazing Spider-Man (1999 - 2013)"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "stories": {
-                    "available": 800,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/stories",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/stories/483",
-                            "name": "Amazing Fantasy #15",
-                            "type": "story"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "events": {
-                    "available": 15,
-                    "collectionURI": "http://gateway.marvel.com/v1/public/characters/1009610/events",
-                    "items": [
-                        {
-                            "resourceURI": "http://gateway.marvel.com/v1/public/events/310",
-                            "name": "Spider-Verse"
-                        }
-                    ],
-                    "returned": 1
-                },
-                "urls": [
-                    {
-                        "type": "detail",
-                        "url": "http://marvel.com/characters/54/spider-man"
-                    }
-                ]
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/22300",
+              "name": "Avengers: The Initiative (2007) #18"
             },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/22506",
+              "name": "Avengers: The Initiative (2007) #19"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/8500",
+              "name": "Deadpool (1997) #44"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/10223",
+              "name": "Marvel Premiere (1972) #35"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/10224",
+              "name": "Marvel Premiere (1972) #36"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/comics/10225",
+              "name": "Marvel Premiere (1972) #37"
+            }
+          ],
+          "returned": 12
+        },
+        "series": {
+          "available": 3,
+          "collectionURI": "https://gateway.marvel.com/v1/public/characters/1011334/series",
+          "items": [
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/series/1945",
+              "name": "Avengers: The Initiative (2007 - 2010)"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/series/2005",
+              "name": "Deadpool (1997 - 2002)"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/series/2045",
+              "name": "Marvel Premiere (1972 - 1981)"
+            }
+          ],
+          "returned": 3
+        },
+        "stories": {
+          "available": 21,
+          "collectionURI": "https://gateway.marvel.com/v1/public/characters/1011334/stories",
+          "items": [
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19947",
+              "name": "Cover #19947",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19948",
+              "name": "The 3-D Man!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19949",
+              "name": "Cover #19949",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19950",
+              "name": "The Devil's Music!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19951",
+              "name": "Cover #19951",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/19952",
+              "name": "Code-Name:  The Cold Warrior!",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/54371",
+              "name": "Avengers: The Initiative (2007) #14, Spotlight Variant - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47185",
+              "name": "Avengers: The Initiative (2007) #14 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47499",
+              "name": "Avengers: The Initiative (2007) #15 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47793",
+              "name": "Avengers: The Initiative (2007) #16 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/48362",
+              "name": "Avengers: The Initiative (2007) #17 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/49104",
+              "name": "Avengers: The Initiative (2007) #18 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/49106",
+              "name": "Avengers: The Initiative (2007) #18, Zombie Variant - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/49889",
+              "name": "Avengers: The Initiative (2007) #19 - Int",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/96303",
+              "name": "Deadpool (1997) #44",
+              "type": "interiorStory"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47184",
+              "name": "AVENGERS: THE INITIATIVE (2007) #14",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47498",
+              "name": "AVENGERS: THE INITIATIVE (2007) #15",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/47792",
+              "name": "AVENGERS: THE INITIATIVE (2007) #16",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/48361",
+              "name": "AVENGERS: THE INITIATIVE (2007) #17",
+              "type": "cover"
+            },
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/stories/49103",
+              "name": "AVENGERS: THE INITIATIVE (2007) #18",
+              "type": "cover"
+            }
+          ],
+          "returned": 20
+        },
+        "events": {
+          "available": 1,
+          "collectionURI": "https://gateway.marvel.com/v1/public/characters/1011334/events",
+          "items": [
+            {
+              "resourceURI": "https://gateway.marvel.com/v1/public/events/269",
+              "name": "Secret Invasion"
+            }
+          ],
+          "returned": 1
+        },
+        "urls": [
+          {
+            "type": "detail",
+            "url": "http://marvel.com/characters/74/3-d_man?utm_campaign=apiRef&utm_source=2d3ac0101de18496f6b5c82497503ed8"
+          },
+          {
+            "type": "wiki",
+            "url": "http://marvel.com/universe/3-D_Man_(Chandler)?utm_campaign=apiRef&utm_source=2d3ac0101de18496f6b5c82497503ed8"
+          },
+          {
+            "type": "comiclink",
+            "url": "http://marvel.com/comics/characters/1011334/3-d_man?utm_campaign=apiRef&utm_source=2d3ac0101de18496f6b5c82497503ed8"
+          }
         ]
-    }
+      }
+    ]
+  }
 }

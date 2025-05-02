@@ -27,7 +27,6 @@ class MarvelMainViewModel {
     
     // MARK: - Networking Methods
     func getData(offset: Int) {
-//        print(NetworkConstant.shared.offset)
         if isLoading.value ?? true {
             return
         }

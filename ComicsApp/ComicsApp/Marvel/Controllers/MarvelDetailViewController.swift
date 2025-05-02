@@ -1,9 +1,3 @@
-//
-//  DetailViewController.swift
-//  ComicsApp
-//
-//  Created by Mariana Alexandre Dos Santos on 21/03/2025.
-//
 import Foundation
 import UIKit
 import SDWebImage
@@ -12,6 +6,8 @@ class MarvelDetailViewController: UIViewController {
     
     // MARK: - Properties
     var character: MarvelCharacterViewModel?
+    
+    private var responsiveButtons: [UIButton] = []
     
     private let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
@@ -38,11 +34,25 @@ class MarvelDetailViewController: UIViewController {
     
     private let nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: "Impact", size: 25)
+        let baseFont = UIFont(name: "Impact", size: 25)!
+        label.font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: baseFont)
+        label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .center
         label.textColor = .systemYellow
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
+    }()
+    
+    private let buttonsStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.alignment = .center
+        stackView.distribution = .fillEqually
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        return stackView
     }()
     
     // MARK: - Lifecycle Methods
@@ -52,6 +62,11 @@ class MarvelDetailViewController: UIViewController {
         
         setupUI()
         configure()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        changeStackView()
     }
     
     // MARK: - UI Setup Methods
@@ -102,15 +117,10 @@ class MarvelDetailViewController: UIViewController {
         let seriesButton = MarvelCreateButtons.createButton(title: "Series", action: #selector(scrollToSeriesBox))
         let eventsButton = MarvelCreateButtons.createButton(title: "Events", action: #selector(scrollToEventsBox))
         
-        let buttonsStackView = UIStackView(arrangedSubviews: [comicsButton, storiesButton, seriesButton, eventsButton])
-        buttonsStackView.axis = .horizontal
-        buttonsStackView.spacing = 10
-        buttonsStackView.alignment = .center
-        buttonsStackView.distribution = .fillEqually
-        buttonsStackView.translatesAutoresizingMaskIntoConstraints = false
+        responsiveButtons = [comicsButton, storiesButton, seriesButton, eventsButton]
+        responsiveButtons.forEach { buttonsStackView.addArrangedSubview($0) }
         
         contentView.addSubview(buttonsStackView)
-        
         contentView.addSubview(characterBox)
         contentView.addSubview(comicsBox)
         contentView.addSubview(storiesBox)
@@ -118,19 +128,22 @@ class MarvelDetailViewController: UIViewController {
         contentView.addSubview(eventsBox)
         
         NSLayoutConstraint.activate([
-            buttonsStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
-            buttonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            buttonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                        
-            imageView.topAnchor.constraint(equalTo: buttonsStackView.topAnchor, constant: 50),
+            
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 30),
             imageView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
             imageView.widthAnchor.constraint(equalToConstant: 200),
             imageView.heightAnchor.constraint(equalToConstant: 200),
             
             nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
             nameLabel.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            nameLabel.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 20),
+            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
             
-            characterBox.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 10),
+            buttonsStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20),
+            buttonsStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            buttonsStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            
+            characterBox.topAnchor.constraint(equalTo: buttonsStackView.bottomAnchor, constant: 20),
             characterBox.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             characterBox.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             
@@ -151,6 +164,22 @@ class MarvelDetailViewController: UIViewController {
             eventsBox.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             eventsBox.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
+    }
+    
+    // MARK: - Responsive StackView
+    private func changeStackView() {
+        let totalButtonWidth = responsiveButtons.reduce(0) { $0 + $1.intrinsicContentSize.width }
+            let spacing = buttonsStackView.spacing * CGFloat(responsiveButtons.count - 1)
+            let totalWidth = totalButtonWidth + spacing
+            let availableWidth = view.bounds.width - contentView.layoutMargins.left - contentView.layoutMargins.right
+            
+            if totalWidth - 10 > availableWidth {
+                buttonsStackView.axis = .vertical
+                buttonsStackView.alignment = .fill
+            } else {
+                buttonsStackView.axis = .horizontal
+                buttonsStackView.alignment = .center
+            }
     }
 
     // MARK: - Configuration Methods
@@ -180,9 +209,9 @@ class MarvelDetailViewController: UIViewController {
     }
     
     private func scrollToView(withTag tag: Int) {
-        if let targetView = contentView.viewWithTag(tag) { // Esta funcao procura um elemento na tela com aquela tag
-            let offset = CGPoint(x: 0, y: targetView.frame.origin.y) // calculo de quanto precisa de dar scroll para chegar a um sitio na tela
-            scrollView.setContentOffset(offset, animated: true) // dá scroll
+        if let targetView = contentView.viewWithTag(tag) {
+            let offset = CGPoint(x: 0, y: targetView.frame.origin.y)
+            scrollView.setContentOffset(offset, animated: true)
         }
     }
 }

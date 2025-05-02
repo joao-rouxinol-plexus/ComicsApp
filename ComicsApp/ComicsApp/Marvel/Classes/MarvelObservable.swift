@@ -17,7 +17,6 @@ class MarvelObservable <T> {
             }
         }
     }
-    
     private var listeners: ((T?) -> Void)?
     
     // MARK: - Initializer
