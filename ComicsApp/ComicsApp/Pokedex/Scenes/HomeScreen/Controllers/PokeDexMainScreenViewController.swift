@@ -10,6 +10,7 @@ import SDWebImage
 class PokeDexMainScreenViewController: UIViewController {
     
     var viewModel: PokemonMainViewModel = PokemonMainViewModel()
+    private var originalNavigationBar: UINavigationBarAppearance?
     
     @IBOutlet weak var PokemonTableView: UITableView!
     
@@ -19,14 +20,24 @@ class PokeDexMainScreenViewController: UIViewController {
             self.setupTableView()
         }
         self.title = "Pokémon List"
+        if let navBar = navigationController?.navigationBar {
+            originalNavigationBar = navBar.standardAppearance
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = false
         if let navigationController = self.navigationController {
+            
+            navigationController.navigationBar.prefersLargeTitles = false
             navigationController.navigationBar.tintColor = .red
-            navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.red]
+
+            if let appearance = originalNavigationBar {
+                appearance.configureWithOpaqueBackground()
+                navigationController.navigationBar.standardAppearance = appearance
+                navigationController.navigationBar.scrollEdgeAppearance = appearance
+                navigationController.navigationBar.compactAppearance = appearance
+            }
         }
     }
     
