@@ -22,14 +22,23 @@ final class CharacterEpisodesCollectionViewCellViewModel {
     private func getEpisodeData(episodeURLString : String) {
         
         APICaller.getEpisodes(from: episodeURLString) { result in
+            
             switch result {
                 
             case .success(let episodeData):
                 self.episodeData = episodeData
+                self.splitString(string: episodeData.episode)
                 
             case .failure(let error):
                 print(error)
             }
         }
+    }
+    
+    private func splitString(string: String) {
+        
+        let newString = string.replacingOccurrences(of: "S" , with: "Season: ")
+            .replacingOccurrences(of: "E" , with: " Episode: ")
+        episodeData?.episode = newString
     }
 }

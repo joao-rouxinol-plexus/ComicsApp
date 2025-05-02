@@ -89,6 +89,7 @@ public class APICaller {
             do {
                 
                 let resultData = try JSONDecoder().decode(EpisodesModel.self, from: data)
+                
                 DispatchQueue.main.async{
                     completionHandler(.success(resultData))
                 }

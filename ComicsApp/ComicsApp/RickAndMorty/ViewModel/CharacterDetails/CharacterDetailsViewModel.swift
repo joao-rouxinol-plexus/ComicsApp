@@ -45,7 +45,7 @@ class CharacterDetailsViewModel {
                 .init(value: character.origin.name, type: .origin),
             ]),
             .episodes(viewModel: character.episode.compactMap({
-                return CharacterEpisodesCollectionViewCellViewModel(episodeURL:  $0)
+                return CharacterEpisodesCollectionViewCellViewModel(episodeURL: $0)
             }))
         ]
     }

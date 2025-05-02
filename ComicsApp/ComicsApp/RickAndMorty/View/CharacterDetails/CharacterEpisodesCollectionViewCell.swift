@@ -56,6 +56,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         contentView.round()
         contentView.addBorder()
         setUpConstrains()
+        setUpAcessibility()
     }
     
     required init?(coder: NSCoder) {
@@ -73,7 +74,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.axis = .vertical
-        stackView.distribution = .fillEqually
+        stackView.distribution = .fillProportionally
         stackView.spacing = 2
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -104,5 +105,18 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         airDateLabel.text = viewModel.episodeData?.airDate
         headerLabel.text = "EPISODE DETAILS"
     }
-    
+        
+        private func setUpAcessibility() {
+            
+            episodeNameLabel.isAccessibilityElement = true
+            episodeNameLabel.accessibilityHint = "Episode name"
+            
+            episodeLabel.isAccessibilityElement = true
+            episodeLabel.accessibilityHint = "Episode season and number"
+            
+            airDateLabel.isAccessibilityElement = true
+            airDateLabel.accessibilityHint = "Air date of the episode"
+            
+            
+        }
 }
