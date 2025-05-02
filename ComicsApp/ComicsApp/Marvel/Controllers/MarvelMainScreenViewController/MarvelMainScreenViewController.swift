@@ -38,13 +38,12 @@ class MarvelMainScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.prefersLargeTitles = false
+        navigationController?.setupMarvelNavBar()
     }
     
     // MARK: - Setup
     func setup() {
         setupTableView()
-        navigationController?.setupMarvelNavBar()
-        
         let titleLabel = UILabel()
         let baseFont = UIFont.boldSystemFont(ofSize: 20)
         titleLabel.font = UIFontMetrics(forTextStyle: .title1).scaledFont(for: baseFont)
