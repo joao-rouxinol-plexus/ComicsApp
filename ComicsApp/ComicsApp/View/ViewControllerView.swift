@@ -47,7 +47,9 @@ class ViewControllerView : UIView{
         pokeImageView.contentMode = .scaleAspectFill
         pokeImageView.image = viewModel.pokemonImage
         pokeImageView.isUserInteractionEnabled = true
-        
+        pokeImageView.isAccessibilityElement = true
+        pokeImageView.accessibilityLabel = "Pokémon"
+        pokeImageView.accessibilityTraits = .button
         
         marvelImageView.translatesAutoresizingMaskIntoConstraints = false
         marvelImageView.round()

@@ -19,11 +19,10 @@ public class PokemonApiCaller {
                let resultData = try? JSONDecoder().decode(Pokemon.self, from: data) {
                 completionHandler(resultData)
             } else {
-                print("erro. rawdata: \(String(describing: dataResponse))")
+                print("Error. Rawdata: \(String(describing: dataResponse))")
             }
         }.resume()
     }
-    
     
     static func listSpecies(urlstring: String, completionHandler: @escaping (_ result: PokemonList) -> Void) {
         
@@ -35,8 +34,9 @@ public class PokemonApiCaller {
                let resultData = try? JSONDecoder().decode(PokemonList.self, from: data) {
                 completionHandler(resultData)
             } else {
-                print("erro. rawdata: \(String(describing: dataResponse))")
+                print("Error. Rawdata: \(String(describing: dataResponse))")
             }
         }.resume()
     }
+    
 }

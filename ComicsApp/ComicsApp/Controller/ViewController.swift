@@ -31,10 +31,14 @@ class ViewController: UIViewController {
         self.view = detailView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Comics App"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         detailView.getUniverseTapped = { [weak self] tappedImg in
             
