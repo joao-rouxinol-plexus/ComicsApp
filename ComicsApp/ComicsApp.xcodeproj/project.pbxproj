@@ -15,7 +15,6 @@
 		6D2F38732DA7BEB600268E44 /* Rick&MortyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F38472DA7BEB600268E44 /* Rick&MortyMainViewController.xib */; };
 		6D2F38742DA7BEB600268E44 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F386B2DA7BEB600268E44 /* LaunchScreen.storyboard */; };
 		6D2F38752DA7BEB600268E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F383D2DA7BEB600268E44 /* Assets.xcassets */; };
-		6D2F38762DA7BEB600268E44 /* PokeDexMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F383B2DA7BEB600268E44 /* PokeDexMainScreenViewController.xib */; };
 		6D2F38782DA7BEB600268E44 /* RickMortyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F38442DA7BEB600268E44 /* RickMortyMainViewController.xib */; };
 		6D2F38792DA7BEB600268E44 /* CharacterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F38522DA7BEB600268E44 /* CharacterViewCell.xib */; };
 		6D2F387B2DA7BEB600268E44 /* PokemonApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F382A2DA7BEB600268E44 /* PokemonApiCaller.swift */; };
@@ -131,7 +130,6 @@
 		6D2F38362DA7BEB600268E44 /* PokemonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonViewModel.swift; sourceTree = "<group>"; };
 		6D2F38382DA7BEB600268E44 /* listNav.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = listNav.swift; sourceTree = "<group>"; };
 		6D2F38392DA7BEB600268E44 /* PokeCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokeCellTableViewCell.swift; sourceTree = "<group>"; };
-		6D2F383B2DA7BEB600268E44 /* PokeDexMainScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokeDexMainScreenViewController.xib; sourceTree = "<group>"; };
 		6D2F383D2DA7BEB600268E44 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6D2F383F2DA7BEB600268E44 /* Observable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
 		6D2F38412DA7BEB600268E44 /* CharactersDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDetailsController.swift; sourceTree = "<group>"; };
@@ -563,7 +561,6 @@
 		6D2F97E92DBA2AE800008F85 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				6D2F383B2DA7BEB600268E44 /* PokeDexMainScreenViewController.xib */,
 				6D2F38392DA7BEB600268E44 /* PokeCellTableViewCell.swift */,
 			);
 			path = View;
@@ -788,7 +785,6 @@
 				6D2F38732DA7BEB600268E44 /* Rick&MortyMainViewController.xib in Resources */,
 				6D2F38742DA7BEB600268E44 /* LaunchScreen.storyboard in Resources */,
 				6D2F38752DA7BEB600268E44 /* Assets.xcassets in Resources */,
-				6D2F38762DA7BEB600268E44 /* PokeDexMainScreenViewController.xib in Resources */,
 				6D2F38782DA7BEB600268E44 /* RickMortyMainViewController.xib in Resources */,
 				6D2F38792DA7BEB600268E44 /* CharacterViewCell.xib in Resources */,
 				6D49FFA72DA7FE1E001DFF79 /* PokemonUnitTestAPIResponse.json in Resources */,
