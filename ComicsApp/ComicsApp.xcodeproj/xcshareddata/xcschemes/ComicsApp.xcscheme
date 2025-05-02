@@ -31,7 +31,7 @@
       shouldAutocreateTestPlan = "YES">
       <Testables>
          <TestableReference
-            skipped = "NO"
+            skipped = "YES"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -40,14 +40,9 @@
                BlueprintName = "ComicsAppTests"
                ReferencedContainer = "container:ComicsApp.xcodeproj">
             </BuildableReference>
-            <SkippedTests>
-               <Test
-                  Identifier = "ComicsAppTests">
-               </Test>
-            </SkippedTests>
          </TestableReference>
          <TestableReference
-            skipped = "NO"
+            skipped = "YES"
             parallelizable = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
@@ -56,47 +51,33 @@
                BlueprintName = "ComicsAppUITests"
                ReferencedContainer = "container:ComicsApp.xcodeproj">
             </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "YES"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6D2F38A92DA7D74D00268E44"
+               BuildableName = "PokemonTests.xctest"
+               BlueprintName = "PokemonTests"
+               ReferencedContainer = "container:ComicsApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6D3AB9BD2DA7D86900DE72CB"
+               BuildableName = "PokedexTests.xctest"
+               BlueprintName = "PokedexTests"
+               ReferencedContainer = "container:ComicsApp.xcodeproj">
+            </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "ComicsAppUITests">
-               </Test>
-               <Test
-                  Identifier = "ComicsAppUITestsLaunchTests">
+                  Identifier = "PokedexTests/testPerformanceExample()">
                </Test>
             </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0CB330122DA8071B00837977"
-               BuildableName = "MarvelAppTests.xctest"
-               BlueprintName = "MarvelAppTests"
-               ReferencedContainer = "container:ComicsApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0CB330442DA8098300837977"
-               BuildableName = "MarvelAppTest2.xctest"
-               BlueprintName = "MarvelAppTest2"
-               ReferencedContainer = "container:ComicsApp.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO"
-            parallelizable = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0CB330512DA809C800837977"
-               BuildableName = "MarvelTests.xctest"
-               BlueprintName = "MarvelTests"
-               ReferencedContainer = "container:ComicsApp.xcodeproj">
-            </BuildableReference>
          </TestableReference>
       </Testables>
    </TestAction>
