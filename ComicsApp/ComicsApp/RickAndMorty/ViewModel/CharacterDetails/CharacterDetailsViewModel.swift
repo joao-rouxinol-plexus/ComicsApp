@@ -11,7 +11,12 @@ class CharacterDetailsViewModel {
     
     private let character: Character
     
+    public var getCharacterName: String {
+        return character.name
+    }
+    
     enum SectionType {
+        
         case photo(viewModel: CharacterPhotoCollectionViewCellViewModel)
         
         case information(viewModel: [CharacterInformationCollectionViewCellViewModel])
@@ -28,6 +33,8 @@ class CharacterDetailsViewModel {
         setUpSections()
     }
     
+    // MARK: - Sections Setup
+    
     private func setUpSections() {
         sections = [
             .photo(viewModel: .init(imageUrl: URL(string: character.image))),
@@ -36,17 +43,14 @@ class CharacterDetailsViewModel {
                 .init(value: character.gender.rawValue, type: .gender),
                 .init(value: character.species, type: .species),
                 .init(value: character.origin.name, type: .origin),
-                .init(value: character.location.name, type: .location),
-                .init(value: "\(character.episode.count)", type: .episodeCount)
             ]),
             .episodes(viewModel: character.episode.compactMap({
-                return CharacterEpisodesCollectionViewCellViewModel(episodeURL: URL(string: $0))
+                return CharacterEpisodesCollectionViewCellViewModel(episodeURL: $0)
             }))
         ]
-        
     }
     
-    //    MARKS: - Layouts
+    // MARK: - Layouts
     
     func createPhotoSectionLayout() -> NSCollectionLayoutSection {
         
@@ -62,7 +66,9 @@ class CharacterDetailsViewModel {
                                                                               ),
                                                      subitems: [item]
         )
+        
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
@@ -81,6 +87,7 @@ class CharacterDetailsViewModel {
                                                        subitems: [item, item]
         )
         let section = NSCollectionLayoutSection(group: group)
+        
         return section
     }
     
@@ -93,17 +100,16 @@ class CharacterDetailsViewModel {
         item.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5)
         
         let group = NSCollectionLayoutGroup.horizontal(layoutSize:
-                                                        NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
+                                                        NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.9),
                                                                                heightDimension: .absolute(150)
                                                                               ),
                                                        subitems: [item]
         )
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.orthogonalScrollingBehavior = .groupPaging
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        
         return section
     }
     
-    public var getCharacterName: String {
-            return character.name
-        }
 }

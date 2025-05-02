@@ -16,13 +16,14 @@ class RickMortyMainViewController: UIViewController {
     var cellDataSource : [CharacterTableCellViewModel] = []
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
         configView()
         bindViewModel()
     }
 
-    func configView(){
+    func configView() {
         
         self.title = "Characters"
         self.view.backgroundColor = .systemBackground
@@ -31,15 +32,17 @@ class RickMortyMainViewController: UIViewController {
         viewModel.getData()
     }
     
-    func bindViewModel(){
+    func bindViewModel() {
+        
         viewModel.isLoading.bind { [weak self] isLoading in
             guard let self = self ,let isLoading = isLoading else {
                 return
             }
+            
             DispatchQueue.main.async {
                 if isLoading {
                     self.activityIndicator.startAnimating()
-                }else {
+                } else {
                     self.activityIndicator.stopAnimating()
                 }
             }
@@ -56,10 +59,12 @@ class RickMortyMainViewController: UIViewController {
         }
     }
     
-    func openDetail(charaterId: Int){
-        guard let character = viewModel.retrieveCharacter(whit: charaterId) else{
+    func openDetail(charaterId: Int) {
+        
+        guard let character = viewModel.retrieveCharacter(whit: charaterId) else {
             return
         }
+        
         let detailsViewModel = CharacterDetailsViewModel(character: character)
         let detailsController = CharactersDetailsController(viewModel: detailsViewModel)
         

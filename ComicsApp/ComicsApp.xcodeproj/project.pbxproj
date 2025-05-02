@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A908F1B2DC5237500F721E8 /* CharacterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5A908F1A2DC5237500F721E8 /* CharacterViewCell.xib */; };
+		5A908F1C2DC5237500F721E8 /* CharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A908F192DC5237500F721E8 /* CharacterViewCell.swift */; };
+		5A908F1F2DC5238500F721E8 /* CharactersDetailsControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A908F1D2DC5238500F721E8 /* CharactersDetailsControllerExtensions.swift */; };
+		5A908F202DC5238500F721E8 /* RickMortyMainViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A908F1E2DC5238500F721E8 /* RickMortyMainViewController+TableViewController.swift */; };
 		6B81B1892D79DCBB0034BCB9 /* ComicsAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81B1882D79DCBB0034BCB9 /* ComicsAppTests.swift */; };
 		6B81B1932D79DCBB0034BCB9 /* ComicsAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81B1922D79DCBB0034BCB9 /* ComicsAppUITests.swift */; };
 		6B81B1952D79DCBB0034BCB9 /* ComicsAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B81B1942D79DCBB0034BCB9 /* ComicsAppUITestsLaunchTests.swift */; };
@@ -17,15 +21,12 @@
 		6D2F38752DA7BEB600268E44 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F383D2DA7BEB600268E44 /* Assets.xcassets */; };
 		6D2F38762DA7BEB600268E44 /* PokeDexMainScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F383B2DA7BEB600268E44 /* PokeDexMainScreenViewController.xib */; };
 		6D2F38782DA7BEB600268E44 /* RickMortyMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F38442DA7BEB600268E44 /* RickMortyMainViewController.xib */; };
-		6D2F38792DA7BEB600268E44 /* CharacterViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6D2F38522DA7BEB600268E44 /* CharacterViewCell.xib */; };
 		6D2F387B2DA7BEB600268E44 /* PokemonApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F382A2DA7BEB600268E44 /* PokemonApiCaller.swift */; };
-		6D2F387C2DA7BEB600268E44 /* CharacterViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38512DA7BEB600268E44 /* CharacterViewCell.swift */; };
 		6D2F387D2DA7BEB600268E44 /* PokemonListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38332DA7BEB600268E44 /* PokemonListViewModel.swift */; };
 		6D2F387E2DA7BEB600268E44 /* PokemonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38252DA7BEB600268E44 /* PokemonList.swift */; };
 		6D2F387F2DA7BEB600268E44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38682DA7BEB600268E44 /* AppDelegate.swift */; };
 		6D2F38802DA7BEB600268E44 /* PokeCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38392DA7BEB600268E44 /* PokeCellTableViewCell.swift */; };
 		6D2F38812DA7BEB600268E44 /* CharacterInformationCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F385F2DA7BEB600268E44 /* CharacterInformationCollectionViewCellViewModel.swift */; };
-		6D2F38822DA7BEB600268E44 /* RickMortyMainViewController+TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38452DA7BEB600268E44 /* RickMortyMainViewController+TableViewController.swift */; };
 		6D2F38832DA7BEB600268E44 /* CharacterEpisodesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38552DA7BEB600268E44 /* CharacterEpisodesCollectionViewCell.swift */; };
 		6D2F38842DA7BEB600268E44 /* CharacterPhotoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38602DA7BEB600268E44 /* CharacterPhotoCollectionViewCellViewModel.swift */; };
 		6D2F38852DA7BEB600268E44 /* CharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D2F38572DA7BEB600268E44 /* CharacterPhotoCollectionViewCell.swift */; };
@@ -107,6 +108,10 @@
 		0B37627B709F317A472986FF /* Pods_ComicsAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ComicsAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		211C63AC9E674072205D2A13 /* Pods-ComicsAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsAppTests.release.xcconfig"; path = "Target Support Files/Pods-ComicsAppTests/Pods-ComicsAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		46314216226167D9F9FA5500 /* Pods-ComicsApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsApp.release.xcconfig"; path = "Target Support Files/Pods-ComicsApp/Pods-ComicsApp.release.xcconfig"; sourceTree = "<group>"; };
+		5A908F192DC5237500F721E8 /* CharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewCell.swift; sourceTree = "<group>"; };
+		5A908F1A2DC5237500F721E8 /* CharacterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewCell.xib; sourceTree = "<group>"; };
+		5A908F1D2DC5238500F721E8 /* CharactersDetailsControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDetailsControllerExtensions.swift; sourceTree = "<group>"; };
+		5A908F1E2DC5238500F721E8 /* RickMortyMainViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RickMortyMainViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		64C99FF7E8157E96EE83C38A /* Pods-ComicsAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ComicsAppTests.debug.xcconfig"; path = "Target Support Files/Pods-ComicsAppTests/Pods-ComicsAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B81B16E2D79DCBA0034BCB9 /* ComicsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ComicsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B81B1842D79DCBB0034BCB9 /* ComicsAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ComicsAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -137,15 +142,12 @@
 		6D2F38412DA7BEB600268E44 /* CharactersDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersDetailsController.swift; sourceTree = "<group>"; };
 		6D2F38432DA7BEB600268E44 /* RickMortyMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickMortyMainViewController.swift; sourceTree = "<group>"; };
 		6D2F38442DA7BEB600268E44 /* RickMortyMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RickMortyMainViewController.xib; sourceTree = "<group>"; };
-		6D2F38452DA7BEB600268E44 /* RickMortyMainViewController+TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RickMortyMainViewController+TableViewController.swift"; sourceTree = "<group>"; };
 		6D2F38472DA7BEB600268E44 /* Rick&MortyMainViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "Rick&MortyMainViewController.xib"; sourceTree = "<group>"; };
 		6D2F38492DA7BEB600268E44 /* UIViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtensions.swift; sourceTree = "<group>"; };
 		6D2F384B2DA7BEB600268E44 /* CharactersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersModel.swift; sourceTree = "<group>"; };
 		6D2F384C2DA7BEB600268E44 /* EpisodesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesModel.swift; sourceTree = "<group>"; };
 		6D2F384E2DA7BEB600268E44 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		6D2F384F2DA7BEB600268E44 /* NetworkConstant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstant.swift; sourceTree = "<group>"; };
-		6D2F38512DA7BEB600268E44 /* CharacterViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewCell.swift; sourceTree = "<group>"; };
-		6D2F38522DA7BEB600268E44 /* CharacterViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CharacterViewCell.xib; sourceTree = "<group>"; };
 		6D2F38542DA7BEB600268E44 /* CharacterDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailView.swift; sourceTree = "<group>"; };
 		6D2F38552DA7BEB600268E44 /* CharacterEpisodesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodesCollectionViewCell.swift; sourceTree = "<group>"; };
 		6D2F38562DA7BEB600268E44 /* CharacterInformationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInformationCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -182,6 +184,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		5A73DF252DB7EC7000936330 /* ViewModel */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModel; sourceTree = "<group>"; };
+		5A73DF282DB7F43000936330 /* Controllers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Controllers; sourceTree = "<group>"; };
 		6D3AB9BF2DA7D86900DE72CB /* PokedexTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = PokedexTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
@@ -227,6 +231,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5A73DF1C2DB7C91D00936330 /* Rick&MortyAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				5A73DF282DB7F43000936330 /* Controllers */,
+				5A73DF252DB7EC7000936330 /* ViewModel */,
+			);
+			path = "Rick&MortyAppTests";
+			sourceTree = "<group>";
+		};
+		5A908EE82DC5218500F721E8 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		6B81B1652D79DCBA0034BCB9 = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +257,7 @@
 				A8CDD4C7C3EDDEFB28BD17C5 /* Pods */,
 				8148178125C22B47D9F68ADF /* Frameworks */,
 				6D2F38702DA7BEB600268E44 /* ComicsApp */,
+				5A908EE82DC5218500F721E8 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -256,6 +277,7 @@
 			isa = PBXGroup;
 			children = (
 				6B81B1882D79DCBB0034BCB9 /* ComicsAppTests.swift */,
+				5A73DF1C2DB7C91D00936330 /* Rick&MortyAppTests */,
 			);
 			path = ComicsAppTests;
 			sourceTree = "<group>";
@@ -411,7 +433,6 @@
 			children = (
 				6D2F38432DA7BEB600268E44 /* RickMortyMainViewController.swift */,
 				6D2F38442DA7BEB600268E44 /* RickMortyMainViewController.xib */,
-				6D2F38452DA7BEB600268E44 /* RickMortyMainViewController+TableViewController.swift */,
 			);
 			path = MainViewController;
 			sourceTree = "<group>";
@@ -429,6 +450,8 @@
 		6D2F384A2DA7BEB600268E44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5A908F1D2DC5238500F721E8 /* CharactersDetailsControllerExtensions.swift */,
+				5A908F1E2DC5238500F721E8 /* RickMortyMainViewController+TableViewController.swift */,
 				6D2F38492DA7BEB600268E44 /* UIViewExtensions.swift */,
 			);
 			path = Extensions;
@@ -455,8 +478,8 @@
 		6D2F38532DA7BEB600268E44 /* Character */ = {
 			isa = PBXGroup;
 			children = (
-				6D2F38512DA7BEB600268E44 /* CharacterViewCell.swift */,
-				6D2F38522DA7BEB600268E44 /* CharacterViewCell.xib */,
+				5A908F192DC5237500F721E8 /* CharacterViewCell.swift */,
+				5A908F1A2DC5237500F721E8 /* CharacterViewCell.xib */,
 			);
 			path = Character;
 			sourceTree = "<group>";
@@ -657,6 +680,10 @@
 			dependencies = (
 				6B81B1862D79DCBB0034BCB9 /* PBXTargetDependency */,
 			);
+			fileSystemSynchronizedGroups = (
+				5A73DF252DB7EC7000936330 /* ViewModel */,
+				5A73DF282DB7F43000936330 /* Controllers */,
+			);
 			name = ComicsAppTests;
 			productName = ComicsAppTests;
 			productReference = 6B81B1842D79DCBB0034BCB9 /* ComicsAppTests.xctest */;
@@ -785,12 +812,12 @@
 			files = (
 				6D2F38712DA7BEB600268E44 /* MarvelMainScreenViewController.xib in Resources */,
 				6D2F38722DA7BEB600268E44 /* Main.storyboard in Resources */,
+				5A908F1B2DC5237500F721E8 /* CharacterViewCell.xib in Resources */,
 				6D2F38732DA7BEB600268E44 /* Rick&MortyMainViewController.xib in Resources */,
 				6D2F38742DA7BEB600268E44 /* LaunchScreen.storyboard in Resources */,
 				6D2F38752DA7BEB600268E44 /* Assets.xcassets in Resources */,
 				6D2F38762DA7BEB600268E44 /* PokeDexMainScreenViewController.xib in Resources */,
 				6D2F38782DA7BEB600268E44 /* RickMortyMainViewController.xib in Resources */,
-				6D2F38792DA7BEB600268E44 /* CharacterViewCell.xib in Resources */,
 				6D49FFA72DA7FE1E001DFF79 /* PokemonUnitTestAPIResponse.json in Resources */,
 				6D49FFA92DA80384001DFF79 /* PokemonListingUnitTestAPIResponse.json in Resources */,
 			);
@@ -943,17 +970,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D2F387B2DA7BEB600268E44 /* PokemonApiCaller.swift in Sources */,
-				6D2F387C2DA7BEB600268E44 /* CharacterViewCell.swift in Sources */,
 				6D2F387D2DA7BEB600268E44 /* PokemonListViewModel.swift in Sources */,
 				6D2F387E2DA7BEB600268E44 /* PokemonList.swift in Sources */,
 				6D2F387F2DA7BEB600268E44 /* AppDelegate.swift in Sources */,
 				6D2F38802DA7BEB600268E44 /* PokeCellTableViewCell.swift in Sources */,
 				6D2F38812DA7BEB600268E44 /* CharacterInformationCollectionViewCellViewModel.swift in Sources */,
-				6D2F38822DA7BEB600268E44 /* RickMortyMainViewController+TableViewController.swift in Sources */,
 				6D2F38832DA7BEB600268E44 /* CharacterEpisodesCollectionViewCell.swift in Sources */,
 				6D2F38842DA7BEB600268E44 /* CharacterPhotoCollectionViewCellViewModel.swift in Sources */,
 				6D2F38852DA7BEB600268E44 /* CharacterPhotoCollectionViewCell.swift in Sources */,
 				6DAA260C2DBA289F00CFD540 /* PokemonStatCell.swift in Sources */,
+				5A908F1F2DC5238500F721E8 /* CharactersDetailsControllerExtensions.swift in Sources */,
+				5A908F202DC5238500F721E8 /* RickMortyMainViewController+TableViewController.swift in Sources */,
 				6D2F38862DA7BEB600268E44 /* ViewControllerViewModel.swift in Sources */,
 				6D2F38872DA7BEB600268E44 /* listNav.swift in Sources */,
 				6DAA260A2DBA289000CFD540 /* PokemonHeightAndInfoCell.swift in Sources */,
@@ -976,6 +1003,7 @@
 				6D2F38952DA7BEB600268E44 /* UIViewExtensions.swift in Sources */,
 				6D2F38962DA7BEB600268E44 /* APICaller.swift in Sources */,
 				6D2F38972DA7BEB600268E44 /* PokemonViewModel.swift in Sources */,
+				5A908F1C2DC5237500F721E8 /* CharacterViewCell.swift in Sources */,
 				6D2F38982DA7BEB600268E44 /* CharacterInformationCollectionViewCell.swift in Sources */,
 				6D2F38992DA7BEB600268E44 /* PokemonSpecies.swift in Sources */,
 				6D2F389A2DA7BEB600268E44 /* RickMortyMainViewController.swift in Sources */,

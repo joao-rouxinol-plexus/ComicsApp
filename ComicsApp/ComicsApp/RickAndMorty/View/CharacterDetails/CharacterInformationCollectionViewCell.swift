@@ -44,11 +44,12 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
     
     //    MARK: - Init
     
-    override init(frame: CGRect){
+    override init(frame: CGRect) {
+        
         super.init(frame: frame)
         contentView.backgroundColor = .tertiarySystemBackground
         contentView.round()
-        contentView.addBorder(color: .systemGray, width: 1.0)
+        contentView.addBorder()
         contentView.layer.masksToBounds = true
         contentView.addSubview(valueLabel)
         contentView.addSubview(titleContainerView)
@@ -61,7 +62,8 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         fatalError()
     }
     
-    private func setUpConstrains(){
+    private func setUpConstrains() {
+        
         NSLayoutConstraint.activate([
             titleContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             titleContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
@@ -86,6 +88,7 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
     }
     
     override func prepareForReuse() {
+        
         super.prepareForReuse()
         valueLabel.text = nil
         titleLabel.text = nil
@@ -94,7 +97,8 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         titleLabel.textColor = .label
     }
     
-    public func configure(with viewModel: CharacterInformationCollectionViewCellViewModel){
+    public func configure(with viewModel: CharacterInformationCollectionViewCellViewModel) {
+        
         titleLabel.text = viewModel.title
         valueLabel.text = viewModel.displayValue
         iconImgView.image = viewModel.iconImage
