@@ -13,5 +13,3 @@ struct PokemonList: Codable {
     var previous : String?
     var results : [results]
 }
-
-

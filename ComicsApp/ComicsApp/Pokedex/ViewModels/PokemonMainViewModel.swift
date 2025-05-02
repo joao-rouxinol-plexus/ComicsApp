@@ -12,23 +12,20 @@ class PokemonMainViewModel {
     var next : String?
     var previous : String?
     
-    var pokeArrayTest = [PokemonViewModel?]()
+    var cachedPokemonArray = [PokemonViewModel?]()
     
     func getPokemonData(_ url: String) -> PokemonViewModel?{
         
-        
         let id = Int((url.split(separator: "/").last!))!
         
-        if let cachedPokemon = pokeArrayTest[id-1] {
-            print("returning \(id)")
+        if let cachedPokemon = cachedPokemonArray[id-1] {
             return cachedPokemon
         }
         
         var pokemonIsReady = false
         
-        print("getting \(id)")
         PokemonApiCaller.getPokemonInfo(urlString: url) { [weak self] pokemonResult in
-            self?.pokeArrayTest[id-1] = PokemonViewModel(pokemon: pokemonResult)
+            self?.cachedPokemonArray[id-1] = PokemonViewModel(pokemon: pokemonResult)
             pokemonIsReady = true
         }
         
@@ -36,17 +33,15 @@ class PokemonMainViewModel {
             _ = wait()
         }
         
-        return self.pokeArrayTest[id-1]
-        
+        return self.cachedPokemonArray[id-1]
     }
     
     
-    //MARK - Lista Pokédex
+    // MARK - Lista Pokédex
     var listDataSource: [PokemonList] = []
     var pokemons: [PokemonListViewModel] = []
     var currentList = 0
     let pageLimit: Int = 20
-    var threeDoubles = [Pokemon?]()
     
     
     var first = true
@@ -58,16 +53,15 @@ class PokemonMainViewModel {
             PokemonApiCaller.listSpecies(urlstring: url){ [weak self] listResult in
                 self?.listDataSource.append(listResult)
                 listReady = true
-                print("loaded list \(url)")
             }
         }
         
-        while listReady != true {
+        while !listReady {
             _ = wait()
         }
         
         if first {
-            pokeArrayTest = Array<PokemonViewModel?>(repeating: nil, count: listDataSource[0].count)
+            cachedPokemonArray = Array<PokemonViewModel?>(repeating: nil, count: listDataSource[0].count)
             first = false
         }
         
@@ -110,24 +104,16 @@ class PokemonMainViewModel {
         
         if listDataSource.count <= currentList {
             loadList(url: url, list: currentList)
-            previous = listDataSource[currentList].previous
-            next = listDataSource[currentList].next
         }
         
-        else {
-            self.next = listDataSource[currentList].next
-            self.previous = listDataSource[currentList].previous
-        }
+        previous = listDataSource[currentList].previous
+        next = listDataSource[currentList].next
         
-        let nextPage = DispatchGroup()
         DispatchQueue.global(qos: .userInitiated).async {
-            nextPage.enter()
-            if let nexturl = self.listDataSource[self.currentList].next {
-                self.loadList(url: nexturl, list: self.currentList+1)
+            if let nextUrl = self.listDataSource[self.currentList].next {
+                self.loadList(url: nextUrl, list: self.currentList+1)
             }
-            nextPage.leave()
         }
-        
         
         for i in listDataSource[currentList].results.indices {
             let id = Int((listDataSource[currentList].results[i].url.split(separator: "/").last!))!
@@ -138,7 +124,6 @@ class PokemonMainViewModel {
                 next = nil
             }
         }
-        
         closure?()
     }
     

@@ -27,6 +27,10 @@ struct OfficialArtwork: Codable{
     let front_shiny : String
 }
 
+struct Showdown: Codable{
+    let front_default : String
+}
+
 struct OtherSprites: Codable{
     let officialArtwork : OfficialArtwork
     
@@ -41,13 +45,35 @@ struct Sprites: Codable{
     let other : OtherSprites
 }
 
+struct Ability: Codable{
+    let name : String
+    let url : String
+}
+
+struct Abilities: Codable{
+    let ability : Ability
+    let is_hidden : Bool
+    let slot : Int
+}
+
+struct Stat: Codable{
+    let name : String
+    let url : String
+}
+
+struct Stats: Codable {
+    let base_stat : Int
+    let stat : Stat
+}
+
 struct Pokemon: Codable {
     let name : String
     let id : Int
     let species : species
     let types : [Types]
     let sprites : Sprites
+    let abilities : [Abilities]
+    let stats : [Stats]
+    let height : Int
+    let weight : Int
 }
-
-
-

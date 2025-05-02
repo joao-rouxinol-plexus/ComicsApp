@@ -8,6 +8,7 @@
 import Foundation
 
 class PokemonNetworkConstants{
+    
     public static var shared: PokemonNetworkConstants = PokemonNetworkConstants()
     
     public var pokemonURL: String {
@@ -31,12 +32,6 @@ class PokemonNetworkConstants{
     public var limitURL: String {
         get {
             return "limit="
-        }
-    }
-    
-    public var spriteURL: String {
-        get {
-            return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"
         }
     }
 }

@@ -43,13 +43,12 @@ class PokemonListViewModel {
         }
     }
     
-    
-    init (_ listResult: PokemonViewModel ){
+    init (_ listResult: PokemonViewModel){
         self.pokemon = listResult.name
         self.id = listResult.id
         self.types = listResult.types
         self.url = PokemonNetworkConstants().speciesURL + String(listResult.id)
         self.shiny = listResult.shiny
-        self.sprite = (listResult.shiny ? URL(string: listResult.shinySprite) : URL(string: listResult.sprite))!
+        self.sprite = URL(string: listResult.shinyCorrectedSprite)!
     }
 }
