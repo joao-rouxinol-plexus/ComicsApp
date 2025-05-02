@@ -371,6 +371,7 @@
 		6D2F383C2DA7BEB600268E44 /* Pokedex */ = {
 			isa = PBXGroup;
 			children = (
+				6DD929D32DC517C000AAF082 /* Resources */,
 				6D2F38232DA7BEB600268E44 /* Extensions */,
 				6D2F38292DA7BEB600268E44 /* Model */,
 				6D2F382C2DA7BEB600268E44 /* Networking */,
@@ -384,8 +385,6 @@
 		6D2F383E2DA7BEB600268E44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6D49FFA62DA7FE18001DFF79 /* PokemonUnitTestAPIResponse.json */,
-				6D49FFA82DA80384001DFF79 /* PokemonListingUnitTestAPIResponse.json */,
 				6D2F383D2DA7BEB600268E44 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -588,6 +587,15 @@
 				6DAA26092DBA289000CFD540 /* PokemonHeightAndInfoCell.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		6DD929D32DC517C000AAF082 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6D49FFA62DA7FE18001DFF79 /* PokemonUnitTestAPIResponse.json */,
+				6D49FFA82DA80384001DFF79 /* PokemonListingUnitTestAPIResponse.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		8148178125C22B47D9F68ADF /* Frameworks */ = {

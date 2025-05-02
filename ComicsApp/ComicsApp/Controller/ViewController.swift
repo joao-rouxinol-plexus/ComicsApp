@@ -9,13 +9,14 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    
     private let detailView: ViewControllerView
     private let viewModel : ViewControllerViewModel
     
     private let pokedexVC = PokeDexMainScreenViewController()
     private let MarvelVC = MarvelMainScreenViewController()
     private let RMVC = RickMortyMainViewController()
+    
+    private var originalNavigationBar: UINavigationBarAppearance?
     
     init(detailView : ViewControllerView, viewModel : ViewControllerViewModel) {
         self.detailView = detailView
@@ -33,12 +34,27 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        if let navigationController = self.navigationController {
+            navigationController.navigationBar.prefersLargeTitles = true
+            navigationController.navigationBar.tintColor = .systemBlue
+            
+            if let appearance = originalNavigationBar {
+                appearance.configureWithOpaqueBackground()
+                navigationController.navigationBar.standardAppearance = appearance
+                navigationController.navigationBar.scrollEdgeAppearance = appearance
+                navigationController.navigationBar.compactAppearance = appearance
+            }
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Comics App"
+        
+        if let navBar = navigationController?.navigationBar {
+            originalNavigationBar = navBar.standardAppearance
+        }
         
         detailView.getUniverseTapped = { [weak self] tappedImg in
             
@@ -56,8 +72,6 @@ class ViewController: UIViewController {
                     navigationController.pushViewController(self!.RMVC, animated: true)
                 }
             }
-            
         }
-        
     }
 }
