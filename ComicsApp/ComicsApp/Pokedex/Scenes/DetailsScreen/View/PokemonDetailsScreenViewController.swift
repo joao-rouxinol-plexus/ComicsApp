@@ -98,9 +98,7 @@ class PokemonDetailsScreenViewController: UIViewController {
         return contentView
     }()
     
-    
     private var infoView : PokemonInfoView = {
-        
         let infoView = PokemonInfoView(isAccessible: true)
         infoView.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         infoView.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -168,13 +166,23 @@ class PokemonDetailsScreenViewController: UIViewController {
     }
     
     func setupColor(){
-        self.myView.backgroundColor = self.userInterfaceColor
-        self.topView.addSubview(self.imageView)
-        self.topView.backgroundColor = self.backgroundColorVariable
-        self.scrollView.backgroundColor = self.userInterfaceColor
+        self.myView.backgroundColor = userInterfaceColor
+        self.topView.addSubview(imageView)
+        self.topView.backgroundColor = backgroundColorVariable
+        self.scrollView.backgroundColor = userInterfaceColor
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = userInterfaceColor
+        
+        appearance.titleTextAttributes = [.foregroundColor: backgroundColorVariable.darker(by: 0.2) ?? UIColor.black]
+        appearance.largeTitleTextAttributes = [.foregroundColor: backgroundColorVariable.darker(by: 0.2) ?? UIColor.black]
+        
         if let navigationController = self.navigationController {
-            navigationController.navigationBar.tintColor = self.backgroundColorVariable.darker(by: 0.2)
-            navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: self.backgroundColorVariable.darker(by: 0.2)!]
+            navigationController.navigationBar.standardAppearance = appearance
+            navigationController.navigationBar.scrollEdgeAppearance = appearance
+            navigationController.navigationBar.compactAppearance = appearance
+            navigationController.navigationBar.tintColor = backgroundColorVariable.darker(by: 0.2)
         }
         
         abilitiesStackView.subviews.forEach {
@@ -270,11 +278,9 @@ class PokemonDetailsScreenViewController: UIViewController {
             myView.topAnchor.constraint(equalTo: view.topAnchor),
             myView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            
             // infoView
             infoView.leadingAnchor.constraint(equalTo: topView.leadingAnchor, constant: 10),
             infoView.centerYAnchor.constraint(equalTo: topView.centerYAnchor),
-            
             infoView.topAnchor.constraint(equalTo: topView.topAnchor, constant: 15),
             infoView.widthAnchor.constraint(greaterThanOrEqualTo: topView.widthAnchor, multiplier: 0.65),
             topView.bottomAnchor.constraint(equalTo: infoView.bottomAnchor, constant: 15),
@@ -284,7 +290,6 @@ class PokemonDetailsScreenViewController: UIViewController {
             scrollView.leadingAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.leadingAnchor),
             scrollView.topAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.topAnchor, constant: 10),
             scrollView.bottomAnchor.constraint(equalTo: myView.safeAreaLayoutGuide.bottomAnchor, constant: -10),
-            
             
             // CONTENT VIEW
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
