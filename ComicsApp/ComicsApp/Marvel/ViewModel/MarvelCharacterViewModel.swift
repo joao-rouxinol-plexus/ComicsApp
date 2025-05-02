@@ -20,7 +20,7 @@ class MarvelCharacterViewModel {
     var imageUrl: URL?
     
     // MARK: - Initializer
-    init(character: Character) {
+    init(character: MarvelCharacter) {
         self.id = character.id
         self.name = character.name ?? ""
         

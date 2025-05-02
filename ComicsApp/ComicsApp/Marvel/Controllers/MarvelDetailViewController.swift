@@ -59,7 +59,6 @@ class MarvelDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor =  .backgroundColor
-        
         setupUI()
         configure()
     }
@@ -69,6 +68,10 @@ class MarvelDetailViewController: UIViewController {
         changeStackView()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
     // MARK: - UI Setup Methods
     private func createBoxView(title: String, content: String) -> MarvelBoxView {
         let boxView = MarvelBoxView(title: title, content: content)

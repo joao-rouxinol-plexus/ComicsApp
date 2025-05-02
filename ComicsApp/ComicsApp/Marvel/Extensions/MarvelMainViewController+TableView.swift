@@ -141,7 +141,5 @@ extension MarvelMainScreenViewController : UITableViewDelegate, UITableViewDataS
                 self.tableView.reloadData()
             }
         }
-        
     }
-    
 }

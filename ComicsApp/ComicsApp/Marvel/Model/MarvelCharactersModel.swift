@@ -19,7 +19,7 @@ struct CharacterDataWrapper: Codable {
     let limit: Int
     let total: Int
     let count: Int
-    let results: [Character]
+    let results: [MarvelCharacter]
 }
 
 // MARK: - Welcome
@@ -33,11 +33,11 @@ struct MarvelCharactersModel: Codable {
 // MARK: - DataClass
 struct DataClass: Codable {
     let offset, limit, total, count: Int
-    let results: [Character]
+    let results: [MarvelCharacter]
 }
 
 // MARK: - Result
-struct Character: Codable {
+struct MarvelCharacter: Codable {
     let id: Int
     let name: String?
     let description: String?
@@ -86,11 +86,11 @@ enum ItemType: String, Codable {
     case pinup = "pinup"
     case unknown
 
-        init(from decoder: Decoder) throws {
-            let container = try decoder.singleValueContainer()
-            let rawValue = try container.decode(String.self)
-            self = ItemType(rawValue: rawValue) ?? .unknown
-        }
+    init(from decoder: Decoder) throws {
+        let container = try decoder.singleValueContainer()
+        let rawValue = try container.decode(String.self)
+        self = ItemType(rawValue: rawValue) ?? .unknown
+    }
 }
 
 // MARK: - Thumbnail

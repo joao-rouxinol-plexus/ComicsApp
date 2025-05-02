@@ -65,7 +65,7 @@ class MarvelMainCharacterCell: UITableViewCell {
         characterImageView.layer.cornerRadius = 10
         characterImageView.layer.borderWidth = 2
         characterImageView.layer.borderColor = UIColor.systemYellow.cgColor
-        characterImageView.contentMode = .scaleAspectFit
+        characterImageView.contentMode = .scaleAspectFill
         
         NSLayoutConstraint.activate([
             characterImageView.heightAnchor.constraint(equalToConstant: 100),
@@ -149,24 +149,16 @@ class MarvelMainCharacterCell: UITableViewCell {
             finalStackView.topAnchor.constraint(equalTo: backView.topAnchor, constant: 8),
             finalStackView.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: -8),
         ])
-        
-        
-        NSLayoutConstraint.activate([
-            characterImageView.heightAnchor.constraint(equalToConstant: 150),
-            characterImageView.widthAnchor.constraint(equalToConstant: 150)
-        ])
     }
     
     // MARK: - Cell Configuration
     func setUpCell(viewModel: MarvelCharacterViewModel) {
         nameLabel.text = viewModel.name
         descriptionLabel.text = viewModel.description
-        
         comicsLabel.attributedText = applyImpactFont(to: "Comics: \(viewModel.comics.count)", for: "Comics:")
         storiesLabel.attributedText = applyImpactFont(to: "Stories: \(viewModel.stories.count)", for: "Stories:")
         seriesLabel.attributedText = applyImpactFont(to: "Series: \(viewModel.series.count)", for: "Series:")
         eventsLabel.attributedText = applyImpactFont(to: "Events: \(viewModel.events.count)", for: "Events:")
-        
         characterImageView.sd_setImage(with: viewModel.imageUrl)
         
         setNeedsLayout()
@@ -187,7 +179,6 @@ class MarvelMainCharacterCell: UITableViewCell {
         
         let impactFont = UIFont(name: "Impact", size: 13) ?? UIFont.boldSystemFont(ofSize: 13)
         let scaledImpactFont = UIFontMetrics(forTextStyle: .footnote).scaledFont(for: impactFont)
-        
         let wordRange = (text as NSString).range(of: word)
         attributedString.setAttributes(
             [
@@ -196,16 +187,13 @@ class MarvelMainCharacterCell: UITableViewCell {
             ],
             range: wordRange
         )
-        
         return attributedString
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         let size = traitCollection.preferredContentSizeCategory
         let isBig = size >= .extraExtraExtraLarge
-        
         finalStackView.axis = isBig ? .vertical : .horizontal
     }
 }

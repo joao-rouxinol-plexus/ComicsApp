@@ -14,7 +14,7 @@ class MarvelMainViewModel {
     // MARK: - Properties
     var isLoading: MarvelObservable <Bool> = MarvelObservable(false) //controla o carregamento dos dados (se estao a ser carregados ou nao )
     var cellDataSource: MarvelObservable<[MarvelCharacterViewModel]> = MarvelObservable(nil)
-    var dataSource: [Character]?
+    var dataSource: [MarvelCharacter]?
     
     // MARK: - UI Management Methods
     func numberOfSections() -> Int {
@@ -38,7 +38,6 @@ class MarvelMainViewModel {
             self.isLoading.value = false
             guard !characters.isEmpty else { return }
 
-            
             if self.dataSource == nil {
                 self.dataSource = characters
             } else {
