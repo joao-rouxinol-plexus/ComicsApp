@@ -33,7 +33,7 @@ class PokeDexMainScreenViewController: UIViewController {
         ])
         button.layer.cornerRadius = size / 2
         button.clipsToBounds = true
-
+        
         return button
     }()
     
@@ -64,7 +64,7 @@ class PokeDexMainScreenViewController: UIViewController {
             
             navigationController.navigationBar.prefersLargeTitles = false
             navigationController.navigationBar.tintColor = .red
-
+            
             if let appearance = originalNavigationBar {
                 appearance.configureWithOpaqueBackground()
                 navigationController.navigationBar.standardAppearance = appearance
@@ -141,9 +141,4 @@ extension PokeDexMainScreenViewController: UITableViewDelegate, UITableViewDataS
         self.pokemonTableView.register(PokeCellTableViewCell.self, forCellReuseIdentifier: PokeCellTableViewCell.identifier)
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let cellWidth = tableView.frame.width
-        let aspectRatio: CGFloat = 3.2
-        return cellWidth / aspectRatio
-    }
 }

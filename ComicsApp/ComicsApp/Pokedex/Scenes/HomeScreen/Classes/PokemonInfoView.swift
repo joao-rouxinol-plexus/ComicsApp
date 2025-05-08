@@ -13,7 +13,6 @@ class PokemonInfoView : UIView {
     private var typeView : PokemonTypeView = PokemonTypeView()
     private var isAccessible : Bool
     
-    
     init(isAccessible: Bool = false){
         self.isAccessible = isAccessible
         super.init(frame: .zero)
