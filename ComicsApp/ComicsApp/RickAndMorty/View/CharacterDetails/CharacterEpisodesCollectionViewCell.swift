@@ -17,7 +17,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         label.textAlignment = .center
         label.round()
         label.backgroundColor = .secondarySystemBackground
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         label.textColor = .systemMint
         return label
     }()
@@ -27,7 +28,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .medium)
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
@@ -35,7 +37,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 17, weight: .light)
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
@@ -43,7 +46,8 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 17, weight: .light)
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
