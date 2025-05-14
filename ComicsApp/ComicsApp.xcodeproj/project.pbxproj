@@ -605,6 +605,7 @@
 				6D2F381C2DA7BEB600268E44 /* Controller */,
 				6D2F381F2DA7BEB600268E44 /* Marvel */,
 				6D2F383E2DA7BEB600268E44 /* Resources */,
+				6D2F383C2DA7BEB600268E44 /* Pokedex */,
 				6D2F38632DA7BEB600268E44 /* RickAndMorty */,
 				6D2F38652DA7BEB600268E44 /* View */,
 				6D2F38672DA7BEB600268E44 /* ViewModel */,
@@ -614,7 +615,6 @@
 				6D2F386D2DA7BEB600268E44 /* Main.storyboard */,
 				6D2F386E2DA7BEB600268E44 /* SceneDelegate.swift */,
 				6D2F386F2DA7BEB600268E44 /* View.swift */,
-				6D2F383C2DA7BEB600268E44 /* Pokedex */,
 			);
 			path = ComicsApp;
 			sourceTree = "<group>";

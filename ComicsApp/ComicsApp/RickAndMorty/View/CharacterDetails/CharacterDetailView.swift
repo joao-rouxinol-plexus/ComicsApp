@@ -59,6 +59,7 @@ final class CharacterDetailView: UIView {
         let layout = UICollectionViewCompositionalLayout{ sectionIndex, _ in
             return self.createSection(for: sectionIndex)
         }
+        
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(CharacterPhotoCollectionViewCell.self, forCellWithReuseIdentifier: CharacterPhotoCollectionViewCell.cellIdentifier)
         collectionView.register(CharacterInformationCollectionViewCell.self, forCellWithReuseIdentifier: CharacterInformationCollectionViewCell.cellIdentifier)

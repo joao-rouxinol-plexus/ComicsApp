@@ -15,7 +15,9 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 18, weight: .light)
+        label.lineBreakMode = .byWordWrapping
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
@@ -23,7 +25,12 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
-        label.font = .systemFont(ofSize: 20, weight: .medium)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byCharWrapping
+        label.backgroundColor = .secondarySystemBackground
+        label.round()
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
     
@@ -34,13 +41,6 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         return icon
     }()
     
-    private let titleContainerView : UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .secondarySystemBackground
-        view.round()
-        return view
-    }()
     
     //    MARK: - Init
     
@@ -51,10 +51,6 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
         contentView.round()
         contentView.addBorder()
         contentView.layer.masksToBounds = true
-        contentView.addSubview(valueLabel)
-        contentView.addSubview(titleContainerView)
-        contentView.addSubview(iconImgView)
-        titleContainerView.addSubview(titleLabel)
         setUpConstrains()
     }
     
@@ -63,29 +59,44 @@ final class CharacterInformationCollectionViewCell: UICollectionViewCell {
     }
     
     private func setUpConstrains() {
-        
+        // Container para a imagem, com tamanho fixo
+        let iconContainerView = UIView()
+        iconContainerView.translatesAutoresizingMaskIntoConstraints = false
+        iconContainerView.addSubview(iconImgView)
+
         NSLayoutConstraint.activate([
-            titleContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            titleContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            titleContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            titleContainerView.heightAnchor.constraint(equalTo: contentView.heightAnchor,multiplier: 0.33),
-            
-            titleLabel.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
-            titleLabel.leadingAnchor.constraint(equalTo: titleContainerView.leadingAnchor),
-            titleLabel.trailingAnchor.constraint(equalTo: titleContainerView.trailingAnchor),
-            titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
-            
-            valueLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -10),
-            valueLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor,constant: 15),
-            valueLabel.trailingAnchor.constraint(equalTo: iconImgView.trailingAnchor,constant: -30),
-            valueLabel.heightAnchor.constraint(equalToConstant: 70),
-            
-            iconImgView.heightAnchor.constraint(equalToConstant: 30),
-            iconImgView.widthAnchor.constraint(equalToConstant: 30),
-            iconImgView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor,constant: -20),
-            iconImgView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor,constant: -35),
+            iconImgView.centerXAnchor.constraint(equalTo: iconContainerView.centerXAnchor),
+            iconImgView.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor),
+            iconImgView.widthAnchor.constraint(equalToConstant: 40),
+            iconImgView.heightAnchor.constraint(equalToConstant: 40),
+            iconContainerView.widthAnchor.constraint(equalToConstant: 50),
+            iconContainerView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+
+        // Stack interno (valor + ícone)
+        let stackView = UIStackView(arrangedSubviews: [valueLabel, iconContainerView])
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 2
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+
+        // Stack principal (título + stack interno)
+        let mainStackView = UIStackView(arrangedSubviews: [titleLabel, stackView])
+        mainStackView.axis = .vertical
+        mainStackView.distribution = .fill
+        mainStackView.spacing = 2
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+
+        contentView.addSubview(mainStackView)
+
+        NSLayoutConstraint.activate([
+            mainStackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 2),
+            mainStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 2),
+            mainStackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -2),
+            mainStackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
+
     
     override func prepareForReuse() {
         
