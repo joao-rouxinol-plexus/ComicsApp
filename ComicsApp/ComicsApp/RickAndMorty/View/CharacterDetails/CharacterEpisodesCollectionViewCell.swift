@@ -18,6 +18,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         label.round()
         label.backgroundColor = .secondarySystemBackground
         label.font = .preferredFont(forTextStyle: .body)
+        label.numberOfLines = 0
         label.adjustsFontForContentSizeCategory = true
         label.textColor = .systemMint
         return label
@@ -28,7 +29,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
         label.numberOfLines = 0
-        label.font = .preferredFont(forTextStyle: .body)
+        label.font =  UIFont.preferredFont(for: .body, weight: .bold)
         label.adjustsFontForContentSizeCategory = true
         return label
     }()
@@ -37,6 +38,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -46,6 +48,7 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .center
+        label.numberOfLines = 0
         label.font = .preferredFont(forTextStyle: .body)
         label.adjustsFontForContentSizeCategory = true
         return label
@@ -73,13 +76,13 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
         let mainStackView = UIStackView(arrangedSubviews: [headerLabel,stackView])
         
         mainStackView.axis = .vertical
-        mainStackView.distribution = .fillProportionally
-        mainStackView.spacing = 2
+        mainStackView.distribution = .fill
+        mainStackView.spacing = 5
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         
         stackView.axis = .vertical
         stackView.distribution = .fillProportionally
-        stackView.spacing = 2
+        stackView.spacing = 5
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(mainStackView)
@@ -90,7 +93,6 @@ final class CharacterEpisodesCollectionViewCell: UICollectionViewCell {
             mainStackView.trailingAnchor.constraint(equalTo: trailingAnchor,constant: -2),
             mainStackView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
-        
     }
     
     override func prepareForReuse() {
