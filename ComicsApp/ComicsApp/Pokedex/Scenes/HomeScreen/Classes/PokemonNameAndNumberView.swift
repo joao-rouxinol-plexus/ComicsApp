@@ -45,6 +45,8 @@ class PokemonNameAndNumberView: UIView {
     func makeScaleable(){
         pokemonNumber.font = pokemonNumber.font.makeScaleable()
         pokemonName.font = pokemonName.font.makeScaleable()
+        pokemonNumber.textColor = .white
+        pokemonName.textColor = .white
     }
     
     func setOrientation(useVerticalLayout: Bool){

@@ -9,14 +9,12 @@ import UIKit
 
 class PokemonTypeView: UIView {
     
-    private static func createTypeLabel() -> UILabel {
+    private func createTypeLabel() -> UILabel {
         let label = UILabel()
         label.squircle()
         label.layer.borderColor = UIColor.white.cgColor
-        
         label.font = UIFont.systemFont(ofSize: 17, weight: .regular)
         label.adjustsFontForContentSizeCategory = true
-        
         label.layer.borderWidth = 1
         label.textColor = .label
         label.textAlignment = .center
@@ -24,9 +22,9 @@ class PokemonTypeView: UIView {
         return label
     }
     
-    private let type1Label = createTypeLabel()
+    private lazy var type1Label = createTypeLabel()
     
-    private let type2Label = createTypeLabel()
+    private lazy var type2Label = createTypeLabel()
     
     private let stackView: UIStackView = {
         let stackView = UIStackView()
@@ -63,12 +61,12 @@ class PokemonTypeView: UIView {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         
         type1Label.text = type1
-        stackView.addArrangedSubview(type1Label)
+        type2Label.text = type2
         
-        if !type2.isEmpty {
-            type2Label.text = type2
-            stackView.addArrangedSubview(type2Label)
-        }
+        stackView.addArrangedSubview(type1Label)
+        stackView.addArrangedSubview(type2Label)
+        
+        type2Label.isHidden = type2.isEmpty
     }
     
     func setOrientation(useVerticalLayout: Bool){
@@ -83,5 +81,7 @@ class PokemonTypeView: UIView {
     func makeScaleable() {
         type1Label.font = type1Label.font.makeScaleable()
         type2Label.font = type2Label.font.makeScaleable()
+        type1Label.textColor = .white
+        type2Label.textColor = .white
     }
 }
